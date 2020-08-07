@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "scripts": {
+    "format": "prettier --write '**/*.{js,jsx,ts,tsx,json,yaml,gql,md,html,css}'"
+  },
+  "devDependencies": {
+    "husky": "4.2.5",
+    "lint-staged": "10.2.11",
+    "prettier": "2.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,yaml,gql,md,html,css}": [
+      "prettier --write"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "jsxSingleQuote": true
+  },
+  "renovate": {
+    "extends": [
+      "github>ctison/renovate-config"
+    ],
+    "automerge": true
+  }
+}
