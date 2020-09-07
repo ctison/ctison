@@ -39,9 +39,16 @@
   },
   "renovate": {
     "extends": [
-      "github>ctison/renovate-config"
+      "github>ctison/renovate"
     ],
-    "automerge": true
+    "packageRules": [
+      {
+        "packagePatterns": [
+          "^@docusaurus/"
+        ],
+        "groupName": "docusaurus"
+      }
+    ]
   },
   "browserslist": {
     "production": [
