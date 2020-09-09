@@ -1,23 +1,24 @@
 module.exports = {
-  title: 'My Site',
-  tagline: 'The tagline of my site',
-  url: 'https://your-docusaurus-test-site.com',
+  title: "ctison's website",
+  url: 'https://ctison.dev',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  onDuplicateRoutes: 'throw',
   themeConfig: {
+    colorMode: {
+      disableSwitch: true,
+    },
+    // TODO: https://v2.docusaurus.io/docs/theme-classic#meta-image
+    // image: 'img/logo.png'
     navbar: {
-      title: 'My Site',
+      title: 'ctison',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'ctison avatar',
+        src: 'https://avatars3.githubusercontent.com/u/17789536?v=4',
       },
       items: [
         {
-          to: 'docs/',
-          activeBasePath: 'docs',
+          to: 'docs',
           label: 'Docs',
           position: 'left',
         },
@@ -76,7 +77,6 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
   },
   presets: [
