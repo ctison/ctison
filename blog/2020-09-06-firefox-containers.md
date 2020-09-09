@@ -1,6 +1,6 @@
 ---
 slug: firefox-containers
-title: 🔥🦊 Firefox Containers 🔒
+title: Firefox Containers
 description: Learn how to use Firefox containers to enhance your browsing experience and security.
 tags: [firefox, web, security, privacy, productivity, seo]
 ---
