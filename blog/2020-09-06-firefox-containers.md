@@ -1,6 +1,6 @@
 ---
 slug: firefox-containers
-title: 🔥🦊 Firefox Containers
+title: 🔥🦊 Firefox Containers 🔒
 description: Learn how to use Firefox containers to enhance your browsing experience and security.
 tags: [firefox, web, security, privacy, productivity, seo]
 ---
@@ -15,7 +15,7 @@ To unlock these functionalities, we will use **Multi-Account Containers** which 
 
 <!--truncate-->
 
-# Containers
+## Firefox Containers
 
 The first step is to install **Multi-Account Containers**:
 
@@ -38,7 +38,7 @@ You're now able to browse websites with multiple identities 🦾🚀🔥!
 
 But there is more.
 
-# Temporary Containers
+### Temporary Containers
 
 Browsing in multiple containers allows you to browse websites with multiple identities, which is fantastic. But we could use this technology moreover by automatically spawning and dropping containers while navigating the web, thus increasing our security and privacy. Think about a new container every time you want to interact with servers on the internet.
 
@@ -62,7 +62,7 @@ In my configuration, **Temporary Containers** will create a temporary container 
 - You navigate in a newly opened tab
 - You navigate to an URL that has a different domain or subdomain from the current one. For example, going from [google.com](https://google.com) to [facebook.com](https://facebook.com).
 
-# Permanent Containers
+### Permanent Containers
 
 Now that we have temporary containers spawning by default, we have to learn how to bypass them because sometimes we need to share data between websites. For example, some websites propose to authenticate via a third party account like [google.com](https://google.com) or [linkedin.com](https://linkedin.com), but navigating from [example.org](https://example.org) to [google.com](https://google.com) would create another temporary container isolated from the previous. So we need to create permanent containers, where cross-domains navigation doesn't spawn distinct containers, and which are not automatically deleted.
 
@@ -72,15 +72,15 @@ So let's create a container with **Multi-Account Containers** named, for example
 
 Now, anything you do in this container will persist, and cross-domains navigation will not spawn new containers.
 
-# Tips
+## Tips
 
-- Open a new tab in the same container by pressing **Alt+X**!
-- Right-click on a tab or a link to see containers related options.
+- Open a new tab in the same container by pressing **Alt+X**.
+- Right-click on a tab or a link to see containers containers options.
 - Long click on the **Create tab** button to open a new tab in a specific container.
 
 ![Create a containerized tab's menu](https://dev-to-uploads.s3.amazonaws.com/i/uxbkv4x55hzubbevyaqq.png)
 
-# Conclusion
+## Conclusion
 
 That's it! You are now completely undetectable... 🤨
 Maybe not entirely, but still, we made some progress 🐥.
@@ -89,9 +89,9 @@ Note that this style of navigation may introduce irritating website behaviors th
 
 The next post of this series will talk about how to block and bypass annoying content from the web with some of the following extensions:
 
-- uBlock Origin
-- Stylus
-- Greasemonkey
-- Cookie Quick Manager
+- [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
+- [Stylus](https://addons.mozilla.org/en-US/firefox/addon/styl-us/)
+- [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)
+- [Cookie Quick Manager](https://addons.mozilla.org/en-US/firefox/addon/cookie-quick-manager/)
 
 Happy browsing 😀👀
