@@ -1,10 +1,8 @@
 ---
 slug: crack-with-vscode-hexeditor
-title: 🔓 Crack executables with VSCode Hex Editor 👀
+title: Crack with VSCode Hex Editor
 description: Learn how to crack a simple executable by editing it with VSCode Hex Editor.
-image: https://i.imgur.com/mErPwqL.png
 tags: [vscode, security, assembler, crack]
-hide_table_of_contents: false
 ---
 
 Have you ever wondered how hackers bypass proprietary applications to do what they want? Like not asking for a license.
