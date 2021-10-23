@@ -1778,9 +1778,9 @@
   integrity sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==
 
 "@types/node@*":
-  version "16.11.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.2.tgz#31c249c136c3f9b35d4b60fb8e50e01a1f0cc9a5"
-  integrity sha512-w34LtBB0OkDTs19FQHXy4Ig/TOXI4zqvXS2Kk1PAsRKZ0I+nik7LlMYxckW0tSNGtvWmzB+mrCTbuEjuB9DVsw==
+  version "16.11.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.4.tgz#90771124822d6663814f7c1c9b45a6654d8fd964"
+  integrity sha512-TMgXmy0v2xWyuCSCJM6NCna2snndD8yvQF67J29ipdzMcsPa9u+o0tjF5+EQNdhcuZplYuouYqpc4zcd5I6amQ==
 
 "@types/node@^15.0.1":
   version "15.14.9"
@@ -2544,9 +2544,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001125, caniuse-lite@^1.0.30001264, caniuse-lite@^1.0.30001265:
-  version "1.0.30001270"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001270.tgz#cc9c37a4ec5c1a8d616fc7bace902bb053b0cdea"
-  integrity sha512-TcIC7AyNWXhcOmv2KftOl1ShFAaHQYcB/EPL/hEyMrcS7ZX0/DvV1aoy6BzV0+16wTpoAyTMGDNAJfSqS/rz7A==
+  version "1.0.30001271"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001271.tgz#0dda0c9bcae2cf5407cd34cac304186616cc83e8"
+  integrity sha512-BBruZFWmt3HFdVPS8kceTBIguKxu4f99n5JNp06OlPD/luoAMIaIK5ieV5YjnBLH3Nysai9sxj9rpJj4ZisXOA==
 
 ccount@^1.0.0, ccount@^1.0.3:
   version "1.1.0"
@@ -2822,9 +2822,9 @@ commander@^7.2.0:
   integrity sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==
 
 commander@^8.1.0, commander@^8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-8.2.0.tgz#37fe2bde301d87d47a53adeff8b5915db1381ca8"
-  integrity sha512-LLKxDvHeL91/8MIyTAD5BFMNtoIwztGPMiM/7Bl8rIPmHCZXRxmSWr91h57dpOpnQ6jIUqEWdXE/uBYMfiVZDA==
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-8.3.0.tgz#4837ea1b2da67b9c616a67afbb0fafee567bca66"
+  integrity sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==
 
 commondir@^1.0.1:
   version "1.0.1"
@@ -8268,9 +8268,9 @@ typedarray-to-buffer@^3.1.5:
     is-typedarray "^1.0.0"
 
 ua-parser-js@^0.7.18:
-  version "0.7.28"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.28.tgz#8ba04e653f35ce210239c64661685bf9121dec31"
-  integrity sha512-6Gurc1n//gjp9eQNXjD9O3M/sMwVtN5S8Lv9bvOYBfKfDNiIIhqiyi01vMBO45u4zkDE420w/e0se7Vs+sIg+g==
+  version "0.7.30"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.30.tgz#4cf5170e8b55ac553fe8b38df3a82f0669671f0b"
+  integrity sha512-uXEtSresNUlXQ1QL4/3dQORcGv7+J2ookOG2ybA/ga9+HYEXueT2o+8dUJQkpedsyTyCJ6jCCirRcKtdtx1kbg==
 
 unbox-primitive@^1.0.1:
   version "1.0.1"
