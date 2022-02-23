@@ -1177,19 +1177,19 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
-"@docsearch/css@3.0.0-alpha.50":
-  version "3.0.0-alpha.50"
-  resolved "https://registry.yarnpkg.com/@docsearch/css/-/css-3.0.0-alpha.50.tgz#794c6a8d301840a49b55f5b331c7be84b9723643"
-  integrity sha512-QeWFCQOtS9D+Fi20liKsPXF2j/xWKh52e+P2Z1UATIdPMqmH6zoB2lcUz+cgv6PPVgWUtECeR6VSSUm71LT94w==
+"@docsearch/css@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@docsearch/css/-/css-3.0.0.tgz#fe57b474802ffd706d3246eab25d52fac8aa3698"
+  integrity sha512-1kkV7tkAsiuEd0shunYRByKJe3xQDG2q7wYg24SOw1nV9/2lwEd4WrUYRJC/ukGTl2/kHeFxsaUvtiOy0y6fFA==
 
 "@docsearch/react@^3.0.0-alpha.33":
-  version "3.0.0-alpha.50"
-  resolved "https://registry.yarnpkg.com/@docsearch/react/-/react-3.0.0-alpha.50.tgz#a7dc547836c2b221fd3aa8eb87bfb47a579ef141"
-  integrity sha512-oDGV1zZCRYv7MWsh6CyQVthYTRc3b4q+6kKwNYb1/g/Wf/4nJHutpxolFLHdEUDhrJ4Xi8wxwQG+lEwAVBTHPg==
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@docsearch/react/-/react-3.0.0.tgz#d02ebdc67573412185a6a4df13bc254c7c0da491"
+  integrity sha512-yhMacqS6TVQYoBh/o603zszIb5Bl8MIXuOc6Vy617I74pirisDzzcNh0NEaYQt50fVVR3khUbeEhUEWEWipESg==
   dependencies:
     "@algolia/autocomplete-core" "1.5.2"
     "@algolia/autocomplete-preset-algolia" "1.5.2"
-    "@docsearch/css" "3.0.0-alpha.50"
+    "@docsearch/css" "3.0.0"
     algoliasearch "^4.0.0"
 
 "@docusaurus/core@2.0.0-beta.ff31de0ff":
@@ -4077,9 +4077,9 @@ fresh@0.5.2:
   integrity sha1-PYyt2Q2XZWn6g1qx+OSyOhBWBac=
 
 fs-extra@^10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.0.0.tgz#9ff61b655dde53fb34a82df84bb214ce802e17c1"
-  integrity sha512-C5owb14u9eJwizKGdchcDUQeFtlSHHthBk8pbX9Vc1PFZrLombudjDnNns88aYslCyF6IY5SUw3Roz6xShcEIQ==
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.0.1.tgz#27de43b4320e833f6867cc044bfce29fdf0ef3b8"
+  integrity sha512-NbdoVMZso2Lsrn/QwLXOy6rm0ufY2zEOKCDzJR/0kBsb0E6qed0P3iYK+Ath3BfvXEeu4JhEtXLgILx5psUfag==
   dependencies:
     graceful-fs "^4.2.0"
     jsonfile "^6.0.1"
@@ -8550,9 +8550,9 @@ url-parse-lax@^3.0.0:
     prepend-http "^2.0.0"
 
 url-parse@^1.4.3, url-parse@^1.5.3:
-  version "1.5.9"
-  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.5.9.tgz#05ff26484a0b5e4040ac64dcee4177223d74675e"
-  integrity sha512-HpOvhKBvre8wYez+QhHcYiVvVmeF6DVnuSOOPhe3cTum3BnqHhvKaZm8FU5yTiOu/Jut2ZpB2rA/SbBA1JIGlQ==
+  version "1.5.10"
+  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.5.10.tgz#9d3c2f736c1d75dd3bd2be507dcc111f1e2ea9c1"
+  integrity sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ==
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
