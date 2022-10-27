@@ -2,7 +2,6 @@
 
 import { Box } from '@mantine/core'
 import { useMouse } from '@mantine/hooks'
-import type { NextPage } from 'next'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import eyeImage from './eye.png'
@@ -16,7 +15,7 @@ const angle = (cx: number, cy: number, ex: number, ey: number) => {
   return deg
 }
 
-const Home: NextPage = () => {
+export default function Page() {
   const { x: mouseX, y: mouseY } = useMouse()
   const [rickAndMorty, setRickAndMorty] = useState<HTMLImageElement>()
   const [angleDeg, setAngleDeg] = useState(0)
@@ -101,5 +100,3 @@ const Home: NextPage = () => {
     </Box>
   )
 }
-
-export default Home
