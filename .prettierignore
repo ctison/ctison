@@ -1,0 +1,4 @@
+.next/
+*-lock.yaml
+.fttemplates/
+/out/
