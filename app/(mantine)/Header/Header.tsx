@@ -31,7 +31,7 @@ export const Header: React.FC<HeaderProps> = ({ opened, setOpened }) => {
           <MediaQuery largerThan='sm' styles={{ display: 'none' }}>
             <Burger
               opened={opened}
-              onClick={() => setOpened(o => !o)}
+              onClick={() => setOpened((o) => !o)}
               size='sm'
               mr='xl'
             />
