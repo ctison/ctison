@@ -17,8 +17,8 @@ export const HeaderButton: React.FC<HeaderButtonProps> = ({
       component='a'
       href={href}
       target='_blank'
-      onClick={onClick}
       rel='noreferrer'
+      onClick={onClick}
       sx={{
         border: '1px solid #dee2e6',
         borderRadius: 8,
