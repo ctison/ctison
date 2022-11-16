@@ -1,13 +1,22 @@
+import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { AppShell } from '~/components/AppShell'
 import { Footer } from '~/components/AppShell/Footer'
-import { Keyboard } from '~/components/Keyboard'
-import { StaggeredTiles } from '~/components/StaggeredTiles'
+
+const Keyboard = dynamic(() =>
+  import('~/components/Keyboard').then((m) => m.Keyboard)
+)
+
+const StaggeredTiles = dynamic(() =>
+  import('~/components/StaggeredTiles').then((m) => m.StaggeredTiles)
+)
 
 const Page = () => {
   return (
     <>
-      <Head>ctison</Head>
+      <Head>
+        <title>ctison</title>
+      </Head>
       <AppShell>
         <Keyboard />
         <StaggeredTiles />
