@@ -1,0 +1,25 @@
+{
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "cSpell.words": [
+    "Devdotto",
+    "fontsource",
+    "gsap",
+    "splinetool",
+    "windi",
+    "windicss"
+  ],
+  "cSpell.ignorePaths": [
+    "package.json",
+    "package-lock.json",
+    "node_modules/",
+    ".git/objects",
+    ".vscode/settings.json",
+    "pnpm-lock.yaml"
+  ],
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "pnpm-lock.yaml": true
+  }
+}

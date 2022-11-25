@@ -1,4 +1,4 @@
-.next/
 *-lock.yaml
-.fttemplates/
-/out/
+/.fttemplates/
+/.solid/
+/netlify/
