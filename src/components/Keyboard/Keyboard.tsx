@@ -3,7 +3,7 @@ import '@fontsource/tourney'
 
 const Canvas = lazy(() => import('./Canvas'))
 
-const splineURL = '/keyboard.spline'
+const splineURL = '/keyboard.splinecode'
 
 export const Keyboard: Component = () => {
   return (
