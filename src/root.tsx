@@ -1,7 +1,7 @@
 // @refresh reload
 
-import 'virtual:windi.css'
 import 'virtual:windi-devtools'
+import 'virtual:windi.css'
 
 import { Suspense } from 'solid-js'
 import {
@@ -15,8 +15,9 @@ import {
   Routes,
   Scripts,
 } from 'solid-start'
-import { Header } from './components/Header'
+import { createServerData$ } from 'solid-start/server'
 import { Footer } from './components/Footer'
+import { Header } from './components/Header'
 
 const emojiSvg = (emoji: string) => {
   return (
@@ -26,6 +27,10 @@ const emojiSvg = (emoji: string) => {
 }
 
 export default function Root() {
+  const data = createServerData$(() => ({
+    generatedAt: new Date().toISOString(),
+  }))
+
   return (
     <Html lang='en'>
       <Head>
@@ -42,7 +47,7 @@ export default function Root() {
                 <FileRoutes />
               </Routes>
             </main>
-            <Footer />
+            <Footer generatedAt={data()?.generatedAt} />
           </ErrorBoundary>
         </Suspense>
         <Scripts />

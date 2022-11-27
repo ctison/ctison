@@ -14,7 +14,7 @@ export const Header: Component = () => {
     <header class='h-[60px] bg-bg-light-400 flex justify-between items-center p-4'>
       <A
         href='/'
-        class='font-medium text-lg text-pink-600 no-underline'
+        class='font-medium text-lg text-pink-600 no-underline focus:(outline-none ring)'
         aria-label='Website Home'
       >
         @ctison
