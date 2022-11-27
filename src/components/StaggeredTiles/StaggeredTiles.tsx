@@ -8,7 +8,11 @@ import { Tile } from './Tile'
 
 const colors = ['#94d82d', '#5c7cfa', '#fcc419', '#cc5de8']
 
-export const StaggeredTiles: Component = () => {
+export interface StaggeredTilesProps {
+  title?: string
+}
+
+export const StaggeredTiles: Component<StaggeredTilesProps> = (props) => {
   let colorIndex = 0
   const [ref, setRef] = createSignal<HTMLDivElement>()
   const size = createElementSize(ref)
@@ -21,7 +25,7 @@ export const StaggeredTiles: Component = () => {
   const total = createMemo(() => grid().columns * grid().rows)
 
   return (
-    <div
+    <section
       ref={setRef}
       class='h-64 relative grid'
       style={{
@@ -34,7 +38,7 @@ export const StaggeredTiles: Component = () => {
         class='white absolute w-full top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 z-10 text-center pointer-events-none text-6xl select-none'
         style={{ 'font-family': '"Passero One", cursive' }}
       >
-        Cool Effect
+        {props.title ?? 'Cool Effect'}
       </h1>
       <IndexRange start={0} to={total()}>
         {(i) => (
@@ -57,6 +61,6 @@ export const StaggeredTiles: Component = () => {
           />
         )}
       </IndexRange>
-    </div>
+    </section>
   )
 }

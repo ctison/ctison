@@ -1,43 +1,34 @@
-import { Component, createEffect, createSignal, on, onCleanup } from 'solid-js'
-import { Fit, Layout, Rive } from '@rive-app/canvas'
-import { createElementSize } from '@solid-primitives/resize-observer'
+import { Component, JSX, lazy, ParentComponent, splitProps } from 'solid-js'
 
-export const MadeWith: Component = () => {
-  const [canvas, setCanvasRef] = createSignal<HTMLCanvasElement>()
-  const canvasSize = createElementSize(canvas)
-  const [riveApp, setRiveApp] = createSignal<Rive>()
+const Canvas = lazy(() => import('./Canvas'))
 
-  createEffect(() => {
-    const app = new Rive({
-      src: '/orbits.riv',
-      canvas: canvas(),
-      autoplay: true,
-      layout: new Layout({
-        fit: Fit.FitHeight,
-      }),
-      onLoad: () => {
-        app.resizeDrawingSurfaceToCanvas()
-      },
-    })
-    onCleanup(() => {
-      app.cleanup()
-    })
-    setRiveApp(app)
-  })
+export interface MadeWithProps {}
 
-  createEffect(
-    on(
-      [riveApp, () => canvasSize.width],
-      ([app]) => {
-        app?.resizeDrawingSurfaceToCanvas()
-      },
-      { defer: true }
-    )
-  )
-
+export const MadeWith: Component<MadeWithProps> = (props) => {
   return (
-    <section class='h-[500px] bg-black'>
-      <canvas ref={setCanvasRef} class='w-full h-full' />
+    <section class='h-[1000px] bg-white relative selection:(text-white bg-cyan-400)'>
+      <h1 class='absolute left-0 right-0 top-42 text-center text-5xl font-semibold'>
+        Built with <Link href='https://www.solidjs.com'>Solid.js</Link>
+        {' on '}
+        <Link href='https://www.netlify.com/'>Netlify</Link>
+      </h1>
+      <Canvas />
     </section>
+  )
+}
+
+const Link: ParentComponent<JSX.AnchorHTMLAttributes<HTMLAnchorElement>> = (
+  props
+) => {
+  const [local, rest] = splitProps(props, ['children'])
+  return (
+    <a
+      target='_blank'
+      class='text-sky-600 underline decoration-black'
+      rel='noreferrer'
+      {...rest}
+    >
+      {local.children}
+    </a>
   )
 }
