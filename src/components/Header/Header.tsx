@@ -33,7 +33,7 @@ export const Header: Component = () => {
           <SiDevdotto size={20} aria-label='Dev.to Icon' role='img' />
         </Button>
         <Button
-          href='https://twitter.com/charles_tison'
+          href='https://twitter.com/ctison_'
           aria-label="ctison's Twitter profile"
         >
           <SiTwitter size={20} aria-label='Twitter Icon' role='img' />
