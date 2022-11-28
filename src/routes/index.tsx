@@ -1,22 +1,13 @@
-import { Meta, refetchRouteData, Title, useRouteData } from 'solid-start'
+import { Meta, Title, useRouteData } from 'solid-start'
 import { createServerData$ } from 'solid-start/server'
 import { Keyboard } from '~/components/Keyboard'
 import { MadeWith } from '~/components/MadeWith'
 import { StaggeredTiles } from '~/components/StaggeredTiles'
 
 export function routeData() {
-  return createServerData$(
-    async (_, event) => {
-      return event.request.headers.get('x-nf-client-connection-ip') ?? 'X.X.X.X'
-    },
-    {
-      initialValue: 'X.X.X.X',
-      ssrLoadFrom: 'initial',
-      onHydrated: () => {
-        refetchRouteData()
-      },
-    }
-  )
+  return createServerData$(async (_, event) => {
+    return event.request.headers.get('x-nf-client-connection-ip') ?? 'X.X.X.X'
+  })
 }
 
 export default function () {
