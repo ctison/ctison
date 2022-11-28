@@ -14,7 +14,6 @@
     "singleQuote": true
   },
   "devDependencies": {
-    "@types/node": "18.11.9",
     "@fontsource/passero-one": "4.5.7",
     "@fontsource/tourney": "4.5.14",
     "@rive-app/canvas": "1.0.95",
@@ -23,27 +22,28 @@
     "@solidjs/meta": "0.28.2",
     "@solidjs/router": "0.5.1",
     "@splinetool/runtime": "0.9.144",
+    "@types/node": "18.11.9",
     "@typescript-eslint/eslint-plugin": "5.44.0",
     "@typescript-eslint/parser": "5.44.0",
     "csstype": "3.1.1",
     "eslint": "8.28.0",
-    "eslint-plugin-solid": "0.8.0",
+    "eslint-plugin-jsx-a11y": "6.6.1",
+    "eslint-plugin-solid": "0.9.1",
     "gsap": "3.11.3",
+    "netlify-cli": "12.2.7",
     "prettier": "2.8.0",
     "solid-icons": "1.0.4",
     "solid-js": "1.6.2",
-    "solid-start": "0.2.5",
-    "solid-start-netlify": "0.2.5",
-    "solid-start-node": "0.2.5",
+    "solid-start": "0.2.6",
+    "solid-start-netlify": "0.2.6",
+    "solid-start-node": "0.2.6",
     "solid-styled-components": "0.28.5",
     "sort-package-json": "2.1.0",
     "typescript": "4.9.3",
     "undici": "5.13.0",
     "vite": "3.2.4",
     "vite-plugin-windicss": "1.8.8",
-    "windicss": "3.5.6",
-    "eslint-plugin-jsx-a11y": "6.6.1",
-    "netlify-cli": "12.2.7"
+    "windicss": "3.5.6"
   },
   "packageManager": "pnpm@7.17.1"
 }
