@@ -1,11 +1,11 @@
 import solid from 'solid-start/vite'
 import { defineConfig } from 'vite'
-import windicss from 'vite-plugin-windicss'
+import unocss from 'unocss/vite'
 import netlify from 'solid-start-netlify'
 
 export default defineConfig({
   plugins: [
-    windicss(),
+    unocss(),
     solid({
       adapter: netlify({
         // edge: true,

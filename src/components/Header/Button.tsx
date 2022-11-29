@@ -10,7 +10,7 @@ export const Button: ParentComponent<ButtonProps> = (props) => {
     <A
       target='_blank'
       rel='noreferrer'
-      class='cursor-pointer focus:(outline-none ring) border border-neutral-200 rounded-lg w-8 h-8 flex justify-center items-center hover:bg-neutral-100'
+      class='cursor-pointer border border-neutral-200 rounded-lg w-8 h-8 flex justify-center items-center hover:bg-neutral-200'
       {...props}
     >
       {props.children}

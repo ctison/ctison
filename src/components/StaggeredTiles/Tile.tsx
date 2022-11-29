@@ -9,7 +9,7 @@ export const Tile: Component<TileProps> = (props) => {
   const x = mergeProps({ style: {} }, props)
   return (
     <div
-      class='tile hover:(outline outline-1 outline-solid-black filter hue-rotate-15)'
+      class='tile hover:outline hover:outline-1 hover:hue-rotate-15'
       onClick={() => props.onClick()}
       style={x.style}
       aria-hidden='true'

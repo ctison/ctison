@@ -1,4 +1,4 @@
-import { A } from 'solid-start'
+import { A } from '~/components/A'
 import {
   SiGithub,
   SiDevdotto,
@@ -11,10 +11,10 @@ import type { Component } from 'solid-js'
 
 export const Header: Component = () => {
   return (
-    <header class='h-[60px] bg-bg-light-400 flex justify-between items-center p-4'>
+    <header class='h-[60px] bg-light-400 flex justify-between items-center p-4'>
       <A
         href='/'
-        class='font-medium text-lg text-pink-600 no-underline focus:(outline-none ring)'
+        class='font-medium text-lg text-pink-600'
         aria-label='Website Home'
       >
         @ctison

@@ -1,8 +1,8 @@
-import '@fontsource/passero-one'
+import '@fontsource/passero-one/latin-400.css'
 import { IndexRange } from '@solid-primitives/range'
 import { createElementSize } from '@solid-primitives/resize-observer'
-import { gsap } from 'gsap'
 import { Component, createMemo, createSignal } from 'solid-js'
+import { gsap } from 'gsap'
 
 import { Tile } from './Tile'
 
@@ -35,7 +35,7 @@ export const StaggeredTiles: Component<StaggeredTilesProps> = (props) => {
       aria-hidden='true'
     >
       <h1
-        class='white absolute w-full top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 z-10 text-center pointer-events-none text-6xl select-none'
+        class='text-white absolute w-full top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 z-10 text-center pointer-events-none text-6xl select-none'
         style={{ 'font-family': '"Passero One", cursive' }}
       >
         {props.title ?? 'Cool Effect'}

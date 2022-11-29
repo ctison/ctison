@@ -1,7 +1,7 @@
 // @refresh reload
 
-import 'virtual:windi-devtools'
-import 'virtual:windi.css'
+import '@unocss/reset/tailwind.css'
+import 'virtual:uno.css'
 
 import { Suspense } from 'solid-js'
 import {
@@ -36,7 +36,7 @@ export default function Root() {
       <Head>
         <Meta charset='utf-8' />
         <Meta name='viewport' content='width=device-width, initial-scale=1' />
-        <Link rel='icon' href={emojiSvg('🌈')} />
+        <Link rel='icon' href={emojiSvg('🚀')} />
       </Head>
       <Body>
         <Suspense>
