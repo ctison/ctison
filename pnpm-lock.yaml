@@ -21,6 +21,7 @@ specifiers:
   gsap: 3.11.3
   netlify-cli: 12.2.7
   prettier: 2.8.0
+  rollup-plugin-visualizer: 5.8.3
   solid-icons: 1.0.4
   solid-js: 1.6.2
   solid-start: 0.2.6
@@ -54,6 +55,7 @@ devDependencies:
   gsap: 3.11.3
   netlify-cli: 12.2.7_@types+node@18.11.9
   prettier: 2.8.0
+  rollup-plugin-visualizer: 5.8.3
   solid-icons: 1.0.4_solid-js@1.6.2
   solid-js: 1.6.2
   solid-start: 0.2.6_i2cnpwj3ojjdnkycik5yjsstli
@@ -10195,6 +10197,21 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.3
+    dev: true
+
+  /rollup-plugin-visualizer/5.8.3:
+    resolution: {integrity: sha512-QGJk4Bqe4AOat5AjipOh8esZH1nck5X2KFpf4VytUdSUuuuSwvIQZjMGgjcxe/zXexltqaXp5Vx1V3LmnQH15Q==}
+    engines: {node: '>=14'}
+    hasBin: true
+    peerDependencies:
+      rollup: 2.x || 3.x
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      open: 8.4.0
+      source-map: 0.7.4
+      yargs: 17.6.2
     dev: true
 
   /rollup-plugin-visualizer/5.8.3_rollup@2.79.1:
