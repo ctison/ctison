@@ -22,7 +22,7 @@
     /* Emit */
     "declaration": true,
     "declarationMap": true,
-    "importsNotUsedAsValues": "error",
+    "importsNotUsedAsValues": "remove",
     "noEmit": true,
     "removeComments": true,
     "sourceMap": true,
