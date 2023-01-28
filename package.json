@@ -47,5 +47,5 @@
     "@unocss/reset": "0.47.1",
     "rollup-plugin-visualizer": "5.8.3"
   },
-  "packageManager": "pnpm@7.17.1"
+  "packageManager": "pnpm@7.26.1"
 }
