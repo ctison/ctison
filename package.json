@@ -5,6 +5,7 @@
     "build": "rm -rf .solid/ netlify/ && solid-start build",
     "dev": "solid-start dev",
     "format": "prettier -w . ; sort-package-json",
+    "format:check": "prettier --check . && sort-package-json --check",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src/",
     "start": "solid-start start"
   },
