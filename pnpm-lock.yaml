@@ -14,7 +14,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': 5.49.0
   '@typescript-eslint/parser': 5.49.0
   '@unocss/reset': 0.49.1
-  csstype: 3.1.1
+  csstype: 3.1.2
   eslint: 8.32.0
   eslint-plugin-jsx-a11y: 6.7.1
   eslint-plugin-solid: 0.9.3
@@ -48,7 +48,7 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.49.0_iu322prlnwsygkcra5kbpy22si
   '@typescript-eslint/parser': 5.49.0_7uibuqfxkfaozanbtbziikiqje
   '@unocss/reset': 0.49.1
-  csstype: 3.1.1
+  csstype: 3.1.2
   eslint: 8.32.0
   eslint-plugin-jsx-a11y: 6.7.1_eslint@8.32.0
   eslint-plugin-solid: 0.9.3_7uibuqfxkfaozanbtbziikiqje
@@ -4836,8 +4836,8 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /csstype/3.1.1:
-    resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
+  /csstype/3.1.2:
+    resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
     dev: true
 
   /cyclist/1.0.1:
@@ -6954,12 +6954,12 @@ packages:
       minimist: 1.2.7
     dev: true
 
-  /goober/2.1.11_csstype@3.1.1:
+  /goober/2.1.11_csstype@3.1.2:
     resolution: {integrity: sha512-5SS2lmxbhqH0u9ABEWq7WPU69a4i2pYcHeCxqaNq6Cw3mnrF0ghWNM4tEGid4dKy8XNIAUbuThuozDHHKJVh3A==}
     peerDependencies:
       csstype: ^3.0.10
     dependencies:
-      csstype: 3.1.1
+      csstype: 3.1.2
     dev: true
 
   /gopd/1.0.1:
@@ -10868,7 +10868,7 @@ packages:
   /solid-js/1.6.9:
     resolution: {integrity: sha512-kV3fMmm+1C2J95c8eDOPKGfZHnuAkHUBLG4hX1Xu08bXeAIPqmxuz/QdH3B8SIdTp3EatBVIyA6RCes3hrGzpg==}
     dependencies:
-      csstype: 3.1.1
+      csstype: 3.1.2
     dev: true
 
   /solid-refresh/0.4.3_solid-js@1.6.9:
@@ -10977,8 +10977,8 @@ packages:
     peerDependencies:
       solid-js: ^1.4.4
     dependencies:
-      csstype: 3.1.1
-      goober: 2.1.11_csstype@3.1.1
+      csstype: 3.1.2
+      goober: 2.1.11_csstype@3.1.2
       solid-js: 1.6.9
     dev: true
 
