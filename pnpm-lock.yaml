@@ -13,7 +13,7 @@ specifiers:
   '@types/node': 18.11.18
   '@typescript-eslint/eslint-plugin': 5.49.0
   '@typescript-eslint/parser': 5.49.0
-  '@unocss/reset': 0.49.1
+  '@unocss/reset': 0.51.4
   csstype: 3.1.1
   eslint: 8.32.0
   eslint-plugin-jsx-a11y: 6.7.1
@@ -47,7 +47,7 @@ devDependencies:
   '@types/node': 18.11.18
   '@typescript-eslint/eslint-plugin': 5.49.0_iu322prlnwsygkcra5kbpy22si
   '@typescript-eslint/parser': 5.49.0_7uibuqfxkfaozanbtbziikiqje
-  '@unocss/reset': 0.49.1
+  '@unocss/reset': 0.51.4
   csstype: 3.1.1
   eslint: 8.32.0
   eslint-plugin-jsx-a11y: 6.7.1_eslint@8.32.0
@@ -3299,6 +3299,10 @@ packages:
 
   /@unocss/reset/0.49.1:
     resolution: {integrity: sha512-T1027YK21UDzhgA4qB+L1E8jhNY3dGHqCB15HqB63V5zgVLyw10Hmh0koinrkwtPhxDhLluURuu0tDm7/isvcA==}
+    dev: true
+
+  /@unocss/reset/0.51.4:
+    resolution: {integrity: sha512-3FnajZSOrQ4qSbpkY1IGRIFYw8I9E98SBXvjMnHqSl8k4YPbBP29W3YrgSVBMOnPNRL67hRcTaMF3nmbnBuWtQ==}
     dev: true
 
   /@unocss/scope/0.49.1:
