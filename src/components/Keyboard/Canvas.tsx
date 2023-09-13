@@ -19,7 +19,7 @@ export const Canvas: Component<CanvasProps> = (props) => {
       return canvasSize.width ?? undefined
     },
     undefined,
-    { name: 'Compute previous canvas width' }
+    { name: 'Compute previous canvas width' },
   )
 
   createEffect(() => {

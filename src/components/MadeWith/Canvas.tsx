@@ -33,8 +33,8 @@ export const Canvas: Component = () => {
       ([app]) => {
         app?.resizeDrawingSurfaceToCanvas()
       },
-      { defer: true }
-    )
+      { defer: true },
+    ),
   )
   return <canvas ref={setCanvasRef} class='w-full h-full' aria-hidden='true' />
 }
