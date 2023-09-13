@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@fontsource/passero-one': 4.5.7
   '@fontsource/tourney': 4.5.15
-  '@rive-app/canvas': 1.0.98
+  '@rive-app/canvas': 1.2.4
   '@solid-primitives/props': 3.0.2
   '@solid-primitives/range': 0.1.5
   '@solid-primitives/resize-observer': 2.0.8
@@ -37,7 +37,7 @@ specifiers:
 devDependencies:
   '@fontsource/passero-one': 4.5.7
   '@fontsource/tourney': 4.5.15
-  '@rive-app/canvas': 1.0.98
+  '@rive-app/canvas': 1.2.4
   '@solid-primitives/props': 3.0.2_solid-js@1.6.9
   '@solid-primitives/range': 0.1.5_solid-js@1.6.9
   '@solid-primitives/resize-observer': 2.0.8_solid-js@1.6.9
@@ -2595,8 +2595,8 @@ packages:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
 
-  /@rive-app/canvas/1.0.98:
-    resolution: {integrity: sha512-dBsiM6ObIBHCUA/8RwCBDwlOSJ7+K3m4M0/OgPpgmvQ4Qw7d63ouSoOJxiwBeysu9dSqIVEXk9zR/pdqhAVCVQ==}
+  /@rive-app/canvas/1.2.4:
+    resolution: {integrity: sha512-TfkTM0D+JMKTmkg3WhdoFaarLohMyrLeSLwwPLa9GiHNU9odFPptS0j5iprN/WygrTWsb5WoyXgCXVZpZIKAQg==}
     dev: true
 
   /@rollup/plugin-babel/6.0.3_47rlmjyel4xatve6tpwvwuyiju:
