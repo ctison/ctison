@@ -30,7 +30,7 @@ specifiers:
   solid-styled-components: 0.28.5
   sort-package-json: 2.2.0
   typescript: 4.9.4
-  undici: 5.16.0
+  undici: 5.24.0
   unocss: 0.49.1
   vite: 4.0.4
 
@@ -60,11 +60,11 @@ devDependencies:
   solid-js: 1.6.9
   solid-start: 0.2.16_5u5qyhijp2ewdgjt5mu45hdgyq
   solid-start-netlify: 0.2.16_solid-start@0.2.16
-  solid-start-node: 0.2.16_x6yr7zg5vouej5zubu7gwoyp3m
+  solid-start-node: 0.2.16_xey6rlqwta46halh57galcvrne
   solid-styled-components: 0.28.5_solid-js@1.6.9
   sort-package-json: 2.2.0
   typescript: 4.9.4
-  undici: 5.16.0
+  undici: 5.24.0
   unocss: 0.49.1_vite@4.0.4
   vite: 4.0.4_@types+node@18.11.18
 
@@ -9352,7 +9352,7 @@ packages:
       destr: 1.2.2
       node-fetch-native: 0.1.8
       ufo: 0.8.6
-      undici: 5.16.0
+      undici: 5.24.0
     dev: true
 
   /omit.js/2.0.2:
@@ -10902,7 +10902,7 @@ packages:
       - supports-color
     dev: true
 
-  /solid-start-node/0.2.16_x6yr7zg5vouej5zubu7gwoyp3m:
+  /solid-start-node/0.2.16_xey6rlqwta46halh57galcvrne:
     resolution: {integrity: sha512-kOxrBl1G18Y9z3KDr/ZMnJhUQDe9PhmkxaXbKxYRxtyG1hW7ZeAw49Hw8fPVLX+CbQVA6Zq8Mv1SUXA41Ct2IA==}
     peerDependencies:
       solid-start: '*'
@@ -10918,7 +10918,7 @@ packages:
       sirv: 2.0.2
       solid-start: 0.2.16_5u5qyhijp2ewdgjt5mu45hdgyq
       terser: 5.16.1
-      undici: 5.16.0
+      undici: 5.24.0
       vite: 4.0.4_@types+node@18.11.18
     transitivePeerDependencies:
       - supports-color
@@ -10963,7 +10963,7 @@ packages:
       sirv: 2.0.2
       solid-js: 1.6.9
       terser: 5.16.1
-      undici: 5.16.0
+      undici: 5.24.0
       vite: 4.0.4_@types+node@18.11.18
       vite-plugin-inspect: 0.7.15_rollup@3.12.0+vite@4.0.4
       vite-plugin-solid: 2.5.0_solid-js@1.6.9+vite@4.0.4
@@ -11771,9 +11771,9 @@ packages:
       jiti: 1.16.2
     dev: true
 
-  /undici/5.16.0:
-    resolution: {integrity: sha512-KWBOXNv6VX+oJQhchXieUznEmnJMqgXMbs0xxH2t8q/FUAWSJvOSr/rMaZKnX5RIVq7JDn0JbP4BOnKG2SGXLQ==}
-    engines: {node: '>=12.18'}
+  /undici/5.24.0:
+    resolution: {integrity: sha512-OKlckxBjFl0oXxcj9FU6oB8fDAaiRUq+D8jrFWGmOfI/gIyjk/IeS75LMzgYKUaeHzLUcYvf9bbJGSrUwTfwwQ==}
+    engines: {node: '>=14.0'}
     dependencies:
       busboy: 1.6.0
     dev: true
