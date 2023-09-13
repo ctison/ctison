@@ -26,7 +26,7 @@ specifiers:
   solid-js: 1.6.9
   solid-start: 0.2.16
   solid-start-netlify: 0.2.16
-  solid-start-node: 0.2.16
+  solid-start-node: 0.3.5
   solid-styled-components: 0.28.5
   sort-package-json: 2.2.0
   typescript: 4.9.4
@@ -60,7 +60,7 @@ devDependencies:
   solid-js: 1.6.9
   solid-start: 0.2.16_5u5qyhijp2ewdgjt5mu45hdgyq
   solid-start-netlify: 0.2.16_solid-start@0.2.16
-  solid-start-node: 0.2.16_x6yr7zg5vouej5zubu7gwoyp3m
+  solid-start-node: 0.3.5_zavuemlshyizacqxwcsdo5dayi
   solid-styled-components: 0.28.5_solid-js@1.6.9
   sort-package-json: 2.2.0
   typescript: 4.9.4
@@ -1750,8 +1750,8 @@ packages:
     engines: {node: '>=6.0.0'}
     dev: true
 
-  /@jridgewell/source-map/0.3.2:
-    resolution: {integrity: sha512-m7O9o2uR8k2ObDysZYzdfhb08VuEml5oWGiosa1VdaPZ/A6QyPkAJuwN0Q1lhULOf6B7MtQmHENS743hWtCrgw==}
+  /@jridgewell/source-map/0.3.5:
+    resolution: {integrity: sha512-UTYAUj/wviwdsMfzoSJspJxbkH5o1snzwX0//0ENX1u/55kkZZkcTZP6u9bwKGkv+dkk9at4m1Cpt0uY80kcpQ==}
     dependencies:
       '@jridgewell/gen-mapping': 0.3.2
       '@jridgewell/trace-mapping': 0.3.17
@@ -2371,7 +2371,7 @@ packages:
       filter-obj: 5.1.0
       find-up: 6.3.0
       glob: 8.1.0
-      is-builtin-module: 3.2.0
+      is-builtin-module: 3.2.1
       is-path-inside: 4.0.0
       junk: 4.0.0
       locate-path: 7.1.1
@@ -2412,7 +2412,7 @@ packages:
       filter-obj: 5.1.0
       find-up: 6.3.0
       glob: 8.1.0
-      is-builtin-module: 3.2.0
+      is-builtin-module: 3.2.1
       is-path-inside: 4.0.0
       junk: 4.0.0
       locate-path: 7.1.1
@@ -2636,6 +2636,24 @@ packages:
       rollup: 3.12.0
     dev: true
 
+  /@rollup/plugin-commonjs/24.1.0_rollup@3.29.1:
+    resolution: {integrity: sha512-eSL45hjhCWI0jCCXcNtLVqM5N1JlBGvlFfY0m6oOYnLCJ6N0qEXoZql4sY2MOUArzhH4SA/qBpTxvvZp2Sc+DQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^2.68.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.0.2_rollup@3.29.1
+      commondir: 1.0.1
+      estree-walker: 2.0.2
+      glob: 8.1.0
+      is-reference: 1.2.1
+      magic-string: 0.27.0
+      rollup: 3.29.1
+    dev: true
+
   /@rollup/plugin-json/6.0.0_rollup@3.12.0:
     resolution: {integrity: sha512-i/4C5Jrdr1XUarRhVu27EEwjt4GObltD7c+MkCIpO2QIbojw8MUs+CCTqOphQi3Qtg1FLmYt+l+6YeoIf51J7w==}
     engines: {node: '>=14.0.0'}
@@ -2647,6 +2665,19 @@ packages:
     dependencies:
       '@rollup/pluginutils': 5.0.2_rollup@3.12.0
       rollup: 3.12.0
+    dev: true
+
+  /@rollup/plugin-json/6.0.0_rollup@3.29.1:
+    resolution: {integrity: sha512-i/4C5Jrdr1XUarRhVu27EEwjt4GObltD7c+MkCIpO2QIbojw8MUs+CCTqOphQi3Qtg1FLmYt+l+6YeoIf51J7w==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.0.2_rollup@3.29.1
+      rollup: 3.29.1
     dev: true
 
   /@rollup/plugin-node-resolve/15.0.1_rollup@3.12.0:
@@ -2661,10 +2692,28 @@ packages:
       '@rollup/pluginutils': 5.0.2_rollup@3.12.0
       '@types/resolve': 1.20.2
       deepmerge: 4.2.2
-      is-builtin-module: 3.2.0
+      is-builtin-module: 3.2.1
       is-module: 1.0.0
       resolve: 1.22.1
       rollup: 3.12.0
+    dev: true
+
+  /@rollup/plugin-node-resolve/15.2.1_rollup@3.29.1:
+    resolution: {integrity: sha512-nsbUg588+GDSu8/NS8T4UAshO6xeaOfINNuXeVHcKV02LJtoRaM1SiOacClw4kws1SFiNhdLGxlbMY9ga/zs/w==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^2.78.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.0.2_rollup@3.29.1
+      '@types/resolve': 1.20.2
+      deepmerge: 4.2.2
+      is-builtin-module: 3.2.1
+      is-module: 1.0.0
+      resolve: 1.22.1
+      rollup: 3.29.1
     dev: true
 
   /@rollup/pluginutils/4.2.1:
@@ -2702,6 +2751,21 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
       rollup: 3.12.0
+    dev: true
+
+  /@rollup/pluginutils/5.0.2_rollup@3.29.1:
+    resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@types/estree': 1.0.0
+      estree-walker: 2.0.2
+      picomatch: 2.3.1
+      rollup: 3.29.1
     dev: true
 
   /@samverschueren/stream-to-observable/0.3.1_rxjs@6.6.7:
@@ -3238,7 +3302,7 @@ packages:
     resolution: {integrity: sha512-oC/FOtOCcVP3Yp0me3/2+c/X5OVEnstFKmdEimuJB+z0G8j9l2SLHSqJfBMQm2TCH359sZkybk0kiMg5luwXPA==}
     dependencies:
       gzip-size: 6.0.0
-      sirv: 2.0.2
+      sirv: 2.0.3
     dev: true
 
   /@unocss/preset-attributify/0.49.1:
@@ -7536,8 +7600,8 @@ packages:
     resolution: {integrity: sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==}
     dev: true
 
-  /is-builtin-module/3.2.0:
-    resolution: {integrity: sha512-phDA4oSGt7vl1n5tJvTWooWWAsXLY+2xCnxNqvKhGEzujg+A43wPlPOyDg3C8XQHN+6k/JTQWJ/j0dQh/qr+Hw==}
+  /is-builtin-module/3.2.1:
+    resolution: {integrity: sha512-BSLE3HnV2syZ0FK0iMA/yUGplUeMmNz4AW5fnTunbCIqZi4vG3WjJT9FHMy5D69xmAYBHXQhJdALdpwVxV501A==}
     engines: {node: '>=6'}
     dependencies:
       builtin-modules: 3.3.0
@@ -10562,6 +10626,14 @@ packages:
       fsevents: 2.3.2
     dev: true
 
+  /rollup/3.29.1:
+    resolution: {integrity: sha512-c+ebvQz0VIH4KhhCpDsI+Bik0eT8ZFEVZEYw0cGMVqIP8zc+gnwl7iXCamTw7vzv2MeuZFZfdx5JJIq+ehzDlg==}
+    engines: {node: '>=14.18.0', npm: '>=8.0.0'}
+    hasBin: true
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
   /route-sort/1.0.0:
     resolution: {integrity: sha512-SFgmvjoIhp5S4iBEDW3XnbT+7PRuZ55oRuNjY+CDB1SGZkyCG9bqQ3/dhaZTctTBYMAvDxd2Uy9dStuaUfgJqQ==}
     engines: {node: '>= 6'}
@@ -10780,6 +10852,15 @@ packages:
       totalist: 3.0.0
     dev: true
 
+  /sirv/2.0.3:
+    resolution: {integrity: sha512-O9jm9BsID1P+0HOi81VpXPoDxYP374pkOLzACAoyUQ/3OUVndNpsz6wMnY2z+yOxzbllCKZrM+9QrWsv4THnyA==}
+    engines: {node: '>= 10'}
+    dependencies:
+      '@polka/url': 1.0.0-next.21
+      mrmime: 1.0.1
+      totalist: 3.0.0
+    dev: true
+
   /slash/2.0.0:
     resolution: {integrity: sha512-ZYKh3Wh2z1PpEXWr0MpSBZ0V6mZHAQfYevttO11c51CaWjGTaadiKZ+wVt1PbMlDV5qhMFslpZCemhwOK7C89A==}
     engines: {node: '>=6'}
@@ -10902,23 +10983,21 @@ packages:
       - supports-color
     dev: true
 
-  /solid-start-node/0.2.16_x6yr7zg5vouej5zubu7gwoyp3m:
-    resolution: {integrity: sha512-kOxrBl1G18Y9z3KDr/ZMnJhUQDe9PhmkxaXbKxYRxtyG1hW7ZeAw49Hw8fPVLX+CbQVA6Zq8Mv1SUXA41Ct2IA==}
+  /solid-start-node/0.3.5_zavuemlshyizacqxwcsdo5dayi:
+    resolution: {integrity: sha512-1nvPnxbUuMfhJiILBPln7g+EJUJYz9KRCZS096XVWDz7/pX6PhBzcIxWEZdaCfPdLGWbY97oib/jdKyPLoSaBQ==}
     peerDependencies:
       solid-start: '*'
-      undici: ^5.8.0
       vite: '*'
     dependencies:
-      '@rollup/plugin-commonjs': 24.0.1_rollup@3.12.0
-      '@rollup/plugin-json': 6.0.0_rollup@3.12.0
-      '@rollup/plugin-node-resolve': 15.0.1_rollup@3.12.0
+      '@rollup/plugin-commonjs': 24.1.0_rollup@3.29.1
+      '@rollup/plugin-json': 6.0.0_rollup@3.29.1
+      '@rollup/plugin-node-resolve': 15.2.1_rollup@3.29.1
       compression: 1.7.4
       polka: 1.0.0-next.22
-      rollup: 3.12.0
-      sirv: 2.0.2
+      rollup: 3.29.1
+      sirv: 2.0.3
       solid-start: 0.2.16_5u5qyhijp2ewdgjt5mu45hdgyq
-      terser: 5.16.1
-      undici: 5.16.0
+      terser: 5.19.4
       vite: 4.0.4_@types+node@18.11.18
     transitivePeerDependencies:
       - supports-color
@@ -11430,7 +11509,18 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      '@jridgewell/source-map': 0.3.2
+      '@jridgewell/source-map': 0.3.5
+      acorn: 8.8.2
+      commander: 2.20.3
+      source-map-support: 0.5.21
+    dev: true
+
+  /terser/5.19.4:
+    resolution: {integrity: sha512-6p1DjHeuluwxDXcuT9VR8p64klWJKo1ILiy19s6C9+0Bh2+NWTX6nD9EPppiER4ICkHDVB1RkVpin/YW2nQn/g==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dependencies:
+      '@jridgewell/source-map': 0.3.5
       acorn: 8.8.2
       commander: 2.20.3
       source-map-support: 0.5.21
@@ -12044,7 +12134,7 @@ packages:
       debug: 4.3.4
       fs-extra: 11.1.0
       kolorist: 1.6.0
-      sirv: 2.0.2
+      sirv: 2.0.3
       ufo: 1.0.1
       vite: 4.0.4_@types+node@18.11.18
     transitivePeerDependencies:
