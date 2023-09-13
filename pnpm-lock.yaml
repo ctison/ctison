@@ -7,7 +7,7 @@ specifiers:
   '@solid-primitives/props': 3.0.2
   '@solid-primitives/range': 0.1.5
   '@solid-primitives/resize-observer': 2.0.8
-  '@solidjs/meta': 0.28.2
+  '@solidjs/meta': 0.28.6
   '@solidjs/router': 0.7.0
   '@splinetool/runtime': 0.9.202
   '@types/node': 18.11.18
@@ -41,7 +41,7 @@ devDependencies:
   '@solid-primitives/props': 3.0.2_solid-js@1.6.9
   '@solid-primitives/range': 0.1.5_solid-js@1.6.9
   '@solid-primitives/resize-observer': 2.0.8_solid-js@1.6.9
-  '@solidjs/meta': 0.28.2_solid-js@1.6.9
+  '@solidjs/meta': 0.28.6_solid-js@1.6.9
   '@solidjs/router': 0.7.0_solid-js@1.6.9
   '@splinetool/runtime': 0.9.202
   '@types/node': 18.11.18
@@ -58,7 +58,7 @@ devDependencies:
   rollup-plugin-visualizer: 5.9.0
   solid-icons: 1.0.4_solid-js@1.6.9
   solid-js: 1.6.9
-  solid-start: 0.2.16_5u5qyhijp2ewdgjt5mu45hdgyq
+  solid-start: 0.2.16_6b3tslyxjgaayfq7wtur2h4fre
   solid-start-netlify: 0.2.16_solid-start@0.2.16
   solid-start-node: 0.2.16_x6yr7zg5vouej5zubu7gwoyp3m
   solid-styled-components: 0.28.5_solid-js@1.6.9
@@ -2826,8 +2826,8 @@ packages:
       solid-js: 1.6.9
     dev: true
 
-  /@solidjs/meta/0.28.2_solid-js@1.6.9:
-    resolution: {integrity: sha512-avlLgBPdk4KVxzRGFlYp/MIJo8B5jVgXPgk6OUnUP8km21Z+ovO+DUd7ZPA7ejv8PBdWi9GE3zCzw8RU2YuV2Q==}
+  /@solidjs/meta/0.28.6_solid-js@1.6.9:
+    resolution: {integrity: sha512-mplUfmp7tjGgDTiVbEAqkWDLpr0ZNyR1+OOETNyJt759MqPzh979X3oJUk8SZisGII0BNycmHDIGc0Shqx7bIg==}
     peerDependencies:
       solid-js: '>=1.4.0'
     dependencies:
@@ -10895,7 +10895,7 @@ packages:
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.12.0
       encoding: 0.1.13
       rollup: 3.12.0
-      solid-start: 0.2.16_5u5qyhijp2ewdgjt5mu45hdgyq
+      solid-start: 0.2.16_6b3tslyxjgaayfq7wtur2h4fre
       terser: 5.16.1
     transitivePeerDependencies:
       - '@types/babel__core'
@@ -10916,7 +10916,7 @@ packages:
       polka: 1.0.0-next.22
       rollup: 3.12.0
       sirv: 2.0.2
-      solid-start: 0.2.16_5u5qyhijp2ewdgjt5mu45hdgyq
+      solid-start: 0.2.16_6b3tslyxjgaayfq7wtur2h4fre
       terser: 5.16.1
       undici: 5.16.0
       vite: 4.0.4_@types+node@18.11.18
@@ -10924,7 +10924,7 @@ packages:
       - supports-color
     dev: true
 
-  /solid-start/0.2.16_5u5qyhijp2ewdgjt5mu45hdgyq:
+  /solid-start/0.2.16_6b3tslyxjgaayfq7wtur2h4fre:
     resolution: {integrity: sha512-gkc14UFGBWF61qPu3nGVaB/wWKzX0r46BiOmwuMqIDJKpWAiOjzd+wDPGQOLkzVuobVGGFFcTbIUBvVZRUZ/qw==}
     hasBin: true
     peerDependencies:
@@ -10939,7 +10939,7 @@ packages:
       '@babel/preset-env': 7.20.2_@babel+core@7.20.12
       '@babel/preset-typescript': 7.18.6_@babel+core@7.20.12
       '@babel/template': 7.20.7
-      '@solidjs/meta': 0.28.2_solid-js@1.6.9
+      '@solidjs/meta': 0.28.6_solid-js@1.6.9
       '@solidjs/router': 0.7.0_solid-js@1.6.9
       '@types/cookie': 0.5.1
       chokidar: 3.5.3
