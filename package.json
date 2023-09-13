@@ -18,7 +18,7 @@
     "@fontsource/passero-one": "4.5.7",
     "@fontsource/tourney": "4.5.15",
     "@rive-app/canvas": "1.0.98",
-    "@solid-primitives/props": "3.0.2",
+    "@solid-primitives/props": "3.1.8",
     "@solid-primitives/range": "0.1.5",
     "@solid-primitives/resize-observer": "2.0.8",
     "@solidjs/meta": "0.28.2",
