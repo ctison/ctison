@@ -5,7 +5,7 @@ specifiers:
   '@fontsource/tourney': 4.5.15
   '@rive-app/canvas': 1.0.98
   '@solid-primitives/props': 3.0.2
-  '@solid-primitives/range': 0.1.5
+  '@solid-primitives/range': 0.1.15
   '@solid-primitives/resize-observer': 2.0.8
   '@solidjs/meta': 0.28.2
   '@solidjs/router': 0.7.0
@@ -39,7 +39,7 @@ devDependencies:
   '@fontsource/tourney': 4.5.15
   '@rive-app/canvas': 1.0.98
   '@solid-primitives/props': 3.0.2_solid-js@1.6.9
-  '@solid-primitives/range': 0.1.5_solid-js@1.6.9
+  '@solid-primitives/range': 0.1.15_solid-js@1.6.9
   '@solid-primitives/resize-observer': 2.0.8_solid-js@1.6.9
   '@solidjs/meta': 0.28.2_solid-js@1.6.9
   '@solidjs/router': 0.7.0_solid-js@1.6.9
@@ -2789,12 +2789,12 @@ packages:
       solid-js: 1.6.9
     dev: true
 
-  /@solid-primitives/range/0.1.5_solid-js@1.6.9:
-    resolution: {integrity: sha512-KGd+4gaBI+9h53K1PgNEMHoJCTiRIuH+bBbwCLsumyG60evzhKVTO9ZDDIdvEVjrq0SH7pY7YvytUNj4+aCuLw==}
+  /@solid-primitives/range/0.1.15_solid-js@1.6.9:
+    resolution: {integrity: sha512-+H5/a13CzgJm9s0f+nz7LnA5mGsWR1GVnwSwnREY4zuLm0ki3l46MFzZLi8ivC6ZeQ/qHGkoyDgebbcHQyo+1g==}
     peerDependencies:
-      solid-js: ^1.6.0
+      solid-js: ^1.6.12
     dependencies:
-      '@solid-primitives/utils': 4.0.1_solid-js@1.6.9
+      '@solid-primitives/utils': 6.2.1_solid-js@1.6.9
       solid-js: 1.6.9
     dev: true
 
@@ -2822,6 +2822,14 @@ packages:
     resolution: {integrity: sha512-06fSyBair7ZxCquMjIqJes29aNg65X776TVw4EUN7PBtdWsGUeIZ9F/H4ek7yrDSxaSDaPHeye5knEYsYAq2gA==}
     peerDependencies:
       solid-js: ^1.6.0
+    dependencies:
+      solid-js: 1.6.9
+    dev: true
+
+  /@solid-primitives/utils/6.2.1_solid-js@1.6.9:
+    resolution: {integrity: sha512-TsecNzxiO5bLfzqb4OOuzfUmdOROcssuGqgh5rXMMaasoFZ3GoveUgdY1wcf17frMJM7kCNGNuK34EjErneZkg==}
+    peerDependencies:
+      solid-js: ^1.6.12
     dependencies:
       solid-js: 1.6.9
     dev: true

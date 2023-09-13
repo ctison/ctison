@@ -19,7 +19,7 @@
     "@fontsource/tourney": "4.5.15",
     "@rive-app/canvas": "1.0.98",
     "@solid-primitives/props": "3.0.2",
-    "@solid-primitives/range": "0.1.5",
+    "@solid-primitives/range": "0.1.15",
     "@solid-primitives/resize-observer": "2.0.8",
     "@solidjs/meta": "0.28.2",
     "@solidjs/router": "0.7.0",
