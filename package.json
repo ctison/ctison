@@ -34,7 +34,7 @@
     "eslint-plugin-solid": "0.9.3",
     "gsap": "3.11.4",
     "netlify-cli": "12.10.0",
-    "prettier": "2.8.3",
+    "prettier": "2.8.8",
     "rollup-plugin-visualizer": "5.9.0",
     "solid-icons": "1.0.4",
     "solid-js": "1.6.9",

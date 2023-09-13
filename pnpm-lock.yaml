@@ -20,7 +20,7 @@ specifiers:
   eslint-plugin-solid: 0.9.3
   gsap: 3.11.4
   netlify-cli: 12.10.0
-  prettier: 2.8.3
+  prettier: 2.8.8
   rollup-plugin-visualizer: 5.9.0
   solid-icons: 1.0.4
   solid-js: 1.6.9
@@ -54,7 +54,7 @@ devDependencies:
   eslint-plugin-solid: 0.9.3_7uibuqfxkfaozanbtbziikiqje
   gsap: 3.11.4
   netlify-cli: 12.10.0_@types+node@18.11.18
-  prettier: 2.8.3
+  prettier: 2.8.8
   rollup-plugin-visualizer: 5.9.0
   solid-icons: 1.0.4_solid-js@1.6.9
   solid-js: 1.6.9
@@ -9987,8 +9987,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /prettier/2.8.3:
-    resolution: {integrity: sha512-tJ/oJ4amDihPoufT5sM0Z1SKEuKay8LfVAMlbbhnnkvt6BUserZylqo2PN+p9KeljLr0OHa2rXHU1T8reeoTrw==}
+  /prettier/2.8.8:
+    resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
