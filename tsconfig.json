@@ -1,55 +1,32 @@
 {
-  // https://www.typescriptlang.org/tsconfig
-  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    /* Modules */
-    "module": "ES2022",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "types": ["vite/client"],
-    "baseUrl": "./",
-    "paths": {
-      "~/*": ["./src/*"]
-    },
-
-    /* Language and Environment */
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "jsx": "preserve",
-    "jsxImportSource": "solid-js",
-    "target": "ES2022",
-
-    /* Emit */
-    "declaration": true,
-    "declarationMap": true,
-    "importsNotUsedAsValues": "remove",
-    "noEmit": true,
-    "removeComments": true,
-    "sourceMap": true,
-
-    /* JavaScript Support */
-    "checkJs": true,
-
-    /* Interop Constraints */
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-
-    /* Type Checking */
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
     "strict": true,
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "exactOptionalPropertyTypes": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": false,
-
-    /* Completeness */
-    "skipLibCheck": true
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
-  "exclude": ["./netlify/"]
+  "include": [
+    "next-env.d.ts",
+    "app/**/*",
+    ".next/types/**/*",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
 }

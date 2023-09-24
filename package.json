@@ -1,52 +1,34 @@
 {
+  "name": "ctison",
   "private": true,
-  "type": "module",
   "scripts": {
-    "build": "rm -rf .solid/ netlify/ && solid-start build",
-    "dev": "solid-start dev",
+    "build": "next build",
+    "dev": "next dev",
     "format": "prettier -w . ; sort-package-json",
     "format:check": "prettier --check . && sort-package-json --check",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx src/",
-    "start": "solid-start start"
+    "lint": "next lint",
+    "prepare": "husky install",
+    "start": "next start"
   },
   "prettier": {
     "jsxSingleQuote": true,
-    "semi": false,
     "singleQuote": true
   },
-  "devDependencies": {
-    "@fontsource/passero-one": "5.0.12",
-    "@fontsource/tourney": "5.0.12",
-    "@rive-app/canvas": "2.4.0",
-    "@solid-primitives/props": "3.1.8",
-    "@solid-primitives/range": "0.1.15",
-    "@solid-primitives/resize-observer": "2.0.22",
-    "@solidjs/meta": "0.28.6",
-    "@solidjs/router": "0.8.3",
-    "@splinetool/runtime": "0.9.446",
-    "@types/node": "20.6.0",
-    "@typescript-eslint/eslint-plugin": "6.7.0",
-    "@typescript-eslint/parser": "6.7.0",
-    "@unocss/reset": "0.55.7",
-    "csstype": "3.1.2",
-    "eslint": "8.49.0",
-    "eslint-plugin-jsx-a11y": "6.7.1",
-    "eslint-plugin-solid": "0.13.0",
-    "gsap": "3.12.2",
-    "netlify-cli": "16.3.2",
-    "prettier": "3.0.3",
-    "rollup-plugin-visualizer": "5.9.2",
-    "solid-icons": "1.0.12",
-    "solid-js": "1.7.11",
-    "solid-start": "0.3.5",
-    "solid-start-netlify": "0.3.5",
-    "solid-start-node": "0.3.5",
-    "solid-styled-components": "0.28.5",
-    "sort-package-json": "2.5.1",
-    "typescript": "5.2.2",
-    "undici": "5.24.0",
-    "unocss": "0.55.7",
-    "vite": "4.4.9"
+  "dependencies": {
+    "next": "13.5.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
-  "packageManager": "pnpm@8.7.5"
+  "devDependencies": {
+    "@types/node": "20.6.5",
+    "@types/react": "18.2.22",
+    "@types/react-dom": "18.2.7",
+    "eslint": "8.50.0",
+    "eslint-config-next": "13.5.2",
+    "husky": "8.0.3",
+    "lint-staged": "14.0.1",
+    "prettier": "3.0.3",
+    "sort-package-json": "2.5.1",
+    "typescript": "5.2.2"
+  }
 }
