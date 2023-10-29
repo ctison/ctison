@@ -1,0 +1,13 @@
+{
+  "name": "@ctison/evm",
+  "private": true,
+  "scripts": {
+    "build": "hardhat compile",
+    "lint": "eslint --ext js,cjs,mjs,ts --max-warnings=0 .",
+    "test": "hardhat test"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "3.0.0",
+    "hardhat": "2.18.3"
+  }
+}

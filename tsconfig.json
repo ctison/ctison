@@ -52,10 +52,5 @@
     /* Completeness */
     "skipLibCheck": true
   },
-  "include": [
-    ".lintstagedrc.mjs",
-    ".eslintrc.cjs",
-    "apps/*/src/**/*",
-    "apps/*/scripts/*"
-  ]
+  "include": [".lintstagedrc.mjs", ".eslintrc.cjs", "apps/*/src/**/*"]
 }

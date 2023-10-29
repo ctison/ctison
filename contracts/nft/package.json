@@ -1,9 +1,0 @@
-{
-  "name": "@ctison/nft",
-  "private": true,
-  "scripts": {},
-  "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "3.0.0",
-    "hardhat": "2.18.3"
-  }
-}
