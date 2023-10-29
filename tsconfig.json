@@ -1,40 +1,61 @@
 {
+  // https://www.typescriptlang.org/tsconfig
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
+    /* Projects */
+    "composite": true,
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    }
+
+    /* Modules */
+    "types": ["bun-types"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+
+    /* Language and Environment */
+    "lib": ["ESNext"],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "ESNext",
+    "moduleDetection": "force",
+
+    /* Emit */
+    "declaration": true,
+    "declarationMap": true,
+    "importsNotUsedAsValues": "remove",
+    "removeComments": false,
+    "sourceMap": true,
+    "noEmit": true,
+    "noEmitOnError": true,
+
+    /* JavaScript Support */
+    "allowJs": true,
+    "checkJs": true,
+
+    /* Interop Constraints */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+
+    /* Type Checking */
+    "strict": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "exactOptionalPropertyTypes": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+
+    /* Completeness */
+    "skipLibCheck": true
   },
   "include": [
-    "next-env.d.ts",
-    "app/**/*",
-    ".next/types/**/*",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
+    ".lintstagedrc.mjs",
+    ".eslintrc.cjs",
+    "apps/*/src/**/*",
+    "apps/*/scripts/*"
   ]
 }

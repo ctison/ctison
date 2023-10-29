@@ -1,43 +1,36 @@
 {
-  "name": "ctison",
+  "name": "@ctison/root",
+  "type": "module",
   "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
   "scripts": {
-    "build": "next build",
-    "dev": "next dev",
+    "build": "turbo run build:",
+    "ci": "bun run format:check && bun run lint && bun run test",
+    "clean": "turbo run clean",
     "format": "prettier -w . ; sort-package-json",
     "format:check": "prettier --check . && sort-package-json --check",
-    "lint": "next lint",
+    "lint": "turbo run lint",
     "prepare": "husky install",
-    "start": "next start"
+    "test": "turbo run test"
   },
   "prettier": {
     "jsxSingleQuote": true,
     "singleQuote": true
   },
-  "dependencies": {
-    "@mantine/core": "7.1.7",
-    "@mantine/form": "7.1.7",
-    "@mantine/hooks": "7.1.7",
-    "@mantine/nprogress": "7.1.7",
-    "@splinetool/react-spline": "2.2.6",
-    "@splinetool/runtime": "0.9.489",
-    "next": "14.0.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@types/node": "20.8.9",
-    "@types/react": "18.2.33",
-    "@types/react-dom": "18.2.14",
+    "bun-types": "1.0.7",
+    "@typescript-eslint/eslint-plugin": "6.9.0",
+    "@typescript-eslint/parser": "6.9.0",
     "eslint": "8.52.0",
-    "eslint-config-next": "14.0.0",
     "husky": "8.0.3",
     "lint-staged": "15.0.2",
-    "postcss": "8.4.31",
-    "postcss-preset-mantine": "1.9.0",
-    "postcss-simple-vars": "7.0.1",
     "prettier": "3.0.3",
     "sort-package-json": "2.6.0",
+    "turbo": "1.10.16",
     "typescript": "5.2.2"
-  }
+  },
+  "packageManager": "bun@1.0.7"
 }
