@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "contracts/*"
   ],
   "scripts": {
     "build": "turbo run build:",
@@ -29,6 +30,7 @@
     "lint-staged": "15.0.2",
     "prettier": "3.0.3",
     "sort-package-json": "2.6.0",
+    "ts-node": "10.9.1",
     "turbo": "1.10.16",
     "typescript": "5.2.2"
   },

@@ -15,7 +15,7 @@ module.exports = {
       extends: ['plugin:@typescript-eslint/strict-type-checked'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
-        project: './tsconfig.json',
+        project: ['./tsconfig.json', './contracts/*/tsconfig.json'],
         tsconfigRootDir: __dirname,
       },
       plugins: ['@typescript-eslint'],
