@@ -25,26 +25,29 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
       padding='md'
     >
       <MantineAppShell.Header>
-        <Group h='100%' px='md'>
-          <Burger
-            opened={mobileOpened}
-            onClick={toggleMobile}
-            hiddenFrom='sm'
-            size='sm'
-          />
-          <Burger
-            opened={desktopOpened}
-            onClick={toggleDesktop}
-            visibleFrom='sm'
-            size='sm'
-          />
-          <Anchor href='/'>@ctison</Anchor>
+        <Group justify='space-between' h='100%' px='md'>
+          <Group>
+            <Burger
+              opened={mobileOpened}
+              onClick={toggleMobile}
+              hiddenFrom='sm'
+              size='sm'
+            />
+            <Burger
+              opened={desktopOpened}
+              onClick={toggleDesktop}
+              visibleFrom='sm'
+              size='sm'
+            />
+            <Anchor href='/'>@ctison</Anchor>
+          </Group>
+          <ConnectButton chainStatus='icon' />
         </Group>
-        <ConnectButton chainStatus='icon' />
       </MantineAppShell.Header>
 
       <MantineAppShell.Navbar p='md'>
         <Link href='/mint'>Mint</Link>
+        <Link href='/ens'>ENS Resolver</Link>
       </MantineAppShell.Navbar>
 
       <MantineAppShell.Main

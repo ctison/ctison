@@ -12,14 +12,16 @@
     "@mantine/form": "7.1.7",
     "@mantine/hooks": "7.1.7",
     "@mantine/nprogress": "7.1.7",
+    "@rainbow-me/rainbowkit": "1.1.3",
     "@splinetool/react-spline": "2.2.6",
     "@splinetool/runtime": "0.9.489",
+    "alchemy-sdk": "2.10.1",
     "next": "14.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "viem": "1.18.0",
     "wagmi": "1.4.5",
-    "@rainbow-me/rainbowkit": "1.1.3",
-    "viem": "1.18.0"
+    "zod": "3.22.4"
   },
   "devDependencies": {
     "@types/node": "20.8.9",
