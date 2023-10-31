@@ -1,9 +1,16 @@
+import '@next/env';
 import { HardhatUserConfig, task } from 'hardhat/config';
 import '@nomicfoundation/hardhat-toolbox';
 import '@nomicfoundation/hardhat-foundry';
 
 const config: HardhatUserConfig = {
   solidity: '0.8.19',
+  networks: {
+    sepolia: {
+      url: process.env.SEPOLIA_RPC_URL!,
+      accounts: [process.env.ETH_PRIVATE_KEY!],
+    },
+  },
 };
 
 task('accounts', 'Prints the list of accounts', async (taskArgs, hre) => {

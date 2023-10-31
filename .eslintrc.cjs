@@ -19,6 +19,9 @@ module.exports = {
         tsconfigRootDir: __dirname,
       },
       plugins: ['@typescript-eslint'],
+      rules: {
+        '@typescript-eslint/no-non-null-assertion': 'off',
+      },
     },
   ],
   ignorePatterns: ['!.github/', '!.lintstagedrc.mjs', 'apps/*/dist/'],
