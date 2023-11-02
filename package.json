@@ -48,5 +48,5 @@
     "unocss": "0.55.7",
     "vite": "4.4.9"
   },
-  "packageManager": "pnpm@8.7.5"
+  "packageManager": "pnpm@8.10.2"
 }
