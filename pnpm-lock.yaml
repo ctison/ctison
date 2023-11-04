@@ -30,8 +30,8 @@ devDependencies:
     specifier: 0.8.3
     version: 0.8.3(solid-js@1.7.11)
   '@splinetool/runtime':
-    specifier: 0.9.446
-    version: 0.9.446
+    specifier: 0.9.493
+    version: 0.9.493
   '@types/node':
     specifier: 20.6.0
     version: 20.6.0
@@ -3676,8 +3676,8 @@ packages:
       solid-js: 1.7.11
     dev: true
 
-  /@splinetool/runtime@0.9.446:
-    resolution: {integrity: sha512-smIxfaiY9bxbyEk5kY9gGQEbl1t2XzxI84LaNjIsv+x8xGwi/TzSiFTvIkArG8XxbrwXpNEm+HkM0QDrdKvLkA==}
+  /@splinetool/runtime@0.9.493:
+    resolution: {integrity: sha512-AaGGhZlcEEcDqVu0PMcLoAVvZVB2IJFp3ciwpbs86U7HtjBXiqNj2DpMqEhAcjNmoIATxbSU6ZeWGsp6hA+oRw==}
     dependencies:
       on-change: 4.0.2
       semver-compare: 1.0.0
