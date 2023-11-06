@@ -1,18 +1,16 @@
 'use client';
+
 import {
   Anchor,
-  AppShell as MantineAppShell,
   Burger,
   Group,
+  AppShell as MantineAppShell,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+
 export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
-  const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure();
-  const pathname = usePathname();
 
   return (
     <MantineAppShell
@@ -20,11 +18,11 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
       navbar={{
         width: 300,
         breakpoint: 'sm',
-        collapsed: { mobile: !mobileOpened, desktop: !desktopOpened },
+        collapsed: { mobile: !mobileOpened, desktop: true },
       }}
       padding='md'
     >
-      <MantineAppShell.Header>
+      <MantineAppShell.Header withBorder={false}>
         <Group justify='space-between' h='100%' px='md'>
           <Group>
             <Burger
@@ -33,30 +31,15 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
               hiddenFrom='sm'
               size='sm'
             />
-            <Burger
-              opened={desktopOpened}
-              onClick={toggleDesktop}
-              visibleFrom='sm'
-              size='sm'
-            />
             <Anchor href='/'>@ctison</Anchor>
           </Group>
           <ConnectButton chainStatus='icon' />
         </Group>
       </MantineAppShell.Header>
 
-      <MantineAppShell.Navbar p='md'>
-        <Link href='/mint'>Mint</Link>
-        <Link href='/ens'>ENS Resolver</Link>
-      </MantineAppShell.Navbar>
+      <MantineAppShell.Navbar p='md' bg='orange'></MantineAppShell.Navbar>
 
-      <MantineAppShell.Main
-        classNames={{
-          main: 'relative h-[1024px]',
-        }}
-      >
-        {children}
-      </MantineAppShell.Main>
+      <MantineAppShell.Main>{children}</MantineAppShell.Main>
     </MantineAppShell>
   );
 };

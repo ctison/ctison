@@ -11,13 +11,11 @@ import {
   zora,
   bsc,
 } from 'wagmi/chains';
-// import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 
 export const Wallet: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { chains, publicClient } = configureChains(
     [mainnet, sepolia, bsc, polygon, optimism, arbitrum, base, zora],
-    // [alchemyProvider({ apiKey: process.env. }),
     [publicProvider()],
   );
 

@@ -1,4 +1,5 @@
 'use client';
+
 import { FavoriteTools } from '@/app/FavoriteTools';
 import { Button, Center, Text } from '@mantine/core';
 import dynamic from 'next/dynamic';
