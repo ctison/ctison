@@ -1,5 +1,5 @@
 export type <FTName | pascalcase>Props = {}
 
-export const <FTName | pascalcase>: React.FC<<FTName | pascalcase>Props> = (props) => {
+export const <FTName | pascalcase>: React.FC<<FTName | pascalcase>Props> = ({}) => {
   return <></>
 }
