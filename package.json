@@ -22,7 +22,7 @@
     "@solid-primitives/range": "0.1.15",
     "@solid-primitives/resize-observer": "2.0.22",
     "@solidjs/meta": "0.28.6",
-    "@solidjs/router": "0.8.3",
+    "@solidjs/router": "0.9.0",
     "@splinetool/runtime": "0.9.446",
     "@types/node": "20.6.0",
     "@typescript-eslint/eslint-plugin": "6.7.0",

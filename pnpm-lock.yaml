@@ -27,8 +27,8 @@ devDependencies:
     specifier: 0.28.6
     version: 0.28.6(solid-js@1.7.11)
   '@solidjs/router':
-    specifier: 0.8.3
-    version: 0.8.3(solid-js@1.7.11)
+    specifier: 0.9.0
+    version: 0.9.0(solid-js@1.7.11)
   '@splinetool/runtime':
     specifier: 0.9.446
     version: 0.9.446
@@ -76,7 +76,7 @@ devDependencies:
     version: 1.7.11
   solid-start:
     specifier: 0.3.5
-    version: 0.3.5(@solidjs/meta@0.28.6)(@solidjs/router@0.8.3)(solid-js@1.7.11)(solid-start-netlify@0.3.5)(solid-start-node@0.3.5)(vite@4.4.9)
+    version: 0.3.5(@solidjs/meta@0.28.6)(@solidjs/router@0.9.0)(solid-js@1.7.11)(solid-start-netlify@0.3.5)(solid-start-node@0.3.5)(vite@4.4.9)
   solid-start-netlify:
     specifier: 0.3.5
     version: 0.3.5(solid-start@0.3.5)
@@ -3668,8 +3668,8 @@ packages:
       solid-js: 1.7.11
     dev: true
 
-  /@solidjs/router@0.8.3(solid-js@1.7.11):
-    resolution: {integrity: sha512-oJuqQo10rVTiQYhe1qXIG1NyZIZ2YOwHnlLc8Xx+g/iJhFCJo1saLOIrD/Dkh2fpIaIny5ZMkz1cYYqoTYGJbg==}
+  /@solidjs/router@0.9.0(solid-js@1.7.11):
+    resolution: {integrity: sha512-q1RxUhLa8lKdbhqEPkG+8RwBQKIH5f5AIWiOxVoUTK4UllgsR0C0FNT++ufnIAb9LNkx3ahE4WxAHZqH4l1vEQ==}
     peerDependencies:
       solid-js: ^1.5.3
     dependencies:
@@ -6917,6 +6917,7 @@ packages:
 
   /file-uri-to-path@1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    requiresBuild: true
     dev: true
 
   /filename-reserved-regex@3.0.0:
@@ -10939,7 +10940,7 @@ packages:
       '@rollup/plugin-node-resolve': 15.2.1(rollup@3.29.1)
       encoding: 0.1.13
       rollup: 3.29.1
-      solid-start: 0.3.5(@solidjs/meta@0.28.6)(@solidjs/router@0.8.3)(solid-js@1.7.11)(solid-start-netlify@0.3.5)(solid-start-node@0.3.5)(vite@4.4.9)
+      solid-start: 0.3.5(@solidjs/meta@0.28.6)(@solidjs/router@0.9.0)(solid-js@1.7.11)(solid-start-netlify@0.3.5)(solid-start-node@0.3.5)(vite@4.4.9)
       terser: 5.19.4
     transitivePeerDependencies:
       - '@types/babel__core'
@@ -10959,14 +10960,14 @@ packages:
       polka: 1.0.0-next.22
       rollup: 3.29.1
       sirv: 2.0.3
-      solid-start: 0.3.5(@solidjs/meta@0.28.6)(@solidjs/router@0.8.3)(solid-js@1.7.11)(solid-start-netlify@0.3.5)(solid-start-node@0.3.5)(vite@4.4.9)
+      solid-start: 0.3.5(@solidjs/meta@0.28.6)(@solidjs/router@0.9.0)(solid-js@1.7.11)(solid-start-netlify@0.3.5)(solid-start-node@0.3.5)(vite@4.4.9)
       terser: 5.19.4
       vite: 4.4.9(@types/node@20.6.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /solid-start@0.3.5(@solidjs/meta@0.28.6)(@solidjs/router@0.8.3)(solid-js@1.7.11)(solid-start-netlify@0.3.5)(solid-start-node@0.3.5)(vite@4.4.9):
+  /solid-start@0.3.5(@solidjs/meta@0.28.6)(@solidjs/router@0.9.0)(solid-js@1.7.11)(solid-start-netlify@0.3.5)(solid-start-node@0.3.5)(vite@4.4.9):
     resolution: {integrity: sha512-6w7OMv7MkiwvKC2XGw7UuVcvo6jzXt7FG5sRS56AIjnfCl3lP3ERU2IK68FEDmft8ROgYsijD3oHjeNJ/3/4CA==}
     hasBin: true
     peerDependencies:
@@ -11007,7 +11008,7 @@ packages:
       '@babel/preset-typescript': 7.22.15(@babel/core@7.22.17)
       '@babel/template': 7.22.15
       '@solidjs/meta': 0.28.6(solid-js@1.7.11)
-      '@solidjs/router': 0.8.3(solid-js@1.7.11)
+      '@solidjs/router': 0.9.0(solid-js@1.7.11)
       '@types/cookie': 0.5.2
       '@types/debug': 4.1.8
       chokidar: 3.5.3
