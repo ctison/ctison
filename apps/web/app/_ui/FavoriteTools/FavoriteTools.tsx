@@ -1,12 +1,9 @@
 'use client';
 import {
-  Anchor,
   Badge,
   Button,
   Card,
   Container,
-  Flex,
-  Grid,
   Group,
   SimpleGrid,
   Stack,
@@ -14,12 +11,11 @@ import {
   Title,
 } from '@mantine/core';
 import { favoriteTools } from './data';
-import Link from 'next/link';
 
 export const FavoriteTools: React.FC = () => {
   return (
-    <Container>
-      <Title order={2} mb='md'>
+    <Container my='xl'>
+      <Title order={2} mb='md' ta='center'>
         Favorite Tools
       </Title>
       <SimpleGrid cols={3}>

@@ -1,21 +1,45 @@
 'use client';
 
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
-import { configureChains, createConfig, sepolia, WagmiConfig } from 'wagmi';
+import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import {
-  mainnet,
-  polygon,
-  optimism,
   arbitrum,
+  avalanche,
   base,
-  zora,
   bsc,
+  gnosis,
+  linea,
+  mantle,
+  metis,
+  mainnet,
+  optimism,
+  polygon,
+  polygonZkEvm,
+  scroll,
+  zora,
+  zkSync,
 } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 
-export const Wallet: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const { chains, publicClient } = configureChains(
-    [mainnet, sepolia, bsc, polygon, optimism, arbitrum, base, zora],
+export const Wagmi: React.FC<React.PropsWithChildren> = ({ children }) => {
+  const { chains, publicClient, webSocketPublicClient } = configureChains(
+    [
+      arbitrum,
+      avalanche,
+      base,
+      bsc,
+      gnosis,
+      linea,
+      mantle,
+      metis,
+      mainnet,
+      optimism,
+      polygon,
+      polygonZkEvm,
+      scroll,
+      zora,
+      zkSync,
+    ],
     [publicProvider()],
   );
 
@@ -29,6 +53,7 @@ export const Wallet: React.FC<React.PropsWithChildren> = ({ children }) => {
     autoConnect: true,
     connectors,
     publicClient,
+    webSocketPublicClient,
   });
 
   return (

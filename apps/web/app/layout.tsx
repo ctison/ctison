@@ -1,6 +1,6 @@
 import '@rainbow-me/rainbowkit/styles.css';
 
-import { Wallet } from '@/app/ui/Wallet';
+import { Wagmi } from '@/app/_ui/Wagmi';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import type { Metadata } from 'next';
@@ -28,11 +28,11 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body className={inter.className}>
-        <Wallet>
+        <Wagmi>
           <MantineProvider theme={theme}>
             <AppShell>{children}</AppShell>
           </MantineProvider>
-        </Wallet>
+        </Wagmi>
       </body>
     </html>
   );

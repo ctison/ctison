@@ -49,7 +49,7 @@ export const favoriteTools: FavoriteTool[] = [
   {
     name: 'Next.js',
     category: 'frontend',
-    description: 'A framework to make modern frontends',
+    description: 'A framework to make modern frontend apps',
     link: 'https://nextjs.org',
   },
   {

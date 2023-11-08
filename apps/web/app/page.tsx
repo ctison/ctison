@@ -1,6 +1,6 @@
 'use client';
 
-import { FavoriteTools } from '@/app/FavoriteTools';
+import { FavoriteTools } from '@/app/_ui/FavoriteTools';
 import { Button, Center, Text } from '@mantine/core';
 import dynamic from 'next/dynamic';
 import { VscGithub } from 'react-icons/vsc';
