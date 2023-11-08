@@ -11,6 +11,7 @@ const config: HardhatUserConfig = {
       accounts: [process.env.ETH_PRIVATE_KEY!],
     },
   },
+  defaultNetwork: 'sepolia',
 };
 
 task('accounts', 'Prints the list of accounts', async (taskArgs, hre) => {
