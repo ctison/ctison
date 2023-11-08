@@ -4,11 +4,8 @@ import { Wagmi } from '@/app/_ui/Wagmi';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import { AppShell } from './AppShell';
 import { theme } from './theme';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: '@ctison',
@@ -27,7 +24,7 @@ export default function RootLayout({
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
         <ColorSchemeScript />
       </head>
-      <body className={inter.className}>
+      <body>
         <Wagmi>
           <MantineProvider theme={theme}>
             <AppShell>{children}</AppShell>

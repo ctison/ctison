@@ -6,15 +6,18 @@ import {
   Group,
   AppShell as MantineAppShell,
 } from '@mantine/core';
+import { MuseoModerno } from 'next/font/google';
 import { useDisclosure } from '@mantine/hooks';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+
+const brandFont = MuseoModerno({ subsets: ['latin'], weight: '600' });
 
 export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
 
   return (
     <MantineAppShell
-      header={{ height: 60 }}
+      header={{ height: { base: 48, sm: 76, lg: 76 } }}
       navbar={{
         width: 300,
         breakpoint: 'sm',
@@ -22,7 +25,7 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
       }}
       padding='md'
     >
-      <MantineAppShell.Header withBorder={false}>
+      <MantineAppShell.Header withBorder={true} bg='transparent'>
         <Group justify='space-between' h='100%' px='md'>
           <Group>
             <Burger
@@ -31,7 +34,14 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
               hiddenFrom='sm'
               size='sm'
             />
-            <Anchor href='/'>@ctison</Anchor>
+            <Anchor
+              href='/'
+              className={brandFont.className}
+              size='2rem'
+              c='black'
+            >
+              @ctison
+            </Anchor>
           </Group>
           <ConnectButton chainStatus='icon' />
         </Group>

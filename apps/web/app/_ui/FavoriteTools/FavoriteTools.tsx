@@ -18,7 +18,7 @@ export const FavoriteTools: React.FC = () => {
       <Title order={2} mb='md' ta='center'>
         Favorite Tools
       </Title>
-      <SimpleGrid cols={3}>
+      <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }}>
         {favoriteTools.map((tool) => (
           <Card key={tool.name} withBorder p='lg' radius='md' shadow='sm'>
             <Group justify='space-between'>
