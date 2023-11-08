@@ -6,6 +6,7 @@ import '@mantine/core/styles.css';
 import type { Metadata } from 'next';
 import { AppShell } from './AppShell';
 import { theme } from './theme';
+import { WindowExpando } from '@/app/_ui/WindowExpando';
 
 export const metadata: Metadata = {
   title: '@ctison',
@@ -26,6 +27,7 @@ export default function RootLayout({
       </head>
       <body>
         <Wagmi>
+          <WindowExpando />
           <MantineProvider theme={theme}>
             <AppShell>{children}</AppShell>
           </MantineProvider>
