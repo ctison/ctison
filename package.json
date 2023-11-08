@@ -40,7 +40,7 @@
     "solid-js": "1.7.11",
     "solid-start": "0.3.5",
     "solid-start-netlify": "0.3.5",
-    "solid-start-node": "0.3.5",
+    "solid-start-node": "0.3.10",
     "solid-styled-components": "0.28.5",
     "sort-package-json": "2.5.1",
     "typescript": "5.2.2",
