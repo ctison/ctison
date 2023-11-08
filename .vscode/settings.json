@@ -1,15 +1,7 @@
 {
-  "typescript.tsdk": "./node_modules/typescript/lib",
-  "cSpell.words": [
-    "Devdotto",
-    "fontsource",
-    "gsap",
-    "rainbowkit",
-    "splinetool",
-    "unocss",
-    "windi",
-    "windicss"
-  ],
+  "[js][jsx][ts][tsx][vue][css][less][scss][sass][graphql][gql][md][mdx][yaml][json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "cSpell.ignorePaths": [
     "package.json",
     "package-lock.json",
@@ -18,10 +10,28 @@
     ".vscode/settings.json",
     "pnpm-lock.yaml"
   ],
+  "cSpell.words": [
+    "arbitrum",
+    "Devdotto",
+    "fontsource",
+    "gsap",
+    "linea",
+    "moralis",
+    "rainbowkit",
+    "splinetool",
+    "Tison",
+    "unocss",
+    "wagmi",
+    "windi",
+    "windicss",
+    "zora"
+  ],
+  "editor.formatOnSave": true,
   "search.exclude": {
-    "**/node_modules": true,
-    "**/bower_components": true,
     "**/*.code-search": true,
+    "**/bower_components": true,
+    "**/node_modules": true,
     "pnpm-lock.yaml": true
-  }
+  },
+  "typescript.tsdk": "./node_modules/typescript/lib"
 }
