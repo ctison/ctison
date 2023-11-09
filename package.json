@@ -17,7 +17,7 @@
   "devDependencies": {
     "@fontsource/passero-one": "5.0.12",
     "@fontsource/tourney": "5.0.12",
-    "@rive-app/canvas": "2.4.0",
+    "@rive-app/canvas": "2.7.2",
     "@solid-primitives/props": "3.1.8",
     "@solid-primitives/range": "0.1.15",
     "@solid-primitives/resize-observer": "2.0.22",

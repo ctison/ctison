@@ -12,8 +12,8 @@ devDependencies:
     specifier: 5.0.12
     version: 5.0.12
   '@rive-app/canvas':
-    specifier: 2.4.0
-    version: 2.4.0
+    specifier: 2.7.2
+    version: 2.7.2
   '@solid-primitives/props':
     specifier: 3.1.8
     version: 3.1.8(solid-js@1.7.11)
@@ -3448,8 +3448,8 @@ packages:
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
     dev: true
 
-  /@rive-app/canvas@2.4.0:
-    resolution: {integrity: sha512-y4R3DkDOSt8g8wdL19/IMV0sF10fGJkINXLEywbWJl3zcNz1sbJYBijXqiU8jq874wezjhCmXxtfW5w8hvbvag==}
+  /@rive-app/canvas@2.7.2:
+    resolution: {integrity: sha512-JWYiBbxPl24tIpbmowM5vZaNFq4JMGHmgQ/QS1iQj26cXDVkEdXYQyWmW8tJz7Ujz+Xk44y6uuuAKYQqQGXhTg==}
     dev: true
 
   /@rollup/plugin-babel@6.0.3(@babel/core@7.22.17)(rollup@3.29.1):
