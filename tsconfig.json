@@ -2,32 +2,34 @@
   // https://www.typescriptlang.org/tsconfig
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    /* Projects */
+    "composite": true,
+    "incremental": true,
+
     /* Modules */
-    "module": "ES2022",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "types": ["vite/client"],
-    "baseUrl": "./",
-    "paths": {
-      "~/*": ["./src/*"]
-    },
+    "types": ["bun-types"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
 
     /* Language and Environment */
+    "lib": ["ESNext"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "jsx": "preserve",
-    "jsxImportSource": "solid-js",
-    "target": "ES2022",
+    "target": "ESNext",
+    "moduleDetection": "force",
 
     /* Emit */
     "declaration": true,
     "declarationMap": true,
     "importsNotUsedAsValues": "remove",
-    "noEmit": true,
-    "removeComments": true,
+    "removeComments": false,
     "sourceMap": true,
+    "noEmit": true,
+    "noEmitOnError": true,
 
     /* JavaScript Support */
+    "allowJs": true,
     "checkJs": true,
 
     /* Interop Constraints */
@@ -39,11 +41,10 @@
     "strict": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "exactOptionalPropertyTypes": true,
+    "exactOptionalPropertyTypes": false,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
-    "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": false,
@@ -51,5 +52,10 @@
     /* Completeness */
     "skipLibCheck": true
   },
-  "exclude": ["./netlify/"]
+  "include": [
+    ".lintstagedrc.mjs",
+    ".eslintrc.cjs",
+    "apps/*/src/**/*",
+    "scripts/**/*"
+  ]
 }

@@ -1,4 +1,4 @@
-name: Renovate Dependencies
+name: Renovate
 
 on:
   schedule:
@@ -6,15 +6,15 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   renovate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: renovatebot/github-action@v39.0.5
+      - uses: actions/checkout@v4
+      - uses: renovatebot/github-action@v39.1.1
         with:
           configurationFile: .github/renovate.json
           token: ${{ secrets.RENOVATE_TOKEN }}

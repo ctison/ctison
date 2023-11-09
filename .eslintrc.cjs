@@ -1,23 +1,33 @@
+/* eslint-env node */
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-  },
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:solid/typescript',
-    'plugin:jsx-a11y/recommended',
-  ],
-  overrides: [],
-  parser: '@typescript-eslint/parser',
+  root: true,
+  extends: ['eslint:recommended'],
   parserOptions: {
-    ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint', 'solid', 'jsx-a11y'],
-  rules: {
-    '@typescript-eslint/no-empty-interface': 'off',
+  env: {
+    node: true,
+    es2021: true,
   },
-  ignorePatterns: ['.eslintrc.cjs'],
-}
+  overrides: [
+    {
+      files: ['*.ts'],
+      extends: ['plugin:@typescript-eslint/strict-type-checked'],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: ['./tsconfig.json', './apps/*/tsconfig.json'],
+        tsconfigRootDir: __dirname,
+      },
+      plugins: ['@typescript-eslint'],
+      rules: {
+        '@typescript-eslint/no-non-null-assertion': 'off',
+      },
+    },
+  ],
+  ignorePatterns: [
+    '!.github/',
+    '!.lintstagedrc.mjs',
+    'apps/*/dist/',
+    'apps/*/artifacts/',
+  ],
+};
