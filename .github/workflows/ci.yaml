@@ -25,7 +25,8 @@ jobs:
         with:
           node-version-file: .nvmrc
       - uses: oven-sh/setup-bun@v1
-      - run: |
+      - name: Install > Lint > Test > Build
+        run: |
           bun install --frozen-lockfile
           bun run ci
           bun run test
