@@ -1,1 +1,5 @@
 /.fttemplates/
+/apps/*/typechain-types/
+/apps/*/artifacts/
+/apps/*/cache/
+/apps/evm/lib/

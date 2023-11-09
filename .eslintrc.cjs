@@ -24,5 +24,10 @@ module.exports = {
       },
     },
   ],
-  ignorePatterns: ['!.github/', '!.lintstagedrc.mjs', 'apps/*/dist/'],
+  ignorePatterns: [
+    '!.github/',
+    '!.lintstagedrc.mjs',
+    'apps/*/dist/',
+    'apps/*/artifacts/',
+  ],
 };

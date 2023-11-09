@@ -1,24 +1,16 @@
 import '@next/env';
-import { HardhatUserConfig, task } from 'hardhat/config';
-import '@nomicfoundation/hardhat-toolbox';
 import '@nomicfoundation/hardhat-foundry';
+import '@nomicfoundation/hardhat-toolbox-viem';
+import { HardhatUserConfig } from 'hardhat/config';
 
 const config: HardhatUserConfig = {
-  solidity: '0.8.19',
+  solidity: '0.8.23',
   networks: {
     sepolia: {
-      url: process.env.SEPOLIA_RPC_URL!,
-      accounts: [process.env.ETH_PRIVATE_KEY!],
+      url: process.env.SEPOLIA_RPC_URL ?? '',
+      accounts: [process.env.ETH_PRIVATE_KEY ?? ''],
     },
   },
-  defaultNetwork: 'sepolia',
 };
-
-task('accounts', 'Prints the list of accounts', async (taskArgs, hre) => {
-  const accounts = await hre.ethers.getSigners();
-  for (const account of accounts) {
-    console.log(account.address);
-  }
-});
 
 export default config;
