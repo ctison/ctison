@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
 
 permissions: {}
@@ -20,12 +20,13 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-      - name: test
-        run: |
-          corepack enable
-          pnpm install --frozen-lockfile
-          pnpm run format:check
+      - uses: oven-sh/setup-bun@v1
+      - run: |
+          bun install --frozen-lockfile
+          bun run ci
+          bun run test
+          bun run build
