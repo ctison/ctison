@@ -1,4 +1,5 @@
 import '@next/env';
+import '@nomicfoundation/hardhat-foundry';
 import '@nomicfoundation/hardhat-toolbox-viem';
 import { HardhatUserConfig } from 'hardhat/config';
 
