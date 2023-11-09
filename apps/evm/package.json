@@ -2,9 +2,11 @@
   "name": "@ctison/evm",
   "private": true,
   "scripts": {
-    "build": "hardhat compile",
+    "build": "turbo run build:",
+    "build:": "hardhat compile",
     "clean": "rm -rf -- ./artifacts ./cache",
-    "lint": "eslint --ext js,cjs,mjs,ts --max-warnings=0 .",
+    "lint": "turbo run lint:",
+    "lint:": "eslint --ext js,cjs,mjs,ts --max-warnings=0 .",
     "test": "hardhat test"
   },
   "devDependencies": {
