@@ -14,6 +14,9 @@ export default function Home() {
     <>
       <Center w='full' h='500'>
         <Button
+          component='a'
+          target='_blank'
+          href='https://github.com/ctison'
           pos='relative'
           variant='outline'
           leftSection={<VscGithub />}

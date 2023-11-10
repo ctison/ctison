@@ -9,6 +9,7 @@ import {
 import { MuseoModerno } from 'next/font/google';
 import { useDisclosure } from '@mantine/hooks';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import Link from 'next/link';
 
 const brandFont = MuseoModerno({ subsets: ['latin'], weight: '600' });
 
@@ -35,6 +36,7 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
               size='sm'
             />
             <Anchor
+              component={Link}
               href='/'
               className={brandFont.className}
               size='2rem'
