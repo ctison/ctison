@@ -10,7 +10,7 @@
     "test": "hardhat test"
   },
   "devDependencies": {
-    "@next/env": "14.0.1",
+    "@next/env": "14.0.2",
     "@nomicfoundation/hardhat-foundry": "1.1.1",
     "@nomicfoundation/hardhat-toolbox-viem": "1.0.0",
     "hardhat": "2.19.0"
