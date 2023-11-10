@@ -10,6 +10,7 @@ import {
 } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { type Route } from 'next';
 import { MuseoModerno } from 'next/font/google';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -76,7 +77,7 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
           <NavLink
             key={href}
             component={Link}
-            href={href}
+            href={href as Route}
             label={label}
             variant={pathname === href ? undefined : 'subtle'}
             active
