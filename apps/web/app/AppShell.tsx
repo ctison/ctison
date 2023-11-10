@@ -61,11 +61,13 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
               @ctison
             </Anchor>
           </Group>
-          <ConnectButton
-            chainStatus='icon'
-            showBalance={false}
-            accountStatus={{ smallScreen: 'avatar', largeScreen: 'full' }}
-          />
+          <Group>
+            <ConnectButton
+              chainStatus='icon'
+              showBalance={false}
+              accountStatus={{ smallScreen: 'avatar', largeScreen: 'full' }}
+            />
+          </Group>
         </Group>
       </MantineAppShell.Header>
 
