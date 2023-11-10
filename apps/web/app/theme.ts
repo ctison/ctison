@@ -1,8 +1,9 @@
 'use client';
 
-import { createTheme, Anchor } from '@mantine/core';
+import { Anchor, createTheme, useMantineTheme } from '@mantine/core';
 
 export const theme = createTheme({
+  primaryShade: 6,
   components: {
     Anchor: Anchor.extend({
       defaultProps: {
@@ -11,3 +12,8 @@ export const theme = createTheme({
     }),
   },
 });
+
+export function usePrimaryColor() {
+  const theme = useMantineTheme();
+  return theme.colors[theme.primaryColor][theme.primaryShade as number];
+}

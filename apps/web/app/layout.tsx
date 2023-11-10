@@ -1,12 +1,14 @@
+import '@mantine/core/styles.css';
+import '@mantine/nprogress/styles.css';
 import '@rainbow-me/rainbowkit/styles.css';
 
 import { Wagmi } from '@/app/_ui/Wagmi';
+import { WindowExpando } from '@/app/_ui/WindowExpando';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
-import '@mantine/core/styles.css';
 import type { Metadata } from 'next';
 import { AppShell } from './AppShell';
 import { theme } from './theme';
-import { WindowExpando } from '@/app/_ui/WindowExpando';
+import { NavigationProgress } from '@mantine/nprogress';
 
 export const metadata: Metadata = {
   title: '@ctison',
@@ -29,6 +31,7 @@ export default function RootLayout({
         <Wagmi>
           <WindowExpando />
           <MantineProvider theme={theme}>
+            <NavigationProgress />
             <AppShell>{children}</AppShell>
           </MantineProvider>
         </Wagmi>

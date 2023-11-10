@@ -5,6 +5,7 @@ const nextConfig = {
     config.externals.push('pino-pretty', 'lokijs', 'encoding');
     return config;
   },
+  transpilePackages: ['@lifi/widget', '@lifi/wallet-management'],
   experimental: {
     typedRoutes: true,
   },
