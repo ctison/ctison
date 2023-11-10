@@ -12,18 +12,27 @@ import {
   useSwitchNetwork,
   useWalletClient,
 } from 'wagmi';
+import { usePrimaryColor } from '../theme';
 
 export const Widget: React.FC = () => {
   const { connectAsync, connectors } = useConnect();
   const { disconnect } = useDisconnect();
   const signer = useEthersSigner();
   const { switchNetworkAsync } = useSwitchNetwork();
+  const primaryColor = usePrimaryColor();
 
   const widgetConfig = useMemo((): WidgetConfig => {
     return {
       integrator: 'ctison',
       variant: 'expandable',
       subvariant: 'split',
+      theme: {
+        palette: {
+          primary: {
+            main: primaryColor,
+          },
+        },
+      },
       walletManagement: {
         signer,
         connect: async () => {
@@ -52,7 +61,14 @@ export const Widget: React.FC = () => {
         },
       },
     };
-  }, [signer, connectAsync, connectors, disconnect, switchNetworkAsync]);
+  }, [
+    signer,
+    connectAsync,
+    connectors,
+    disconnect,
+    switchNetworkAsync,
+    primaryColor,
+  ]);
 
   return (
     <Box mt='xl'>
