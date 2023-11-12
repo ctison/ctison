@@ -1,29 +1,29 @@
 'use client';
 
-import { useEffect } from 'react';
-import { createPublicClient, http } from 'viem';
-import { mainnet } from 'viem/chains';
-import { useAccount, useConnect, useNetwork, useWalletClient } from 'wagmi';
+import { useEffect, useMemo } from 'react';
+import {
+  publicActionReverseMirage,
+  walletActionReverseMirage,
+} from 'reverse-mirage';
+import { useWalletClient } from 'wagmi';
 
 export const WindowExpando: React.FC = () => {
-  const { chain } = useNetwork();
-  const { connector } = useAccount();
-  const { connectors } = useConnect();
-  const { data } = useWalletClient();
+  const { data: walletClient } = useWalletClient();
+
+  const extendedWalletClient = useMemo(
+    () =>
+      walletClient
+        ?.extend(walletActionReverseMirage)
+        .extend(publicActionReverseMirage),
+    [walletClient],
+  );
 
   useEffect(() => {
-    (window as any).viem = createPublicClient({
-      chain: mainnet,
-      transport: http(),
-    });
-    console.log(
-      `Viem client loaded: https://viem.sh/docs/getting-started.html`,
-    );
-  }, [chain]);
+    console.log('https://viem.sh/docs/actions/wallet/introduction.html');
+    console.log('https://www.reversemirage.com/');
+  }, []);
 
-  useWindowExpando('connector', connector);
-  useWindowExpando('connectors', connectors);
-  useWindowExpando('data', data);
+  useWindowExpando('viem', extendedWalletClient);
 
   return null;
 };
@@ -31,6 +31,5 @@ export const WindowExpando: React.FC = () => {
 function useWindowExpando(key: string, value: unknown) {
   useEffect(() => {
     (window as any)[key] = value;
-    console.log(`window.${key} loaded`);
   }, [key, value]);
 }
