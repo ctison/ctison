@@ -21,6 +21,7 @@ const brandFont = MuseoModerno({ subsets: ['latin'], weight: '600' });
 const links: { href: string; label: string }[] = [
   { href: '/', label: 'Home' },
   { href: '/bridge', label: 'Bridge' },
+  { href: '/web3', label: 'Web3 tools' },
 ];
 
 export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
