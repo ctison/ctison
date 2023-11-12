@@ -1,0 +1,26 @@
+{
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "dev",
+  "workspaceFolder": "/ctison/",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // cSpell:disable
+        "tamasfe.even-better-toml",
+        "esbenp.prettier-vscode",
+        "streetsidesoftware.code-spell-checker",
+        "github.vscode-github-actions",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "GitHub.copilot-labs",
+        "bierner.github-markdown-preview",
+        "GitHub.vscode-pull-request-github",
+        "eamodio.gitlens",
+        "foxundermoon.shell-format",
+        "timonwong.shellcheck",
+        "redhat.vscode-yaml"
+        // cSpell:enable
+      ]
+    }
+  }
+}
