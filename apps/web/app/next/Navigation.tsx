@@ -13,7 +13,8 @@ const links: {
   tooltip?: string;
   wildcard?: boolean;
 }[] = [
-  { href: '/next', label: '0', tooltip: 'Load asap' },
+  // TODO: Next line should not require a type cast (experimental)
+  { href: '/next' as Route, label: '0', tooltip: 'Load asap' },
   { href: '/next/1', label: '1', tooltip: 'Load page 1s' },
   { href: '/next/2', label: '2', tooltip: 'Load page 1s then error' },
   {

@@ -1,10 +1,14 @@
 import '@mantine/code-highlight/styles.css';
 import { Loader, Stack, Text, Title } from '@mantine/core';
-import { Suspense, use } from 'react';
+import { Suspense } from 'react';
 import { Slugs } from './Slugs';
 
-export default function Page({ params }: { params: { slug?: string[] } }) {
-  use(new Promise((resolve) => setTimeout(resolve, 1000)));
+export default async function Page({
+  params,
+}: {
+  params: { slug?: string[] };
+}) {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   return (
     <Stack
       align='center'

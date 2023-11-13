@@ -1,8 +1,10 @@
 import { Stack, Title } from '@mantine/core';
-import { use } from 'react';
+import { cookies } from 'next/headers';
 
-export default function Page() {
-  use(new Promise((resolve) => setTimeout(resolve, 1000)));
+export default async function Page() {
+  // Disable static rendering at build time by using cookies
+  cookies();
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   return (
     <Stack
       p='xl'
