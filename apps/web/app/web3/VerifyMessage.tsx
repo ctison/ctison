@@ -1,20 +1,11 @@
 'use client';
 
 import '@mantine/code-highlight/styles.css';
-import {
-  ActionIcon,
-  Button,
-  Group,
-  TextInput,
-  Textarea,
-  Title,
-  Tooltip,
-} from '@mantine/core';
+import { Button, Group, Textarea, Title } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useCallback, useState } from 'react';
-import { BiWallet } from 'react-icons/bi';
 import { isAddress, isHex, verifyMessage } from 'viem';
-import { useAccount } from 'wagmi';
+import { InputAddress } from '../_ui/InputAddress';
 
 export const VerifyMessage: React.FC = () => {
   const form = useForm({
@@ -29,13 +20,15 @@ export const VerifyMessage: React.FC = () => {
     },
   });
 
-  const { address } = useAccount();
-  const fillAddressFromWallet = useCallback(() => {
-    form.setFieldValue('address', address as string);
-  }, [form, address]);
-
   const [result, setResult] = useState<boolean | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const setAddress = useCallback(
+    (address: string) => {
+      form.setFieldValue('address', address);
+    },
+    [form],
+  );
 
   return (
     <form
@@ -58,25 +51,13 @@ export const VerifyMessage: React.FC = () => {
       })}
     >
       <Title my='lg'>Verify a message</Title>
-      <TextInput
-        label='Address'
-        description='The Ethereum address that signed the original message.'
-        placeholder='Type an address here.'
+      <InputAddress
+        setAddress={setAddress}
         disabled={isLoading}
-        rightSection={
-          <Tooltip label='Use current wallet address'>
-            <ActionIcon
-              variant='subtle'
-              aria-label='Use current wallet address'
-              onClick={fillAddressFromWallet}
-              disabled={!address}
-            >
-              <BiWallet />
-            </ActionIcon>
-          </Tooltip>
-        }
+        description='The Ethereum address that signed the original message.'
         {...form.getInputProps('address')}
       />
+
       <Textarea
         label='Message'
         description='The message to be verified.'
