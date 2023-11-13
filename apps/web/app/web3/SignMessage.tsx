@@ -43,6 +43,7 @@ export const SignMessage: React.FC = () => {
         onClick={handleSign}
         loading={isLoading}
         disabled={isConnected && message.length === 0}
+        suppressHydrationWarning
       >
         {isConnected ? 'Sign' : 'Connect Wallet'}
       </Button>
