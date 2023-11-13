@@ -6,7 +6,7 @@
     "build:": "NODE_ENV=production next build",
     "clean": "rm -rf -- .next/ next-env.d.ts",
     "dev": "next dev",
-    "lint": "turbo run lint",
+    "lint": "turbo run lint:",
     "lint:": "next lint"
   },
   "dependencies": {
