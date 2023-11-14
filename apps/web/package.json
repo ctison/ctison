@@ -10,7 +10,7 @@
     "lint:": "next lint"
   },
   "dependencies": {
-    "@lifi/widget": "2.9.0",
+    "@lifi/widget": "2.9.2",
     "@mantine/code-highlight": "7.2.1",
     "@mantine/core": "7.2.1",
     "@mantine/form": "7.2.1",
