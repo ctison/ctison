@@ -18,7 +18,7 @@ import { useEffect } from 'react';
 
 const brandFont = MuseoModerno({ subsets: ['latin'], weight: '600' });
 
-const links: { href: string; label: string }[] = [
+const links: { href: Route; label: string }[] = [
   { href: '/', label: 'Home' },
   { href: '/bridge', label: 'Bridge' },
   { href: '/web3', label: 'Web3 tools' },
@@ -42,7 +42,6 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
         breakpoint: 'sm',
         collapsed: { mobile: !mobileOpened, desktop: !mobileOpened },
       }}
-      padding='md'
     >
       <MantineAppShell.Header withBorder={true}>
         <Group justify='space-between' h='100%' px='md'>
@@ -78,7 +77,7 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
           <NavLink
             key={href}
             component={Link}
-            href={href as Route}
+            href={href}
             label={label}
             variant={pathname === href ? undefined : 'subtle'}
             active
