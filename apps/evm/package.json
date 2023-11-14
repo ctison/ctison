@@ -9,6 +9,9 @@
     "lint:": "eslint --ext js,cjs,mjs,ts --max-warnings=0 .",
     "test": "hardhat test"
   },
+  "dependencies": {
+    "@openzeppelin/contracts": "5.0.0"
+  },
   "devDependencies": {
     "@next/env": "14.0.2",
     "@nomicfoundation/hardhat-foundry": "1.1.1",
