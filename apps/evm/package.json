@@ -16,7 +16,6 @@
   },
   "devDependencies": {
     "@next/env": "14.0.2",
-    "@nomicfoundation/hardhat-foundry": "1.1.1",
     "@nomicfoundation/hardhat-ledger": "1.0.1",
     "@nomicfoundation/hardhat-toolbox-viem": "1.0.0",
     "@openzeppelin/hardhat-upgrades": "2.4.1",

@@ -1,5 +1,4 @@
 import '@next/env';
-import '@nomicfoundation/hardhat-foundry';
 import '@nomicfoundation/hardhat-ledger';
 import '@nomicfoundation/hardhat-toolbox-viem';
 import '@openzeppelin/hardhat-upgrades';
