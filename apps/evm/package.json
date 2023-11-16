@@ -10,13 +10,17 @@
     "test": "hardhat test"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "5.0.0"
+    "@layerzerolabs/solidity-examples": "1.0.0",
+    "@openzeppelin/contracts": "5.0.0",
+    "@openzeppelin/contracts-upgradeable": "5.0.0"
   },
   "devDependencies": {
     "@next/env": "14.0.2",
     "@nomicfoundation/hardhat-foundry": "1.1.1",
     "@nomicfoundation/hardhat-ledger": "1.0.1",
     "@nomicfoundation/hardhat-toolbox-viem": "1.0.0",
+    "@openzeppelin/hardhat-upgrades": "2.4.1",
+    "@remix-project/remixd": "0.6.19",
     "hardhat": "2.19.0"
   }
 }
