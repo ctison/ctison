@@ -4,8 +4,7 @@ import '@nomicfoundation/hardhat-toolbox-viem';
 import '@openzeppelin/hardhat-upgrades';
 import { HardhatUserConfig, task } from 'hardhat/config';
 
-import './tasks/debug';
-import './tasks/upgrade';
+import './tasks/token';
 
 const SEPOLIA_URL = 'https://ethereum-sepolia.publicnode.com';
 const ETH_PRIVATE_KEY =
