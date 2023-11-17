@@ -22,6 +22,6 @@
     "@nomicfoundation/hardhat-toolbox-viem": "2.0.0",
     "@openzeppelin/hardhat-upgrades": "2.4.1",
     "@remix-project/remixd": "0.6.19",
-    "hardhat": "2.19.0"
+    "hardhat": "2.19.1"
   }
 }
