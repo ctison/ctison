@@ -23,7 +23,9 @@ tokenTask
   .task('deploy', 'Deploy Token proxy contract')
   .setAction(async (_, hre) => {
     const Token = await hre.ethers.getContractFactory('Token');
-    const token = await hre.upgrades.deployProxy(Token);
+    const token = await hre.upgrades.deployProxy(Token, undefined, {
+      kind: 'uups',
+    });
     await token.waitForDeployment();
 
     console.log(`Token deployed to ${await token.getAddress()}`);
@@ -46,6 +48,7 @@ tokenTask
     const token = await hre.upgrades.upgradeProxy(
       args.address as `0x{string}`,
       await hre.ethers.getContractFactory('Token'),
+      { kind: 'uups' },
     );
     console.log(`Token upgraded to ${await token.getAddress()}`);
   });
