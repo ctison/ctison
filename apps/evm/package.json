@@ -3,10 +3,12 @@
   "private": true,
   "scripts": {
     "build": "turbo run build:",
-    "build:": "hardhat compile",
+    "build:": "hardhat clean && hardhat compile",
     "clean": "rm -rf -- ./artifacts ./cache",
     "lint": "turbo run lint:",
-    "lint:": "eslint --ext js,cjs,mjs,ts --max-warnings=0 .",
+    "lint:": "bun run lint:eslint && bun run lint:hardhat",
+    "lint:eslint": "eslint --ext js,cjs,mjs,ts --max-warnings=0 .",
+    "lint:hardhat": "hardhat check",
     "test": "hardhat test"
   },
   "dependencies": {
