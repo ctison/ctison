@@ -2,9 +2,11 @@ import '@next/env';
 import '@nomicfoundation/hardhat-ledger';
 import '@nomicfoundation/hardhat-toolbox-viem';
 import '@openzeppelin/hardhat-upgrades';
+import '@nomicfoundation/hardhat-chai-matchers';
 import { HardhatUserConfig, task } from 'hardhat/config';
 
 import './tasks/token';
+import './tasks/vault';
 
 const SEPOLIA_URL = 'https://ethereum-sepolia.publicnode.com';
 const ETH_PRIVATE_KEY =
