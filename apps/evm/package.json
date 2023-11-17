@@ -9,7 +9,7 @@
     "lint:": "bun run lint:eslint && bun run lint:hardhat",
     "lint:eslint": "eslint --ext js,cjs,mjs,ts --max-warnings=0 .",
     "lint:hardhat": "hardhat check",
-    "test": "hardhat test"
+    "test": "hardhat test --network hardhat"
   },
   "dependencies": {
     "@layerzerolabs/solidity-examples": "1.0.0",
