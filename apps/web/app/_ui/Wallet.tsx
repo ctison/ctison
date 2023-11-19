@@ -16,7 +16,7 @@ import {
 export const Wallet: React.FC<React.PropsWithChildren> = (props) => {
   return (
     <ThirdwebProvider
-      // clientId={}
+      clientId={process.env.NEXT_PUBLIC_THIRD_PROVIDER_API_KEY}
       theme='light'
       supportedWallets={[
         metamaskWallet({
