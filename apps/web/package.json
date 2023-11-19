@@ -17,6 +17,7 @@
     "@mantine/nprogress": "7.2.2",
     "@splinetool/react-spline": "2.2.6",
     "@splinetool/runtime": "0.9.506",
+    "@thirdweb-dev/chains": "0.1.58",
     "@thirdweb-dev/react": "4.1.6",
     "@uniswap/token-lists": "1.0.0-beta.33",
     "alchemy-sdk": "3.0.0",

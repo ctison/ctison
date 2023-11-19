@@ -2,19 +2,16 @@
   "name": "@ctison/root",
   "private": true,
   "type": "module",
-  "workspaces": [
-    "apps/*"
-  ],
   "scripts": {
     "build": "turbo run build:",
-    "ci": "bun run format:check && bun run lint && bun run test",
+    "ci": "pnpm run format:check && pnpm run lint && pnpm run test",
     "clean": "turbo run clean",
     "format": "prettier -w . ; sort-package-json",
     "format:check": "prettier --check . && sort-package-json --check",
     "lint": "turbo run lint:",
     "prepare": "husky install",
     "test": "turbo run test",
-    "update": "bun x npm-check-updates -ui -ws --root"
+    "update": "pnpx npm-check-updates -ui -ws --root"
   },
   "prettier": {
     "jsxSingleQuote": true,
@@ -24,7 +21,6 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "6.11.0",
     "@typescript-eslint/parser": "6.11.0",
-    "bun-types": "1.0.12",
     "eslint": "8.53.0",
     "husky": "8.0.3",
     "lint-staged": "15.1.0",
@@ -34,5 +30,5 @@
     "turbo": "1.10.16",
     "typescript": "5.2.2"
   },
-  "packageManager": "bun@1.0.12"
+  "packageManager": "pnpm@8.10.5"
 }

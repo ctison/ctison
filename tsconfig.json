@@ -7,7 +7,6 @@
     "incremental": true,
 
     /* Modules */
-    "types": ["bun-types"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,

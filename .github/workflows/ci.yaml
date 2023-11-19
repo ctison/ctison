@@ -24,8 +24,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-      - uses: oven-sh/setup-bun@v1
       - name: Install > Lint > Test
         run: |
-          bun install --frozen-lockfile
-          bun run ci
+          corepack enable
+          pnpm install --frozen-lockfile
+          pnpm run ci

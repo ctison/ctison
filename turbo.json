@@ -1,6 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["bun.lockb", "tsconfig.json"],
+  "globalDependencies": ["pnpm-lock.yaml", "tsconfig.json"],
   "pipeline": {
     "build:": {
       "dependsOn": ["^build:"],

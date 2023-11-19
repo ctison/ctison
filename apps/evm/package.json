@@ -6,7 +6,7 @@
     "build:": "hardhat clean && hardhat compile",
     "clean": "rm -rf -- ./artifacts ./cache",
     "lint": "turbo run lint:",
-    "lint:": "bun run lint:eslint && bun run lint:hardhat",
+    "lint:": "pnpm run lint:eslint && pnpm run lint:hardhat",
     "lint:eslint": "eslint --ext js,cjs,mjs,ts --max-warnings=0 .",
     "lint:hardhat": "hardhat check",
     "test": "hardhat test --network hardhat"
