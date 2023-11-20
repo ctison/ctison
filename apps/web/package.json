@@ -16,7 +16,7 @@
     "@mantine/form": "7.2.2",
     "@mantine/hooks": "7.2.2",
     "@mantine/nprogress": "7.2.2",
-    "@rainbow-me/rainbowkit": "1.2.0",
+    "@rainbow-me/rainbowkit": "1.2.1",
     "@splinetool/react-spline": "2.2.6",
     "@splinetool/runtime": "0.9.506",
     "@uniswap/token-lists": "1.0.0-beta.33",
