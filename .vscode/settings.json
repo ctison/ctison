@@ -2,6 +2,9 @@
   "[js][jsx][ts][tsx][vue][css][less][scss][sass][graphql][gql][md][mdx][yaml][json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[solidity]": {
+    "editor.defaultFormatter": "JuanBlanco.solidity"
+  },
   "cSpell.ignorePaths": [
     "package.json",
     "package-lock.json",
@@ -20,6 +23,7 @@
     "moralis",
     "rainbowkit",
     "splinetool",
+    "thirdweb",
     "Tison",
     "unocss",
     "uups",
@@ -35,5 +39,6 @@
     "**/node_modules": true,
     "pnpm-lock.yaml": true
   },
+  "solidity.formatter": "forge",
   "typescript.tsdk": "node_modules/typescript/lib"
 }

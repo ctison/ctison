@@ -3,37 +3,53 @@
 import { CodeHighlight } from '@mantine/code-highlight';
 import '@mantine/code-highlight/styles.css';
 import { Button, Textarea, Title } from '@mantine/core';
-import { useConnectModal } from '@rainbow-me/rainbowkit';
-import { useCallback, useState } from 'react';
-import { useAccount, useSignMessage } from 'wagmi';
+import {
+  useAddress,
+  useSDK,
+  useSetIsWalletModalOpen,
+} from '@thirdweb-dev/react';
+import { useCallback, useMemo, useState } from 'react';
 
 export const SignMessage: React.FC = () => {
-  const { isConnected } = useAccount();
-  const { openConnectModal } = useConnectModal();
-  const [message, setMessage] = useState('');
-  const { data, error, isLoading, signMessage } = useSignMessage({
-    message,
-  });
+  const address = useAddress();
+  const isLoggedIn = useMemo(() => address !== undefined, [address]);
+  const openConnectModal = useSetIsWalletModalOpen();
 
-  const handleSign = useCallback(() => {
-    if (!isConnected) {
-      openConnectModal?.();
+  const sdk = useSDK();
+  const [message, setMessage] = useState('');
+  const [signedMessage, setSignedMessage] = useState<string | null>(null);
+  const [isSigning, setIsSigning] = useState(false);
+  const [signError, setSignError] = useState<Error | null>(null);
+
+  const handleSign = useCallback(async () => {
+    if (!isLoggedIn) {
+      openConnectModal(true);
       return;
     }
-    signMessage();
-  }, [isConnected, openConnectModal, signMessage]);
+    try {
+      setIsSigning(true);
+      setSignError(null);
+      setSignedMessage(null);
+      const signature = await sdk!.wallet.sign(message);
+      setSignedMessage(signature);
+    } catch (e) {
+      setSignError(e as Error);
+    } finally {
+      setIsSigning(false);
+    }
+  }, [isLoggedIn, openConnectModal, sdk, message]);
 
   return (
     <>
-      <Title my='lg'>Sign a message</Title>
+      <Title mb='lg'>Sign a message</Title>
       <Textarea
         label='Message'
         description="This message you're signing proves you own the address you say you do."
         minRows={5}
         value={message}
         onChange={(event) => setMessage(event.currentTarget.value)}
-        error={error?.message}
-        disabled={isLoading}
+        error={signError?.message}
+        disabled={isSigning}
         placeholder='Type a message to sign here.'
         required
       />
@@ -41,16 +57,16 @@ export const SignMessage: React.FC = () => {
         mt='lg'
         miw={124}
         onClick={handleSign}
-        loading={isLoading}
-        disabled={isConnected && message.length === 0}
+        loading={isSigning}
+        disabled={isLoggedIn && message.length === 0}
         suppressHydrationWarning
       >
-        {isConnected ? 'Sign' : 'Connect Wallet'}
+        {isLoggedIn ? 'Sign' : 'Connect Wallet'}
       </Button>
-      {data && (
+      {signedMessage && (
         <CodeHighlight
           mt='lg'
-          code={data}
+          code={signedMessage}
           language='json'
           copyLabel='Copy'
           pr='lg'

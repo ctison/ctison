@@ -5,9 +5,9 @@ import {
   Tooltip,
   createPolymorphicComponent,
 } from '@mantine/core';
+import { useAddress } from '@thirdweb-dev/react';
 import { forwardRef, useCallback } from 'react';
 import { BiWallet } from 'react-icons/bi';
-import { useAccount } from 'wagmi';
 
 export type InputAddressProps = TextInputProps & {
   setAddress: (address: string) => void;
@@ -21,7 +21,7 @@ export const InputAddress = createPolymorphicComponent<
     { setAddress, ...others },
     ref,
   ) {
-    const { address } = useAccount();
+    const address = useAddress();
     const fillAddressFromWallet = useCallback(() => {
       setAddress(address as string);
     }, [setAddress, address]);

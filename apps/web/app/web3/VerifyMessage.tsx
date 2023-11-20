@@ -50,7 +50,7 @@ export const VerifyMessage: React.FC = () => {
         setIsLoading(false);
       })}
     >
-      <Title my='lg'>Verify a message</Title>
+      <Title mb='lg'>Verify a message</Title>
       <InputAddress
         setAddress={setAddress}
         disabled={isLoading}
