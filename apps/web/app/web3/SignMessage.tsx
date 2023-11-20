@@ -41,7 +41,7 @@ export const SignMessage: React.FC = () => {
 
   return (
     <>
-      <Title my='lg'>Sign a message</Title>
+      <Title mb='lg'>Sign a message</Title>
       <Textarea
         label='Message'
         description="This message you're signing proves you own the address you say you do."

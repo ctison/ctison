@@ -7,7 +7,7 @@ import { VerifyMessage } from './VerifyMessage';
 
 export default function Web3() {
   return (
-    <Container>
+    <Container py='xl'>
       <SimpleGrid cols={{ base: 1, md: 2 }}>
         <Tool>
           <SignMessage />
@@ -22,7 +22,7 @@ export default function Web3() {
 
 const Tool: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
-    <Paper withBorder p='xl' shadow='xl' radius='xs'>
+    <Paper withBorder px='lg' py='xl' shadow='xl' radius='xs'>
       {children}
     </Paper>
   );
