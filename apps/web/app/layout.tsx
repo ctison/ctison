@@ -1,14 +1,13 @@
 import '@mantine/core/styles.css';
 import '@mantine/nprogress/styles.css';
-import '@rainbow-me/rainbowkit/styles.css';
 
-import { Wagmi } from '@/app/_ui/Wagmi';
-import { WindowExpando } from '@/app/_ui/WindowExpando';
+import { AppShell } from '@/_ui/AppShell';
+import { WindowExpando } from '@/_ui/WindowExpando';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
-import type { Metadata } from 'next';
-import { AppShell } from './AppShell';
-import { theme } from './theme';
 import { NavigationProgress } from '@mantine/nprogress';
+import type { Metadata } from 'next';
+import { theme } from './theme';
+import { Wallet } from './_ui/Wallet';
 
 export const metadata: Metadata = {
   title: '@ctison',
@@ -28,13 +27,13 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body>
-        <Wagmi>
+        <Wallet>
           <WindowExpando />
           <MantineProvider theme={theme}>
             <NavigationProgress />
             <AppShell>{children}</AppShell>
           </MantineProvider>
-        </Wagmi>
+        </Wallet>
       </body>
     </html>
   );
