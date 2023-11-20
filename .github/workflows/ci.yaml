@@ -21,10 +21,13 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
       - uses: oven-sh/setup-bun@v1
+      - uses: foundry-rs/foundry-toolchain@v1
       - name: Install > Lint
         run: |
           bun install --frozen-lockfile

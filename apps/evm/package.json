@@ -1,0 +1,11 @@
+{
+  "name": "@ctison/evm",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "build:": "forge build",
+    "clean": "rm -rf -- cache/ out/",
+    "test": "forge test -vvv",
+    "update": "forge update"
+  }
+}
