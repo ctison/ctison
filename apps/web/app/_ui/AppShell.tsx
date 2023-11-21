@@ -6,10 +6,9 @@ import {
   Group,
   AppShell as MantineAppShell,
   NavLink,
-  em,
 } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
-import { ConnectWallet } from '@thirdweb-dev/react';
+import { ConnectWallet, useConnectionStatus } from '@thirdweb-dev/react';
 import { type Route } from 'next';
 import { MuseoModerno } from 'next/font/google';
 import Link from 'next/link';
@@ -26,8 +25,9 @@ const links: { href: Route; label: string }[] = [
 export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [mobileOpened, { toggle: toggleMobile, close: closeNavbar }] =
     useDisclosure();
-  const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
+  const isMobile = useMediaQuery(`(max-width: 48em)`);
   const pathname = usePathname();
+  const connectionStatus = useConnectionStatus();
 
   useEffect(() => {
     closeNavbar();
@@ -62,7 +62,12 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
             </Anchor>
           </Group>
           <Group>
-            <ConnectWallet />
+            <ConnectWallet
+              style={{
+                height: connectionStatus === 'connected' ? '56px' : '42px',
+                minWidth: isMobile ? 'unset' : '142px',
+              }}
+            />
           </Group>
         </Group>
       </MantineAppShell.Header>
