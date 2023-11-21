@@ -38,33 +38,34 @@ let initialNodes: Node[] = [
     data: { label: 'API' },
   },
   {
-    id: 'database',
+    id: 'queue',
     position: { x: 0, y: 200 },
-    data: { label: 'Database' },
+    data: { label: 'Queue' },
     sourcePosition: Position.Right,
   },
   {
     id: 'microservice',
     position: { x: 200, y: 200 },
     data: { label: 'Microservice' },
-    sourcePosition: Position.Left,
-    targetPosition: Position.Right,
+    sourcePosition: Position.Right,
+    targetPosition: Position.Left,
   },
   {
-    id: 'queue',
-    position: { x: 400, y: 200 },
-    data: { label: 'Queue' },
-    sourcePosition: Position.Left,
+    id: 'database',
+    position: { x: 400, y: 150 },
+    data: { label: 'Database' },
+    type: 'output',
+    targetPosition: Position.Left,
   },
 ];
 const initialEdges: Edge[] = [
   { id: 'app-desktop->api', source: 'app-desktop', target: 'api' },
   { id: 'app-mobile->api', source: 'app-mobile', target: 'api' },
   { id: 'app-web->api', source: 'app-web', target: 'api' },
-  { id: 'api->database', source: 'api', target: 'database' },
   { id: 'api->queue', source: 'api', target: 'queue' },
+  { id: 'api->database', source: 'api', target: 'database' },
   { id: 'queue->microservice', source: 'queue', target: 'microservice' },
-  { id: 'database->microservice', source: 'database', target: 'microservice' },
+  { id: 'microservice->database', source: 'microservice', target: 'database' },
 ];
 
 export const FavoriteStack: React.FC = () => {
