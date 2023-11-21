@@ -34,55 +34,53 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
   }, [pathname, closeNavbar]);
 
   return (
-    <>
-      <MantineAppShell
-        header={{ height: { base: 64, sm: 76, lg: 76 } }}
-        navbar={{
-          width: 300,
-          breakpoint: 'sm',
-          collapsed: { mobile: !mobileOpened, desktop: !mobileOpened },
-        }}
-      >
-        <MantineAppShell.Header withBorder={true}>
-          <Group justify='space-between' h='100%' px='md'>
-            <Group>
-              <Burger
-                opened={mobileOpened}
-                onClick={toggleMobile}
-                // hiddenFrom='sm'
-                size='sm'
-              />
-              <Anchor
-                component={Link}
-                href='/'
-                className={brandFont.className}
-                size={isMobile ? '1.5rem' : '2rem'}
-                c='black'
-              >
-                @ctison
-              </Anchor>
-            </Group>
-            <Group>
-              <ConnectWallet />
-            </Group>
-          </Group>
-        </MantineAppShell.Header>
-
-        <MantineAppShell.Navbar>
-          {links.map(({ href, label }) => (
-            <NavLink
-              key={href}
-              component={Link}
-              href={href}
-              label={label}
-              variant={pathname === href ? undefined : 'subtle'}
-              active
+    <MantineAppShell
+      header={{ height: { base: 64, sm: 76, lg: 76 } }}
+      navbar={{
+        width: 300,
+        breakpoint: 'sm',
+        collapsed: { mobile: !mobileOpened, desktop: !mobileOpened },
+      }}
+    >
+      <MantineAppShell.Header withBorder={true}>
+        <Group justify='space-between' h='100%' px='md'>
+          <Group>
+            <Burger
+              opened={mobileOpened}
+              onClick={toggleMobile}
+              // hiddenFrom='sm'
+              size='sm'
             />
-          ))}
-        </MantineAppShell.Navbar>
+            <Anchor
+              component={Link}
+              href='/'
+              className={brandFont.className}
+              size={isMobile ? '1.5rem' : '2rem'}
+              c='black'
+            >
+              @ctison
+            </Anchor>
+          </Group>
+          <Group>
+            <ConnectWallet />
+          </Group>
+        </Group>
+      </MantineAppShell.Header>
 
-        <MantineAppShell.Main>{children}</MantineAppShell.Main>
-      </MantineAppShell>
-    </>
+      <MantineAppShell.Navbar>
+        {links.map(({ href, label }) => (
+          <NavLink
+            key={href}
+            component={Link}
+            href={href}
+            label={label}
+            variant={pathname === href ? undefined : 'subtle'}
+            active
+          />
+        ))}
+      </MantineAppShell.Navbar>
+
+      <MantineAppShell.Main>{children}</MantineAppShell.Main>
+    </MantineAppShell>
   );
 };
