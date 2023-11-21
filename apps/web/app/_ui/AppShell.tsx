@@ -96,7 +96,7 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
               </Anchor>
             </Group>
             <Group align='stretch'>
-              <Box>
+              <Box visibleFrom='xs'>
                 <Button
                   onClick={() => spotlight.open()}
                   variant='default'
