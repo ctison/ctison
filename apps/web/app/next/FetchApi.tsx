@@ -50,7 +50,7 @@ export const FetchApi: React.FC = () => {
           lang='json'
           mih={100}
           miw={300}
-          maw='80%'
+          maw='100%'
           pr='lg'
           styles={{
             code: {
