@@ -7,10 +7,11 @@ import { AppShell } from '@/_ui/AppShell';
 import { WindowExpando } from '@/_ui/WindowExpando';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
-import { NavigationProgress } from '@mantine/nprogress';
+import { NavigationProgress } from '@/_ui/NavigationProgress';
 import type { Metadata } from 'next';
 import { Wallet } from './_ui/Wallet';
 import { theme } from './theme';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: '@ctison',
@@ -33,7 +34,9 @@ export default function RootLayout({
         <Wallet>
           <WindowExpando />
           <MantineProvider theme={theme}>
-            <NavigationProgress />
+            <Suspense fallback={null}>
+              <NavigationProgress />
+            </Suspense>
             <Notifications />
             <AppShell>{children}</AppShell>
           </MantineProvider>

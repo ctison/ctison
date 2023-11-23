@@ -2,7 +2,7 @@
 
 import { ActionIcon, Button, TextInput, Tooltip } from '@mantine/core';
 import { Route } from 'next';
-import Link from 'next/link';
+import { Link } from '@/_ui/Link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
