@@ -18,13 +18,15 @@ import { MuseoModerno } from 'next/font/google';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
-import { IoSearch } from 'react-icons/io5';
+import { IconType } from 'react-icons';
+import { FaEthereum } from 'react-icons/fa';
+import { IoHome, IoSearch } from 'react-icons/io5';
 
 const brandFont = MuseoModerno({ subsets: ['latin'], weight: '600' });
 
-const links: { href: Route; label: string }[] = [
-  { href: '/', label: 'Home' },
-  { href: '/web3', label: 'Web3' },
+const links: { href: Route; label: string; Icon: IconType }[] = [
+  { href: '/', label: 'Home', Icon: IoHome },
+  { href: '/web3', label: 'Web3', Icon: FaEthereum },
 ];
 
 export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
@@ -38,12 +40,13 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
   const spotlightActions: SpotlightActionData[] = useMemo(
     () =>
       links.map(
-        (link) =>
+        ({ href, label, Icon }) =>
           ({
-            id: link.href,
-            label: link.label,
-            onClick: () => router.push(link.href),
-            description: link.href,
+            id: href,
+            label: label,
+            onClick: () => router.push(href),
+            description: href,
+            leftSection: <Icon />,
           }) satisfies SpotlightActionData,
       ),
     [router],
@@ -71,7 +74,7 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
       <MantineAppShell
         header={{ height: { base: 64, sm: 76, lg: 76 } }}
         navbar={{
-          width: 300,
+          width: 200,
           breakpoint: 'sm',
           collapsed: { mobile: !mobileOpened, desktop: !mobileOpened },
         }}
@@ -79,12 +82,7 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
         <MantineAppShell.Header withBorder={true}>
           <Group justify='space-between' h='100%' px='md'>
             <Group>
-              <Burger
-                opened={mobileOpened}
-                onClick={toggleMobile}
-                // hiddenFrom='sm'
-                size='sm'
-              />
+              <Burger opened={mobileOpened} onClick={toggleMobile} size='sm' />
               <Anchor
                 component={Link}
                 href='/'
@@ -137,16 +135,18 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
         </MantineAppShell.Header>
 
         <MantineAppShell.Navbar>
-          {links.map(({ href, label }) => (
-            <NavLink
-              key={href}
-              component={Link}
-              href={href}
-              label={label}
-              variant={pathname === href ? undefined : 'subtle'}
-              active
-            />
-          ))}
+          <MantineAppShell.Section grow>
+            {links.map(({ href, label, Icon }) => (
+              <NavLink
+                key={href}
+                component={Link}
+                href={href}
+                label={label}
+                leftSection={<Icon />}
+                active={pathname === href}
+              />
+            ))}
+          </MantineAppShell.Section>
         </MantineAppShell.Navbar>
 
         <MantineAppShell.Main>{children}</MantineAppShell.Main>
