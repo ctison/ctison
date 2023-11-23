@@ -1,5 +1,6 @@
 'use client';
 
+import { Link } from '@/_ui/Link';
 import {
   Anchor,
   Box,
@@ -15,18 +16,29 @@ import { Spotlight, SpotlightActionData, spotlight } from '@mantine/spotlight';
 import { ConnectWallet, useConnectionStatus } from '@thirdweb-dev/react';
 import { type Route } from 'next';
 import { MuseoModerno } from 'next/font/google';
-import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
 import { IconType } from 'react-icons';
 import { FaEthereum } from 'react-icons/fa';
 import { IoHome, IoSearch } from 'react-icons/io5';
+import { SiNextdotjs } from 'react-icons/si';
 
 const brandFont = MuseoModerno({ subsets: ['latin'], weight: '600' });
 
-const links: { href: Route; label: string; Icon: IconType }[] = [
+const links: {
+  href: Route;
+  label: string;
+  Icon: IconType;
+  startsWith?: boolean;
+}[] = [
   { href: '/', label: 'Home', Icon: IoHome },
   { href: '/web3', label: 'Web3', Icon: FaEthereum },
+  {
+    href: '/next' as Route,
+    label: 'Next Example',
+    Icon: SiNextdotjs,
+    startsWith: true,
+  },
 ];
 
 export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
@@ -136,16 +148,22 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
 
         <MantineAppShell.Navbar>
           <MantineAppShell.Section grow>
-            {links.map(({ href, label, Icon }) => (
-              <NavLink
-                key={href}
-                component={Link}
-                href={href}
-                label={label}
-                leftSection={<Icon />}
-                active={pathname === href}
-              />
-            ))}
+            {links.map(({ href, label, Icon, startsWith }) => {
+              const active = startsWith
+                ? pathname.startsWith(href)
+                : pathname === href;
+              return (
+                <Anchor component={Link} key={href} href={href}>
+                  <NavLink
+                    component='span'
+                    label={label}
+                    active={active}
+                    leftSection={<Icon />}
+                    c={active ? undefined : 'gray.7'}
+                  />
+                </Anchor>
+              );
+            })}
           </MantineAppShell.Section>
         </MantineAppShell.Navbar>
 

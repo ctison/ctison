@@ -1,8 +1,9 @@
 'use client';
 
+import { Link } from '@/_ui/Link';
 import { ActionIcon, Button, TextInput, Tooltip } from '@mantine/core';
+import { startNavigationProgress } from '@mantine/nprogress';
 import { Route } from 'next';
-import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
@@ -22,6 +23,11 @@ const links: {
     wildcard: true,
     label: '3',
     tooltip: 'Load page 1s + inner suspense 1s',
+  },
+  {
+    href: '/next/loading',
+    label: 'Loading',
+    tooltip: 'Loading page',
   },
 ];
 
@@ -52,25 +58,28 @@ export const Navigation: React.FC = () => {
   return (
     <>
       {Links}
-      <TextInput
-        pb='sm'
-        description='Go to /next/3/:slug'
-        placeholder='Type a slug here.'
-        value={slug}
-        onChange={(event) => setSlug(event.currentTarget.value)}
-        rightSection={
-          <Tooltip label='1s load page + 1s inner suspense'>
-            <ActionIcon
-              onClick={() => {
-                router.push(`/next/3/${slug}` as Route);
-              }}
-              disabled={slug.length === 0}
-            >
-              <BsFillArrowRightCircleFill />
-            </ActionIcon>
-          </Tooltip>
-        }
-      />
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          startNavigationProgress();
+          router.push(`/next/3/${slug}` as Route);
+        }}
+      >
+        <TextInput
+          pb='sm'
+          description='Go to /next/3/:slug'
+          placeholder='Type a slug here.'
+          value={slug}
+          onChange={(event) => setSlug(event.currentTarget.value)}
+          rightSection={
+            <Tooltip label='1s load page + 1s inner suspense'>
+              <ActionIcon type='submit' disabled={slug.length === 0}>
+                <BsFillArrowRightCircleFill />
+              </ActionIcon>
+            </Tooltip>
+          }
+        />
+      </form>
     </>
   );
 };
