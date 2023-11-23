@@ -1,5 +1,6 @@
 'use client';
 
+import { Link } from '@/_ui/Link';
 import {
   Anchor,
   Box,
@@ -7,6 +8,7 @@ import {
   Button,
   Group,
   AppShell as MantineAppShell,
+  NavLink,
   Text,
 } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
@@ -14,8 +16,6 @@ import { Spotlight, SpotlightActionData, spotlight } from '@mantine/spotlight';
 import { ConnectWallet, useConnectionStatus } from '@thirdweb-dev/react';
 import { type Route } from 'next';
 import { MuseoModerno } from 'next/font/google';
-import { Link } from '@/_ui/Link';
-import { NavLink } from '@/_ui/NavLink';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
 import { IconType } from 'react-icons';
@@ -148,17 +148,22 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
 
         <MantineAppShell.Navbar>
           <MantineAppShell.Section grow>
-            {links.map(({ href, label, Icon, startsWith }) => (
-              <NavLink
-                key={href}
-                href={href}
-                label={label}
-                leftSection={<Icon />}
-                active={
-                  startsWith ? pathname.startsWith(href) : pathname === href
-                }
-              />
-            ))}
+            {links.map(({ href, label, Icon, startsWith }) => {
+              const active = startsWith
+                ? pathname.startsWith(href)
+                : pathname === href;
+              return (
+                <Anchor component={Link} key={href} href={href}>
+                  <NavLink
+                    component='span'
+                    label={label}
+                    active={active}
+                    leftSection={<Icon />}
+                    c={active ? undefined : 'gray.7'}
+                  />
+                </Anchor>
+              );
+            })}
           </MantineAppShell.Section>
         </MantineAppShell.Navbar>
 
