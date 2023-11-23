@@ -2,7 +2,7 @@
 
 import { CodeHighlight } from '@mantine/code-highlight';
 import '@mantine/code-highlight/styles.css';
-import { Button, Checkbox, Paper, Stack, Title } from '@mantine/core';
+import { Button, Checkbox, Stack, Title } from '@mantine/core';
 import { useState } from 'react';
 
 export const FetchApi: React.FC = () => {
@@ -45,7 +45,20 @@ export const FetchApi: React.FC = () => {
       </Button>
       <Button onClick={() => setData(null)}>Reset</Button>
       {data !== null && (
-        <CodeHighlight code={data} lang='json' mih={100} miw={300} />
+        <CodeHighlight
+          code={data}
+          lang='json'
+          mih={100}
+          miw={300}
+          maw='80%'
+          pr='lg'
+          styles={{
+            code: {
+              wordBreak: 'break-all',
+              whiteSpace: 'initial',
+            },
+          }}
+        />
       )}
     </Stack>
   );
