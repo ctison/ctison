@@ -14,7 +14,7 @@ export default function Error({
   return (
     <Box mih={500} p='sm' style={{ border: 'solid 10px red' }}>
       <Stack align='center'>
-        <Title>ERROR</Title>
+        <Title>ERROR captured from React Error Boundary</Title>
         <Text display='block'>
           <b>Name:</b> {error.name}
         </Text>
@@ -24,7 +24,16 @@ export default function Error({
         <Text display='block'>
           <b>Digest:</b> {error.digest}
         </Text>
-        <CodeHighlight code={error.stack ?? ''} />
+        <CodeHighlight
+          code={error.stack ?? ''}
+          pr='lg'
+          styles={{
+            code: {
+              wordBreak: 'break-all',
+              whiteSpace: 'initial',
+            },
+          }}
+        />
         <Tooltip label='Will error again'>
           <Button onClick={reset} variant='outline' c='red'>
             Reset
