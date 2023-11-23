@@ -1,8 +1,9 @@
 'use client';
 
-import { ActionIcon, Button, TextInput, Tooltip } from '@mantine/core';
-import { Route } from 'next';
 import { Link } from '@/_ui/Link';
+import { ActionIcon, Button, TextInput, Tooltip } from '@mantine/core';
+import { startNavigationProgress } from '@mantine/nprogress';
+import { Route } from 'next';
 import { usePathname, useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
@@ -60,6 +61,7 @@ export const Navigation: React.FC = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          startNavigationProgress();
           router.push(`/next/3/${slug}` as Route);
         }}
       >
