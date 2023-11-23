@@ -33,7 +33,12 @@ const links: {
 }[] = [
   { href: '/', label: 'Home', Icon: IoHome },
   { href: '/web3', label: 'Web3', Icon: FaEthereum },
-  { href: '/next', label: 'Next Example', Icon: SiNextdotjs, startsWith: true },
+  {
+    href: '/next' as Route,
+    label: 'Next Example',
+    Icon: SiNextdotjs,
+    startsWith: true,
+  },
 ];
 
 export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {

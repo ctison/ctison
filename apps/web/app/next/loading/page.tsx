@@ -1,5 +1,5 @@
 import { PageLoading } from '@/_ui/PageLoading';
-import { Anchor, Stack, Title } from '@mantine/core';
+import { Stack, Title } from '@mantine/core';
 
 export default function Loading() {
   return (
