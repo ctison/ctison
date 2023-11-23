@@ -28,7 +28,7 @@ jobs:
           node-version-file: .nvmrc
       - uses: oven-sh/setup-bun@v1
       - uses: foundry-rs/foundry-toolchain@v1
-      - name: Install > Lint
+      - name: Install + Lint + Test
         run: |
           bun install --frozen-lockfile
           bun run ci

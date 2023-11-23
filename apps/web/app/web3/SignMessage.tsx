@@ -60,6 +60,7 @@ export const SignMessage: React.FC = () => {
         loading={isSigning}
         disabled={isLoggedIn && message.length === 0}
         suppressHydrationWarning
+        color={isLoggedIn ? undefined : 'black'}
       >
         {isLoggedIn ? 'Sign' : 'Connect Wallet'}
       </Button>

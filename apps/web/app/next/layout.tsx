@@ -7,9 +7,10 @@ export const metadata: Metadata = {
   title: 'Layout',
 };
 
-export const Layout: React.FC<
-  React.PropsWithChildren<{ slot1: React.ReactNode }>
-> = ({ children, slot1 }) => {
+const Layout: React.FC<React.PropsWithChildren<{ slot1: React.ReactNode }>> = ({
+  children,
+  slot1,
+}) => {
   return (
     <Box style={{ border: 'solid 5px purple' }} p='sm'>
       <Group justify='space-between'>

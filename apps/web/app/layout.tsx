@@ -1,13 +1,16 @@
 import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
 import '@mantine/nprogress/styles.css';
+import '@mantine/spotlight/styles.css';
 
 import { AppShell } from '@/_ui/AppShell';
 import { WindowExpando } from '@/_ui/WindowExpando';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 import { NavigationProgress } from '@mantine/nprogress';
 import type { Metadata } from 'next';
-import { theme } from './theme';
 import { Wallet } from './_ui/Wallet';
+import { theme } from './theme';
 
 export const metadata: Metadata = {
   title: '@ctison',
@@ -31,6 +34,7 @@ export default function RootLayout({
           <WindowExpando />
           <MantineProvider theme={theme}>
             <NavigationProgress />
+            <Notifications />
             <AppShell>{children}</AppShell>
           </MantineProvider>
         </Wallet>
