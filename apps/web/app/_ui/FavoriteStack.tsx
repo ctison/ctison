@@ -1,4 +1,4 @@
-import { Box, Container, Title } from '@mantine/core';
+import { Box, Title } from '@mantine/core';
 import { useViewportSize } from '@mantine/hooks';
 import React, { useEffect } from 'react';
 import {
@@ -90,7 +90,7 @@ const FavoriteStackInner: React.FC = () => {
   }, [fitView, viewportWidth, viewportHeight]);
 
   return (
-    <Container py='xl' fluid>
+    <Box py='xl'>
       <Title order={2} ta='center' mb='xl'>
         Favorite Stack
       </Title>
@@ -110,6 +110,6 @@ const FavoriteStackInner: React.FC = () => {
           <Background variant={BackgroundVariant.Cross} gap={12} size={3} />
         </ReactFlow>
       </Box>
-    </Container>
+    </Box>
   );
 };
