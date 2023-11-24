@@ -3,6 +3,8 @@ import { Metadata, ResolvingMetadata } from 'next';
 import { ThrowError } from './ThrowError';
 import { FetchApi } from './FetchApi';
 
+export const dynamic = 'force-dynamic';
+
 export const generateMetadata = async (
   _: unknown,
   parent: ResolvingMetadata,

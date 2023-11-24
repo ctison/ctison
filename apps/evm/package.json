@@ -7,5 +7,10 @@
     "clean": "rm -rf -- cache/ out/",
     "test": "forge test -vvv",
     "update": "forge update"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "5.0.0",
+    "@openzeppelin/contracts-upgradeable": "5.0.0",
+    "@thirdweb-dev/contracts": "3.10.3"
   }
 }

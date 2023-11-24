@@ -3,15 +3,15 @@
 import { Link } from '@/_ui/Link';
 import {
   Anchor,
-  Box,
   Burger,
   Button,
   Group,
   AppShell as MantineAppShell,
   NavLink,
+  Stack,
   Text,
 } from '@mantine/core';
-import { useDisclosure, useMediaQuery } from '@mantine/hooks';
+import { useDidUpdate, useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { Spotlight, SpotlightActionData, spotlight } from '@mantine/spotlight';
 import { ConnectWallet, useConnectionStatus } from '@thirdweb-dev/react';
 import { type Route } from 'next';
@@ -22,6 +22,7 @@ import { IconType } from 'react-icons';
 import { FaEthereum } from 'react-icons/fa';
 import { IoHome, IoSearch } from 'react-icons/io5';
 import { SiNextdotjs } from 'react-icons/si';
+import { VscGithub } from 'react-icons/vsc';
 
 const brandFont = MuseoModerno({ subsets: ['latin'], weight: '600' });
 
@@ -42,9 +43,12 @@ const links: {
 ];
 
 export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const [mobileOpened, { toggle: toggleMobile, close: closeNavbar }] =
-    useDisclosure();
   const isMobile = useMediaQuery(`(max-width: 48em)`);
+  const [navbarOpened, { toggle: toggleNavbar, close: closeNavbar }] =
+    useDisclosure(!isMobile);
+  const [asideOpened, { toggle: toggleAside, close: closeAside }] =
+    useDisclosure(!isMobile);
+
   const pathname = usePathname();
   const connectionStatus = useConnectionStatus();
   const router = useRouter();
@@ -65,8 +69,11 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
   );
 
   useEffect(() => {
-    closeNavbar();
-  }, [pathname, closeNavbar]);
+    if (isMobile) {
+      closeNavbar();
+      closeAside();
+    }
+  }, [isMobile, closeNavbar, closeAside]);
 
   return (
     <>
@@ -88,13 +95,23 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
         navbar={{
           width: 200,
           breakpoint: 'sm',
-          collapsed: { mobile: !mobileOpened, desktop: !mobileOpened },
+          collapsed: { mobile: !navbarOpened, desktop: !navbarOpened },
+        }}
+        aside={{
+          width: 200,
+          breakpoint: 'sm',
+          collapsed: { mobile: !asideOpened, desktop: !asideOpened },
         }}
       >
         <MantineAppShell.Header withBorder={true}>
           <Group justify='space-between' h='100%' px='md'>
             <Group>
-              <Burger opened={mobileOpened} onClick={toggleMobile} size='sm' />
+              <Burger
+                opened={navbarOpened}
+                onClick={toggleNavbar}
+                size='sm'
+                // hiddenFrom='sm'
+              />
               <Anchor
                 component={Link}
                 href='/'
@@ -106,41 +123,11 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
               </Anchor>
             </Group>
             <Group align='stretch'>
-              <Box visibleFrom='xs'>
-                <Button
-                  onClick={() => spotlight.open()}
-                  variant='default'
-                  h='100%'
-                  radius='md'
-                  styles={{
-                    label: { color: 'var(--mantine-color-placeholder)' },
-                  }}
-                  leftSection={
-                    <IoSearch fill='var(--mantine-color-placeholder)' />
-                  }
-                  rightSection={
-                    <Text
-                      fw={700}
-                      c='gray.7'
-                      size='calc(.6875rem*var(--mantine-scale))'
-                      style={{
-                        border: 'solid 1px lightgray',
-                        borderRadius: '5px',
-                      }}
-                      p='4px 7px'
-                    >
-                      Ctrl + K
-                    </Text>
-                  }
-                >
-                  Search
-                </Button>
-              </Box>
-              <ConnectWallet
-                style={{
-                  height: connectionStatus === 'connected' ? '56px' : '42px',
-                  minWidth: isMobile ? 'unset' : '142px',
-                }}
+              <Burger
+                opened={asideOpened}
+                onClick={toggleAside}
+                size='sm'
+                // hiddenFrom='md'
               />
             </Group>
           </Group>
@@ -148,6 +135,36 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
 
         <MantineAppShell.Navbar>
           <MantineAppShell.Section grow>
+            <Stack p='sm'>
+              <Button
+                onClick={() => spotlight.open()}
+                variant='default'
+                mih='40px'
+                radius='md'
+                styles={{
+                  label: { color: 'var(--mantine-color-placeholder)' },
+                }}
+                leftSection={
+                  <IoSearch fill='var(--mantine-color-placeholder)' />
+                }
+                rightSection={
+                  <Text
+                    fw={700}
+                    c='gray.7'
+                    size='calc(.6875rem*var(--mantine-scale))'
+                    style={{
+                      border: 'solid 1px lightgray',
+                      borderRadius: '5px',
+                    }}
+                    p='4px 7px'
+                  >
+                    Ctrl + K
+                  </Text>
+                }
+              >
+                Search
+              </Button>
+            </Stack>
             {links.map(({ href, label, Icon, startsWith }) => {
               const active = startsWith
                 ? pathname.startsWith(href)
@@ -166,6 +183,28 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
             })}
           </MantineAppShell.Section>
         </MantineAppShell.Navbar>
+
+        <MantineAppShell.Aside withBorder>
+          <Stack p='sm'>
+            <ConnectWallet
+              style={{
+                height: connectionStatus === 'connected' ? '56px' : '42px',
+                minWidth: isMobile ? 'unset' : '142px',
+                borderRadius: 10,
+              }}
+            />
+            <Button
+              component='a'
+              target='_blank'
+              href='https://github.com/ctison'
+              variant='outline'
+              leftSection={<VscGithub />}
+              ta='center'
+            >
+              Github
+            </Button>
+          </Stack>
+        </MantineAppShell.Aside>
 
         <MantineAppShell.Main>{children}</MantineAppShell.Main>
       </MantineAppShell>

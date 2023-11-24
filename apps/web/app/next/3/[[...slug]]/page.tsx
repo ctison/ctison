@@ -3,6 +3,8 @@ import { Loader, Stack, Text, Title } from '@mantine/core';
 import { Suspense } from 'react';
 import { Slugs } from './Slugs';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Page({
   params,
 }: {

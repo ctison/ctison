@@ -24,11 +24,6 @@ const links: {
     label: '3',
     tooltip: 'Load page 1s + inner suspense 1s',
   },
-  {
-    href: '/next/loading',
-    label: 'Loading',
-    tooltip: 'Loading page',
-  },
 ];
 
 export const Navigation: React.FC = () => {
