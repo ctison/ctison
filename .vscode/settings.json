@@ -40,5 +40,6 @@
     "pnpm-lock.yaml": true
   },
   "solidity.formatter": "forge",
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "solidity.compileUsingRemoteVersion": "0.8.23"
 }
