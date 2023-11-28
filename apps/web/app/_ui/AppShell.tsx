@@ -31,7 +31,7 @@ import { SiNextdotjs } from 'react-icons/si';
 import { VscGithub } from 'react-icons/vsc';
 
 const Web3ConnectButton = dynamic(
-  () => import('./Web3ConnectButton').then((m) => m.Web3ConnectButton),
+  () => import('./Web3WalletButton').then((m) => m.Web3WalletButton),
   { ssr: false, loading: () => <Skeleton h={42} /> },
 );
 
