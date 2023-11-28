@@ -5,8 +5,12 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const queryClient = new QueryClient({
   defaultOptions: {
-    queries: {},
-    mutations: {},
+    queries: {
+      retry: false,
+    },
+    mutations: {
+      retry: false,
+    },
   },
 });
 
