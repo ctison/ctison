@@ -1,15 +1,13 @@
 'use client';
 
 import { CodeHighlight } from '@/_ui/CodeHighlight';
-import { Button, Textarea, Title } from '@mantine/core';
+import { Web3ConnectButton } from '@/_ui/Web3ConnectButton';
+import { Textarea, Title } from '@mantine/core';
 import { useMutation } from '@tanstack/react-query';
-import { useWeb3Modal } from '@web3modal/wagmi/react';
 import { useCallback, useState } from 'react';
-import { useAccount, useWalletClient } from 'wagmi';
+import { useWalletClient } from 'wagmi';
 
 export const SignMessage: React.FC = () => {
-  const { isConnected, isConnecting } = useAccount();
-  const { open: openConnectModal } = useWeb3Modal();
   const { data: walletClient } = useWalletClient();
   const [message, setMessage] = useState('');
   const signMessage = useMutation({
@@ -18,12 +16,8 @@ export const SignMessage: React.FC = () => {
     },
   });
   const handleSign = useCallback(async () => {
-    if (!isConnected) {
-      openConnectModal();
-      return;
-    }
     signMessage.mutate(message);
-  }, [isConnected, openConnectModal, message, signMessage]);
+  }, [message, signMessage]);
 
   return (
     <>
@@ -39,17 +33,15 @@ export const SignMessage: React.FC = () => {
         placeholder='Type a message to sign here.'
         required
       />
-      <Button
+      <Web3ConnectButton
         mt='lg'
         miw={124}
         onClick={handleSign}
-        loading={isConnecting || signMessage.isPending}
-        disabled={isConnected && message.length === 0}
-        color={isConnected ? undefined : 'black'}
-        suppressHydrationWarning
+        loading={signMessage.isPending}
+        disabled={message.length === 0}
       >
-        {isConnected ? 'Sign' : 'Connect Wallet'}
-      </Button>
+        Sign
+      </Web3ConnectButton>
       {signMessage.data && (
         <CodeHighlight mt='lg' code={signMessage.data} language='json' />
       )}
