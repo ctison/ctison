@@ -72,6 +72,11 @@ export const WalletProvider: React.FC<React.PropsWithChildren> = ({
   return <WagmiConfig config={wagmiConfig}>{children}</WagmiConfig>;
 };
 
+export const chainToChainId = chains.reduce(
+  (acc, chain) => ({ ...acc, [chain.name]: chain.id }),
+  {},
+) as Record<(typeof chains)[number]['name'], (typeof chains)[number]['id']>;
+
 export const chainIdToIcon: Record<number, JSX.Element> = {
   [mainnet.id]: <IconEthereum color='black' />,
   [goerli.id]: <IconEthereum color='gray' />,

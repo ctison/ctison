@@ -4,6 +4,7 @@ import '@mantine/code-highlight/styles.css';
 import { Container, Paper, SimpleGrid, Stack } from '@mantine/core';
 import { SignMessage } from './SignMessage';
 import { VerifyMessage } from './VerifyMessage';
+import { ContractUi } from './ContractUi';
 
 export default function Web3() {
   return (
@@ -17,6 +18,9 @@ export default function Web3() {
             <VerifyMessage />
           </Tool>
         </SimpleGrid>
+        <Tool>
+          <ContractUi />
+        </Tool>
       </Stack>
     </Container>
   );
