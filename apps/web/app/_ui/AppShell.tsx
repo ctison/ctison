@@ -27,7 +27,6 @@ import { memo, useEffect, useMemo } from 'react';
 import { IconType } from 'react-icons';
 import { FaEthereum } from 'react-icons/fa';
 import { IoHome, IoSearch } from 'react-icons/io5';
-import { SiNextdotjs } from 'react-icons/si';
 import { VscGithub } from 'react-icons/vsc';
 
 const Web3ConnectButton = dynamic(
@@ -45,12 +44,6 @@ const links: {
 }[] = [
   { href: '/', label: 'Home', Icon: IoHome },
   { href: '/web3', label: 'Web3', Icon: FaEthereum },
-  {
-    href: '/next' as Route,
-    label: 'Next Example',
-    Icon: SiNextdotjs,
-    startsWith: true,
-  },
 ];
 
 export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
