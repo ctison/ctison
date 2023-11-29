@@ -356,7 +356,11 @@ async function etherscanFetchAbi(
       '?module=contract&action=getabi' +
       `&address=${address}`,
   );
-  // TODO: throw on !data.ok
+  if (!data.ok) {
+    throw new Error(
+      `Failed to fetch ABI: ${data.status}: ${await data.text()}`,
+    );
+  }
   const { result } = await data.json();
   const abi = JSON.parse(result) as Abi;
   return abi;
