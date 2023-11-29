@@ -20,8 +20,8 @@ import { Editor } from '@monaco-editor/react';
 import { useMutation } from '@tanstack/react-query';
 import { Abi as AbiParser } from 'abitype/zod';
 import { useEffect, useMemo, useState } from 'react';
-import { isAddress } from 'viem';
-import { usePublicClient, useWalletClient } from 'wagmi';
+import { isAddress, parseUnits } from 'viem';
+import { useNetwork, usePublicClient, useWalletClient } from 'wagmi';
 import { z } from 'zod';
 
 type Abi = z.infer<typeof AbiParser>;
@@ -181,15 +181,11 @@ export const ContractUi: React.FC = () => {
   );
 };
 
-type AbiFunction<T = Abi[number]> = T extends Abi[number] & { type: 'function' }
-  ? T
-  : never;
-
 interface ContractFunctionProps {
   chainId: number;
   abi: Abi;
   address: string;
-  fn: AbiFunction;
+  fn: Abi[number] & { type: 'function' };
 }
 
 export const ContractFunction: React.FC<ContractFunctionProps> = ({
@@ -198,9 +194,22 @@ export const ContractFunction: React.FC<ContractFunctionProps> = ({
   address,
   fn,
 }) => {
+  const { chain } = useNetwork();
   const form = useForm({
     initialValues: {
+      value: '',
       inputs: fn.inputs.map(() => ''),
+    },
+    validateInputOnChange: true,
+    validate: {
+      value: (value) => {
+        try {
+          parseUnits(value, chain?.nativeCurrency.decimals ?? 18);
+          return null;
+        } catch (e) {
+          return (e as Error).message;
+        }
+      },
     },
   });
   const publicClient = usePublicClient({
@@ -212,7 +221,7 @@ export const ContractFunction: React.FC<ContractFunctionProps> = ({
   const isReadFn =
     fn.stateMutability === 'pure' || fn.stateMutability === 'view';
   const interactContract = useMutation({
-    mutationFn: async ({ inputs }: typeof form.values) => {
+    mutationFn: async ({ value, inputs }: typeof form.values) => {
       console.log(address, fn.name, inputs);
       if (isReadFn) {
         const result = await publicClient.readContract({
@@ -228,6 +237,7 @@ export const ContractFunction: React.FC<ContractFunctionProps> = ({
           address: address as `0x${string}`,
           functionName: fn.name,
           args: inputs.length > 0 ? inputs : undefined,
+          value: parseUnits(value, chain?.nativeCurrency.decimals ?? 18),
         });
         return `${result}`;
       }
@@ -243,6 +253,14 @@ export const ContractFunction: React.FC<ContractFunctionProps> = ({
           onSubmit={form.onSubmit((values) => interactContract.mutate(values))}
         >
           <Stack>
+            {!isReadFn && (
+              <TextInput
+                label={`Send ${chain?.nativeCurrency.symbol}`}
+                description='Optionally send native currency with this transaction.'
+                placeholder='0.0'
+                {...form.getInputProps('value')}
+              />
+            )}
             {fn.inputs.map((input, idx) => {
               return (
                 <TextInput
@@ -270,6 +288,8 @@ export const ContractFunction: React.FC<ContractFunctionProps> = ({
                 title={interactContract.error.name}
                 color='red'
                 variant='outline'
+                withCloseButton={true}
+                onClose={() => interactContract.reset()}
               >
                 {interactContract.error.message}
               </Alert>
@@ -335,6 +355,7 @@ async function etherscanFetchAbi(
       '?module=contract&action=getabi' +
       `&address=${address}`,
   );
+  // TODO: throw on !data.ok
   const { result } = await data.json();
   const abi = JSON.parse(result) as Abi;
   return abi;
