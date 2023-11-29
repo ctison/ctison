@@ -1,6 +1,7 @@
 import { CodeHighlight } from '@/_ui/CodeHighlight';
 import { chainToChainId } from '@/_ui/WalletProvider';
 import { Web3ConnectButton } from '@/_ui/Web3ConnectButton';
+import abiSchema from '@/public/abi.schema.json';
 import { InlineCodeHighlight } from '@mantine/code-highlight';
 import {
   Accordion,
@@ -8,18 +9,22 @@ import {
   Button,
   Fieldset,
   Group,
-  JsonInput,
   Select,
   Stack,
   TextInput,
   Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { useDidUpdate } from '@mantine/hooks';
+import { useDidUpdate, useLocalStorage } from '@mantine/hooks';
+import { Editor } from '@monaco-editor/react';
 import { useMutation } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
-import { Abi, isAddress } from 'viem';
-import { useAccount, usePublicClient, useWalletClient } from 'wagmi';
+import { Abi as AbiParser } from 'abitype/zod';
+import { useEffect, useMemo, useState } from 'react';
+import { isAddress } from 'viem';
+import { usePublicClient, useWalletClient } from 'wagmi';
+import { z } from 'zod';
+
+type Abi = z.infer<typeof AbiParser>;
 
 export const ContractUi: React.FC = () => {
   const form = useForm<{ chain: keyof typeof chainToApi; address: string }>({
@@ -31,30 +36,49 @@ export const ContractUi: React.FC = () => {
       address: (value) => (isAddress(value) ? null : 'Invalid address'),
     },
   });
-  const [abi, setAbi] = useState<Abi | undefined>(undefined);
+  const [abiStr, setAbiStr] = useLocalStorage<string | undefined>({
+    key: 'ctison.contract.abi',
+  });
+  const abi = useMemo<
+    | {
+        data?: Abi;
+        error?: Error;
+      }
+    | undefined
+  >(() => {
+    try {
+      if (!abiStr) {
+        return undefined;
+      }
+      return { data: AbiParser.parse(JSON.parse(abiStr)) };
+    } catch (error) {
+      return { error: error as Error };
+    }
+  }, [abiStr]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const storedValues = window.localStorage.getItem('ctison.contract');
-    if (storedValues) {
-      try {
-        const { abi, ...values } = JSON.parse(
-          storedValues,
-        ) as typeof form.values & { abi: Abi };
-        form.setValues(values);
-        setAbi(abi);
-      } catch {}
+    try {
+      if (storedValues) {
+        form.setValues(JSON.parse(storedValues));
+      }
+    } catch {
+      // Ignore error
+    } finally {
+      setLoading(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useDidUpdate(() => {
     window.localStorage.setItem(
       'ctison.contract',
-      JSON.stringify({ ...form.values, abi }),
+      JSON.stringify({ ...form.values }),
     );
   }, [form.values, abi]);
   const fetchAbi = useMutation({
     mutationFn: () => chainToApi[form.values.chain](form.values.address),
-    onMutate: () => setAbi(undefined),
-    onSuccess: (data) => setAbi(data),
+    onMutate: () => setAbiStr(undefined),
+    onSuccess: (data) => setAbiStr(JSON.stringify(data, undefined, 2)),
     onError: (error) => form.setFieldError('address', error.message),
   });
 
@@ -75,17 +99,17 @@ export const ContractUi: React.FC = () => {
               searchable
               nothingFoundMessage='No chain found...'
               checkIconPosition='right'
-              disabled={fetchAbi.isPending}
+              disabled={loading || fetchAbi.isPending}
               {...form.getInputProps('chain')}
             />
             <TextInput
               label='Contract address'
               placeholder='0x...'
-              disabled={fetchAbi.isPending}
+              disabled={loading || fetchAbi.isPending}
               {...form.getInputProps('address')}
             />
             <Group>
-              <Button type='submit' loading={fetchAbi.isPending}>
+              <Button type='submit' loading={loading || fetchAbi.isPending}>
                 Load ABI from verified contract
               </Button>
             </Group>
@@ -94,35 +118,63 @@ export const ContractUi: React.FC = () => {
       </form>
       {abi && (
         <Fieldset legend='JSON ABI' mt='md'>
-          <JsonInput
-            description='The ABI of the contract.'
-            placeholder='Enter the JSON ABI or load it from a verified contract address.'
-            value={JSON.stringify(abi, undefined, 2)}
-            onChange={(value) => setAbi(JSON.parse(value))}
-            disabled={fetchAbi.isPending}
-            rows={15}
-            contentEditable={false}
+          <Editor
+            height={300}
+            defaultLanguage='json'
+            defaultValue='[]'
+            defaultPath='abi.json'
+            value={abiStr}
+            onChange={(str) => setAbiStr(str)}
+            beforeMount={(monaco) => {
+              monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+                validate: true,
+                schemas: [
+                  {
+                    uri: 'https://ctison.dev/abi.schema.json',
+                    fileMatch: ['*'],
+                    schema: abiSchema,
+                  },
+                ],
+              });
+            }}
+            options={{
+              minimap: { enabled: false },
+              bracketPairColorization: { enabled: true },
+              // scrollbar: { verticalScrollbarSize: 42 },
+              tabSize: 2,
+            }}
           />
         </Fieldset>
       )}
       {abi && (
         <Fieldset legend='Methods' mt='md'>
-          <Accordion chevronPosition='left' multiple={true} variant='separated'>
-            {abi?.map((method) => {
-              if (method.type !== 'function') {
-                return null;
-              }
-              return (
-                <ContractFunction
-                  chainId={chainToChainId[form.values.chain]}
-                  abi={abi}
-                  address={form.values.address}
-                  key={method.name}
-                  fn={method}
-                />
-              );
-            })}
-          </Accordion>
+          {abi.error && (
+            <Alert color='red' variant='outline'>
+              {abi.error.message}
+            </Alert>
+          )}
+          {abi.data && (
+            <Accordion
+              chevronPosition='left'
+              multiple={true}
+              variant='separated'
+            >
+              {abi.data?.map((method) => {
+                if (method.type !== 'function') {
+                  return null;
+                }
+                return (
+                  <ContractFunction
+                    chainId={chainToChainId[form.values.chain]}
+                    abi={abi.data!}
+                    address={form.values.address}
+                    key={method.name}
+                    fn={method}
+                  />
+                );
+              })}
+            </Accordion>
+          )}
         </Fieldset>
       )}
     </>
@@ -146,7 +198,6 @@ export const ContractFunction: React.FC<ContractFunctionProps> = ({
   address,
   fn,
 }) => {
-  const { isConnected, isConnecting } = useAccount();
   const form = useForm({
     initialValues: {
       inputs: fn.inputs.map(() => ''),
