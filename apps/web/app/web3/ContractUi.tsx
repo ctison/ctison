@@ -1,3 +1,5 @@
+'use client';
+
 import { CodeHighlight } from '@/_ui/CodeHighlight';
 import { chainToChainId } from '@/_ui/WalletProvider';
 import { Web3ConnectButton } from '@/_ui/Web3ConnectButton';
@@ -5,10 +7,14 @@ import abiSchema from '@/public/abi.schema.json';
 import { InlineCodeHighlight } from '@mantine/code-highlight';
 import {
   Accordion,
+  ActionIcon,
   Alert,
+  Box,
   Button,
   Fieldset,
   Group,
+  Modal,
+  OptionalPortal,
   Select,
   SimpleGrid,
   Stack,
@@ -16,11 +22,17 @@ import {
   Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { useDidUpdate, useLocalStorage } from '@mantine/hooks';
-import { Editor } from '@monaco-editor/react';
+import {
+  useDidUpdate,
+  useDisclosure,
+  useLocalStorage,
+  useMediaQuery,
+} from '@mantine/hooks';
+import { Editor, EditorProps } from '@monaco-editor/react';
 import { useMutation } from '@tanstack/react-query';
 import { Abi as AbiParser } from 'abitype/zod';
 import { useEffect, useMemo, useState } from 'react';
+import { CgMaximizeAlt } from 'react-icons/cg';
 import { isAddress, parseUnits } from 'viem';
 import { useNetwork, usePublicClient, useWalletClient } from 'wagmi';
 import { z } from 'zod';
@@ -82,6 +94,9 @@ export const ContractUi: React.FC = () => {
     onSuccess: (data) => setAbiStr(JSON.stringify(data, undefined, 2)),
     onError: (error) => form.setFieldError('address', error.message),
   });
+  const [modalOpened, { open: openModal, close: closeModal }] =
+    useDisclosure(false);
+  const isMobile = useMediaQuery(`(max-width: 48em)`);
 
   return (
     <>
@@ -118,35 +133,46 @@ export const ContractUi: React.FC = () => {
             </Stack>
           </form>
         </Fieldset>
-        <Fieldset legend='JSON ABI'>
-          <Editor
-            height={300}
-            defaultLanguage='json'
-            defaultValue='[]'
-            defaultPath='abi.json'
-            value={abiStr}
-            onChange={(str) => setAbiStr(str)}
-            beforeMount={(monaco) => {
-              monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
-                validate: true,
-                schemas: [
-                  {
-                    uri: 'https://ctison.dev/abi.schema.json',
-                    fileMatch: ['*'],
-                    schema: abiSchema,
-                  },
-                ],
-              });
-            }}
-            options={{
-              minimap: { enabled: false },
-              bracketPairColorization: { enabled: true },
-              // scrollbar: { verticalScrollbarSize: 42 },
-              tabSize: 2,
-            }}
-          />
+        <Fieldset
+          legend={
+            <Group gap='sm'>
+              JSON ABI
+              <ActionIcon
+                aria-label='Maximize JSON ABI editor'
+                onClick={() => {
+                  openModal();
+                }}
+                variant='outline'
+                color='gray.8'
+                size='sm'
+              >
+                <CgMaximizeAlt />
+              </ActionIcon>
+            </Group>
+          }
+        >
+          <OptionalPortal
+            withinPortal={modalOpened}
+            target='#json-abi-modal-body'
+          >
+            <EditorAbiJson
+              value={abiStr}
+              onChange={setAbiStr}
+              height={modalOpened ? (isMobile ? '100dvh' : '75dvh') : 300}
+            />
+          </OptionalPortal>
         </Fieldset>
       </SimpleGrid>
+      <Modal
+        id='json-abi-modal'
+        title='JSON Abi'
+        centered
+        opened={modalOpened}
+        onClose={closeModal}
+        fullScreen={isMobile}
+        size='min(90%, 800px)'
+        keepMounted={true}
+      />
       {abi && (
         <Fieldset legend='Methods' mt='md'>
           {abi.error && (
@@ -179,6 +205,35 @@ export const ContractUi: React.FC = () => {
         </Fieldset>
       )}
     </>
+  );
+};
+
+export const EditorAbiJson: React.FC<EditorProps> = (props) => {
+  return (
+    <Editor
+      height={300}
+      defaultLanguage='json'
+      defaultValue='[]'
+      defaultPath='abi.json'
+      beforeMount={(monaco) => {
+        monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+          validate: true,
+          schemas: [
+            {
+              uri: 'https://ctison.dev/abi.schema.json',
+              fileMatch: ['*'],
+              schema: abiSchema,
+            },
+          ],
+        });
+      }}
+      options={{
+        minimap: { enabled: false },
+        bracketPairColorization: { enabled: true },
+        tabSize: 2,
+      }}
+      {...props}
+    />
   );
 };
 

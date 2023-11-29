@@ -1,5 +1,3 @@
-'use client';
-
 import '@mantine/code-highlight/styles.css';
 import { Container, Paper, SimpleGrid, Stack } from '@mantine/core';
 import { SignMessage } from './SignMessage';
