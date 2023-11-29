@@ -1,43 +1,23 @@
 'use client';
 
-import { CodeHighlight } from '@mantine/code-highlight';
-import '@mantine/code-highlight/styles.css';
-import { Button, Textarea, Title } from '@mantine/core';
-import {
-  useAddress,
-  useSDK,
-  useSetIsWalletModalOpen,
-} from '@thirdweb-dev/react';
-import { useCallback, useMemo, useState } from 'react';
+import { CodeHighlight } from '@/_ui/CodeHighlight';
+import { Web3ConnectButton } from '@/_ui/Web3ConnectButton';
+import { Textarea, Title } from '@mantine/core';
+import { useMutation } from '@tanstack/react-query';
+import { useCallback, useState } from 'react';
+import { useWalletClient } from 'wagmi';
 
 export const SignMessage: React.FC = () => {
-  const address = useAddress();
-  const isLoggedIn = useMemo(() => address !== undefined, [address]);
-  const openConnectModal = useSetIsWalletModalOpen();
-
-  const sdk = useSDK();
+  const { data: walletClient } = useWalletClient();
   const [message, setMessage] = useState('');
-  const [signedMessage, setSignedMessage] = useState<string | null>(null);
-  const [isSigning, setIsSigning] = useState(false);
-  const [signError, setSignError] = useState<Error | null>(null);
-
+  const signMessage = useMutation({
+    mutationFn: async (message: string) => {
+      return await walletClient!.signMessage({ message });
+    },
+  });
   const handleSign = useCallback(async () => {
-    if (!isLoggedIn) {
-      openConnectModal(true);
-      return;
-    }
-    try {
-      setIsSigning(true);
-      setSignError(null);
-      setSignedMessage(null);
-      const signature = await sdk!.wallet.sign(message);
-      setSignedMessage(signature);
-    } catch (e) {
-      setSignError(e as Error);
-    } finally {
-      setIsSigning(false);
-    }
-  }, [isLoggedIn, openConnectModal, sdk, message]);
+    signMessage.mutate(message);
+  }, [message, signMessage]);
 
   return (
     <>
@@ -48,36 +28,22 @@ export const SignMessage: React.FC = () => {
         minRows={5}
         value={message}
         onChange={(event) => setMessage(event.currentTarget.value)}
-        error={signError?.message}
-        disabled={isSigning}
+        error={signMessage.error?.message}
+        disabled={signMessage.isPending}
         placeholder='Type a message to sign here.'
         required
       />
-      <Button
+      <Web3ConnectButton
         mt='lg'
         miw={124}
         onClick={handleSign}
-        loading={isSigning}
-        disabled={isLoggedIn && message.length === 0}
-        suppressHydrationWarning
-        color={isLoggedIn ? undefined : 'black'}
+        loading={signMessage.isPending}
+        disabled={message.length === 0}
       >
-        {isLoggedIn ? 'Sign' : 'Connect Wallet'}
-      </Button>
-      {signedMessage && (
-        <CodeHighlight
-          mt='lg'
-          code={signedMessage}
-          language='json'
-          copyLabel='Copy'
-          pr='lg'
-          styles={{
-            code: {
-              wordBreak: 'break-all',
-              whiteSpace: 'initial',
-            },
-          }}
-        />
+        Sign
+      </Web3ConnectButton>
+      {signMessage.data && (
+        <CodeHighlight mt='lg' code={signMessage.data} language='json' />
       )}
     </>
   );

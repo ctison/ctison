@@ -1,3 +1,5 @@
+'use client';
+
 import { Box, Title } from '@mantine/core';
 import { useViewportSize } from '@mantine/hooks';
 import React, { useEffect } from 'react';
