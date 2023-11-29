@@ -10,6 +10,7 @@ import {
   Fieldset,
   Group,
   Select,
+  SimpleGrid,
   Stack,
   TextInput,
   Title,
@@ -85,39 +86,39 @@ export const ContractUi: React.FC = () => {
   return (
     <>
       <Title mb='md'>Contract UI</Title>
-      <form
-        onSubmit={form.onSubmit(() => {
-          fetchAbi.mutate();
-        })}
-      >
+      <SimpleGrid cols={{ base: 1, xl: 2 }}>
         <Fieldset legend='Where is the contract?'>
-          <Stack gap='sm'>
-            <Select
-              label='Chain'
-              data={Object.keys(chainToApi)}
-              allowDeselect={false}
-              searchable
-              nothingFoundMessage='No chain found...'
-              checkIconPosition='right'
-              disabled={loading || fetchAbi.isPending}
-              {...form.getInputProps('chain')}
-            />
-            <TextInput
-              label='Contract address'
-              placeholder='0x...'
-              disabled={loading || fetchAbi.isPending}
-              {...form.getInputProps('address')}
-            />
-            <Group>
-              <Button type='submit' loading={loading || fetchAbi.isPending}>
-                Load ABI from verified contract
-              </Button>
-            </Group>
-          </Stack>
+          <form
+            onSubmit={form.onSubmit(() => {
+              fetchAbi.mutate();
+            })}
+          >
+            <Stack gap='sm'>
+              <Select
+                label='Chain'
+                data={Object.keys(chainToApi)}
+                allowDeselect={false}
+                searchable
+                nothingFoundMessage='No chain found...'
+                checkIconPosition='right'
+                disabled={loading || fetchAbi.isPending}
+                {...form.getInputProps('chain')}
+              />
+              <TextInput
+                label='Contract address'
+                placeholder='0x...'
+                disabled={loading || fetchAbi.isPending}
+                {...form.getInputProps('address')}
+              />
+              <Group>
+                <Button type='submit' loading={loading || fetchAbi.isPending}>
+                  Load ABI from verified contract
+                </Button>
+              </Group>
+            </Stack>
+          </form>
         </Fieldset>
-      </form>
-      {abi && (
-        <Fieldset legend='JSON ABI' mt='md'>
+        <Fieldset legend='JSON ABI'>
           <Editor
             height={300}
             defaultLanguage='json'
@@ -145,7 +146,7 @@ export const ContractUi: React.FC = () => {
             }}
           />
         </Fieldset>
-      )}
+      </SimpleGrid>
       {abi && (
         <Fieldset legend='Methods' mt='md'>
           {abi.error && (

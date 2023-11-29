@@ -10,7 +10,7 @@ export default function Web3() {
   return (
     <Container py='xl'>
       <Stack>
-        <SimpleGrid cols={{ base: 1, md: 2 }}>
+        <SimpleGrid cols={{ base: 1, lg: 2 }}>
           <Tool>
             <SignMessage />
           </Tool>
