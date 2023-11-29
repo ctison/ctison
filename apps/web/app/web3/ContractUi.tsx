@@ -293,7 +293,11 @@ function formatSoliditySignature(
     fn.stateMutability !== 'nonpayable' ? ` ${fn.stateMutability}` : ''
   }${
     fn.outputs.length > 0
-      ? ` returns (${fn.outputs.map((output) => output.type).join(', ')})`
+      ? ` returns (${fn.outputs
+          .map(
+            (output) => `${output.type}${output.name ? ` ${output.name}` : ''}`,
+          )
+          .join(', ')})`
       : ''
   }`;
 }
