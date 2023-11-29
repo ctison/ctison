@@ -28,6 +28,7 @@ import { IconType } from 'react-icons';
 import { FaEthereum } from 'react-icons/fa';
 import { IoHome, IoSearch } from 'react-icons/io5';
 import { VscGithub } from 'react-icons/vsc';
+import { Footer } from './Footer';
 
 const Web3ConnectButton = dynamic(
   () => import('./Web3WalletButton').then((m) => m.Web3WalletButton),
@@ -76,6 +77,9 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
           width: 200,
           breakpoint: 'sm',
           collapsed: { mobile: !asideOpened, desktop: !asideOpened },
+        }}
+        style={{
+          '--app-footer-height': '200px',
         }}
       >
         {/* HEADER */}
@@ -194,7 +198,10 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
         )}
 
         {/* MAIN */}
-        <MantineAppShell.Main>{children}</MantineAppShell.Main>
+        <MantineAppShell.Main mih={`calc(100dvh - var(--app-footer-height))`}>
+          {children}
+        </MantineAppShell.Main>
+        <Footer />
       </MantineAppShell>
     </>
   );
