@@ -35,7 +35,7 @@ for (let i = 1780; i < 2023; i++) {
 export default function Page() {
   const [selected, setSelected] = useState<number | undefined>(undefined);
   const population = useMemo(() => {
-    if (selected) {
+    if (selected !== undefined) {
       return populationByDepartments[selected];
     }
   }, [selected]);
@@ -87,7 +87,11 @@ export default function Page() {
             },
           ]}
           label={{}}
-          title={{ text: title }}
+          title={{
+            text: title,
+            subtext: 'unehistoireduconflitpolitique.fr',
+            sublink: 'https://www.unehistoireduconflitpolitique.fr/',
+          }}
           series={[
             {
               name: 'Population',
