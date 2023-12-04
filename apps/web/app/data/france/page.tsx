@@ -1,43 +1,36 @@
 'use client';
 
 import { EChart } from '@kbox-labs/react-echarts';
+import {
+  Fieldset,
+  LoadingOverlay,
+  Paper,
+  SimpleGrid,
+  Slider,
+  Stack,
+  Text,
+} from '@mantine/core';
 import { registerMap } from 'echarts';
-import departments from './departments.geo.json';
-import { Fieldset, Paper, SimpleGrid, Slider, Title } from '@mantine/core';
 import { useMemo, useState } from 'react';
+import departments from './departments.geo.json';
 import populationByDepartments from './population_by_departments.json';
 
 registerMap('France', departments);
 
-const timeline = [] as string[];
-const sliderMarks = [] as { value: number; label?: React.ReactNode }[];
+const xAxisData = [] as string[];
+const populations = [] as { name: string; value: number }[][];
 
-const timelineOpts = (() => {
-  const a = [];
-  for (let i = 1780; i < 2023; i++) {
-    timeline.push(`${i}`);
-    sliderMarks.push({
-      value: i,
-      label: i,
-    });
-    a.push({
-      title: {
-        text: `Population in ${i}`,
-      },
-      series: [
-        {
-          data: populationByDepartments.map((department) => {
-            return {
-              name: department.dep,
-              value: department[`${i}` as keyof typeof department],
-            };
-          }),
-        },
-      ],
-    });
-  }
-  return a;
-})();
+for (let i = 1780; i < 2023; i++) {
+  xAxisData.push(`${i}`);
+  populations.push(
+    populationByDepartments.map((department) => {
+      return {
+        name: department.dep,
+        value: department[`${i}` as keyof typeof department] as number,
+      };
+    }),
+  );
+}
 
 export default function Page() {
   const [selected, setSelected] = useState<number | undefined>(undefined);
@@ -47,14 +40,22 @@ export default function Page() {
     }
   }, [selected]);
   const [year, setYear] = useState(2022);
-  const data = useMemo(() => {
-    return timelineOpts[year - 1780].series[0];
-  }, [year]);
+  const dataMap = useMemo(() => populations[year - 1780], [year]);
+  const dataLine = useMemo(() => {
+    if (!population) return [];
+    const result = [] as number[];
+    for (let i = 1780; i < 2023; i++) {
+      result.push(population[`${i}` as keyof typeof population] as number);
+    }
+    return result;
+  }, [population]);
   const title = useMemo(() => `Population in ${year}`, [year]);
+  const [rendered, setRendered] = useState(false);
 
   return (
     <SimpleGrid cols={{ base: 1, lg: 2 }} p='md'>
-      <Paper withBorder p='md'>
+      <Paper withBorder p='md' pos='relative'>
+        <LoadingOverlay visible={!rendered} loaderProps={{ type: 'bars' }} />
         <EChart
           style={{
             height:
@@ -71,25 +72,21 @@ export default function Page() {
           visualMap={[
             {
               min: 0,
-              max: 1000000,
+              max: 2_000_000,
               inRange: {
                 color: [
-                  '#313695',
-                  '#4575b4',
-                  '#74add1',
-                  '#abd9e9',
-                  '#e0f3f8',
-                  '#ffffbf',
-                  '#fee090',
-                  '#fdae61',
-                  '#f46d43',
-                  '#d73027',
-                  '#a50026',
+                  '#edf2ff',
+                  '#dbe4ff',
+                  '#bac8ff',
+                  '#91a7ff',
+                  '#748ffc',
+                  '#5c7cfa',
                 ],
               },
               calculable: true,
             },
           ]}
+          label={{}}
           title={{ text: title }}
           series={[
             {
@@ -103,12 +100,15 @@ export default function Page() {
                 },
               },
               selectedMode: 'single',
-              ...data,
+              data: dataMap,
             },
           ]}
           // @ts-expect-error
           onSelectChanged={(e: any) => {
             setSelected(e.selected[0].dataIndex[0]);
+          }}
+          onFinished={() => {
+            setRendered(true);
           }}
         />
         <Slider
@@ -125,32 +125,62 @@ export default function Page() {
             { value: 1900, label: 1900 },
             { value: 2000, label: 2000 },
           ]}
+          display={rendered ? undefined : 'none'}
         />
       </Paper>
-      <Paper withBorder p='md'>
-        {population && (
-          <>
-            <SimpleGrid cols={2}>
-              <Fieldset legend={<b>Department</b>}>
-                {population.dep} -{' '}
-                <span style={{ textTransform: 'capitalize' }}>
-                  {population.nomdep.toLowerCase()}
-                </span>
-              </Fieldset>
-              <Fieldset legend={<b>Region</b>}>
-                {population.reg} -{' '}
-                <span style={{ textTransform: 'capitalize' }}>
-                  {population.nomreg.toLowerCase()}
-                </span>
-              </Fieldset>
-            </SimpleGrid>
-            {/* <EChart
-              dataset={{ source: population }}
-              xAxis={{ type: 'category' }}
-              yAxis={{}}
-            /> */}
-          </>
-        )}
+      <Paper withBorder p='lg'>
+        <Text size='18px' fw='bold' ff='sans-serif' c='rgb(70,70,70)'>
+          Data from department
+        </Text>
+        <Stack h='100%' justify='center'>
+          {population ? (
+            <>
+              <SimpleGrid cols={2}>
+                <Fieldset legend={<b>Department</b>}>
+                  {population.dep} -{' '}
+                  <Text span tt='capitalize'>
+                    {population.nomdep.toLowerCase()}
+                  </Text>
+                </Fieldset>
+                <Fieldset legend={<b>Region</b>}>
+                  {population.reg} -{' '}
+                  <Text span tt='capitalize'>
+                    {population.nomreg.toLowerCase()}
+                  </Text>
+                </Fieldset>
+              </SimpleGrid>
+              <EChart
+                dataset={{ source: population }}
+                xAxis={{
+                  data: xAxisData,
+                  boundaryGap: false,
+                }}
+                yAxis={{ type: 'value', max: 3_000_000 }}
+                series={[
+                  {
+                    type: 'line',
+                    data: dataLine,
+                    areaStyle: {},
+                  },
+                ]}
+                axisPointer={{ show: true }}
+                // @ts-expect-error
+                itemStyle={{
+                  decal: {
+                    show: true,
+                    dashArrayX: [1, 0],
+                    dashArrayY: [4, 3],
+                    rotation: -Math.PI / 4,
+                  },
+                }}
+              />
+            </>
+          ) : (
+            <Text ta='center' size='xl' mt='xl' c='dimmed'>
+              Select a department from map
+            </Text>
+          )}
+        </Stack>
       </Paper>
     </SimpleGrid>
   );
