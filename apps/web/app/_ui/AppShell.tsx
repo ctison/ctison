@@ -29,6 +29,7 @@ import { FaEthereum } from 'react-icons/fa';
 import { IoHome, IoSearch } from 'react-icons/io5';
 import { TiRss } from 'react-icons/ti';
 import { VscGithub } from 'react-icons/vsc';
+import { BiWorld } from 'react-icons/bi';
 import { Footer } from './Footer';
 
 const Web3ConnectButton = dynamic(
@@ -47,6 +48,7 @@ const links: {
   { href: '/', label: 'Home', Icon: IoHome },
   { href: '/web3', label: 'Web3', Icon: FaEthereum },
   { href: '/blog', label: 'Blog', Icon: TiRss, startsWith: true },
+  { href: '/data/france', label: 'Data', Icon: BiWorld, startsWith: true },
 ];
 
 export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
