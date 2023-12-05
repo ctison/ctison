@@ -3,7 +3,9 @@
 import { default as Airtable, FieldSet } from 'airtable';
 import { cache } from 'react';
 
-const airtable = new Airtable({ apiKey: process.env.AIRTABLE_TOKEN! });
+const airtable = new Airtable({ apiKey: process.env.AIRTABLE_TOKEN! }).base(
+  'appcGHd3RQyNKtfzE',
+);
 
 export const getLinks = cache(async () => {
   interface Links extends FieldSet {
@@ -13,7 +15,6 @@ export const getLinks = cache(async () => {
 
   const records = [] as Links[];
   await airtable
-    .base('appcGHd3RQyNKtfzE')
     .table<Links>('tblYPGC2hOj2AzKId')
     .select()
     .eachPage((_records, fetchNextPage) => {
@@ -28,4 +29,28 @@ export const getLinks = cache(async () => {
     }
   }
   return links;
+});
+
+interface WorkedAt {
+  name: string;
+  role: string;
+  location: string;
+  date: string;
+  description: string;
+  badges: string[];
+}
+
+export const getCV = cache(async () => {
+  const records = [] as WorkedAt[];
+  await airtable
+    .table<WorkedAt & FieldSet>('tbl35xOeCHMw09J3u')
+    .select({
+      sort: [{ field: 'ID', direction: 'desc' }],
+      filterByFormula: '{include}',
+    })
+    .eachPage((_records, fetchNextPage) => {
+      records.push(..._records.map((record) => record.fields));
+      fetchNextPage();
+    });
+  return records;
 });
