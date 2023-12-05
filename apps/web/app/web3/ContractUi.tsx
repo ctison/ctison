@@ -174,7 +174,7 @@ export const ContractUi: React.FC = () => {
         keepMounted={true}
       />
       {abi && (
-        <Fieldset legend='Methods' mt='md'>
+        <Fieldset legend='Methods' mt='md' style={{ breakInside: 'avoid' }}>
           {abi.error && (
             <Alert color='red' variant='outline'>
               {abi.error.message}

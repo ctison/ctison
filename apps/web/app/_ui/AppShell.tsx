@@ -25,11 +25,12 @@ import { MuseoModerno } from 'next/font/google';
 import { usePathname, useRouter } from 'next/navigation';
 import { memo, useEffect, useMemo } from 'react';
 import { IconType } from 'react-icons';
+import { BiWorld } from 'react-icons/bi';
 import { FaEthereum } from 'react-icons/fa';
+import { FaLink } from 'react-icons/fa6';
 import { IoHome, IoSearch } from 'react-icons/io5';
 import { TiRss } from 'react-icons/ti';
 import { VscGithub } from 'react-icons/vsc';
-import { BiWorld } from 'react-icons/bi';
 import { Footer } from './Footer';
 
 const Web3ConnectButton = dynamic(
@@ -48,6 +49,7 @@ const links: {
   { href: '/', label: 'Home', Icon: IoHome },
   { href: '/web3', label: 'Web3', Icon: FaEthereum },
   { href: '/blog', label: 'Blog', Icon: TiRss, startsWith: true },
+  { href: '/links', label: 'Links', Icon: FaLink },
   { href: '/data/france', label: 'Data', Icon: BiWorld, startsWith: true },
 ];
 

@@ -92,7 +92,7 @@ const FavoriteStackInner: React.FC = () => {
   }, [fitView, viewportWidth, viewportHeight]);
 
   return (
-    <Box py='xl'>
+    <Box py='xl' className='print-hide'>
       <Title order={2} ta='center' mb='xl'>
         Favorite Stack
       </Title>

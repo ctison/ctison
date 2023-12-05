@@ -130,6 +130,7 @@ export default function Page() {
             { value: 2000, label: 2000 },
           ]}
           display={rendered ? undefined : 'none'}
+          className='print-hide'
         />
       </Paper>
       <Paper withBorder p='lg'>

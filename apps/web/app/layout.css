@@ -1,0 +1,29 @@
+@media print {
+  .mantine-AppShell-root {
+    & > header,
+    nav,
+    aside,
+    footer {
+      display: none !important;
+    }
+    & > main {
+      padding-top: 0;
+    }
+  }
+
+  div:has(> pre) {
+    break-inside: avoid !important;
+  }
+
+  .print-hide {
+    display: none !important;
+  }
+
+  .print-avoid-break {
+    break-inside: avoid !important;
+  }
+
+  w3m-modal {
+    display: none !important;
+  }
+}
