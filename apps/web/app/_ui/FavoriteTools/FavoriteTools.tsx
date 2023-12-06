@@ -42,6 +42,7 @@ export const FavoriteTools: React.FC = () => {
                 href={tool.link}
                 target='_blank'
                 variant='light'
+                referrerPolicy='no-referrer'
                 color='blue'
                 fullWidth
                 mt='md'

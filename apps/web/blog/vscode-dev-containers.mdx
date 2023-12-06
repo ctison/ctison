@@ -1,7 +1,11 @@
 ---
 title: VSCode Dev Containers
 date: 2024-12-2
+image: /blog/vscode-devcontainer.webp
+tags: [vscode, docker, devops]
 ---
+
+## Introduction
 
 Docker images are very useful because they are lightweight environments defined as code ([Dockerfiles](https://docs.docker.com/engine/reference/builder/)) where developers can set up the necessary tools and dependencies their softwares need to run. Then, other developers can simply download the docker images and run them on their desktop without the initial burden of setting up dependencies and understanding how things wire up at first.
 
@@ -85,18 +89,18 @@ Happy coding 🤓
 
 ## Useful tips and tricks
 
-## Docker volumes
+### Docker volumes
 
 We did both bind-mounting a repository to a container and connecting VSCode to the container. To gain performance improvements, you can instead put your code in the container (e.g. git clone, docker cp), or you can put your code in a Docker volume to persist your code across changing containers.
 
 ```console
-❯ docker volume create example # create a volume named example
-# run a container with the volume named example mounted at /example
+❯ docker volume create example ## create a volume named example
+## run a container with the volume named example mounted at /example
 ❯ docker run -it --rm -v example:/example -w /example alpine
-# Inside the container, you can run `mount` to see the volume
+## Inside the container, you can run `mount` to see the volume
 ❯ echo '¯\_(ツ)_/¯' > x.txt
 ❯ exit
-# Start a ubuntu container
+## Start a ubuntu container
 ❯ docker run -it --rm -v example:/example -w /example ubuntu
 ❯ cat x.txt
 ¯\_(ツ)_/¯
@@ -126,6 +130,6 @@ Docker for Desktop resolves by default [host.docker.internal](https://docs.docke
 
 - [VSCode Remote Containers](https://code.visualstudio.com/docs/remote/containers)
 - [.devcontainer.json](https://code.visualstudio.com/docs/remote/devcontainerjson-reference)
-- https://github.com/microsoft/vscode
+- [Github VSCode](https://github.com/microsoft/vscode)
 - [Dockerfile](https://docs.docker.com/engine/reference/builder/)
 - [Docker Compose](https://docs.docker.com/compose/compose-file/)

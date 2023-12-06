@@ -19,19 +19,14 @@ import {
   spotlight,
 } from '@mantine/spotlight';
 
-import { type Route } from 'next';
 import dynamic from 'next/dynamic';
 import { MuseoModerno } from 'next/font/google';
 import { usePathname, useRouter } from 'next/navigation';
 import { memo, useEffect, useMemo } from 'react';
-import { IconType } from 'react-icons';
-import { BiWorld } from 'react-icons/bi';
-import { FaEthereum } from 'react-icons/fa';
-import { FaLink } from 'react-icons/fa6';
-import { IoHome, IoSearch } from 'react-icons/io5';
-import { TiRss } from 'react-icons/ti';
+import { IoSearch } from 'react-icons/io5';
 import { VscGithub } from 'react-icons/vsc';
 import { Footer } from './Footer';
+import { links } from './links';
 
 const Web3ConnectButton = dynamic(
   () => import('./Web3WalletButton').then((m) => m.Web3WalletButton),
@@ -39,19 +34,6 @@ const Web3ConnectButton = dynamic(
 );
 
 const brandFont = MuseoModerno({ subsets: ['latin'], weight: '600' });
-
-const links: {
-  href: Route;
-  label: string;
-  Icon: IconType;
-  startsWith?: boolean;
-}[] = [
-  { href: '/', label: 'Home', Icon: IoHome },
-  { href: '/web3', label: 'Web3', Icon: FaEthereum },
-  { href: '/blog', label: 'Blog', Icon: TiRss, startsWith: true },
-  { href: '/links', label: 'Links', Icon: FaLink },
-  { href: '/data/france', label: 'Data', Icon: BiWorld, startsWith: true },
-];
 
 export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
   const isMobile = useMediaQuery(`(max-width: 48em)`);
@@ -85,7 +67,7 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
           collapsed: { mobile: !asideOpened, desktop: !asideOpened },
         }}
         style={{
-          '--app-footer-height': '200px',
+          '--app-footer-height': '100px',
         }}
       >
         {/* HEADER */}

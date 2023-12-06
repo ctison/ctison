@@ -27,3 +27,22 @@
     display: none !important;
   }
 }
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+article a {
+  text-decoration: underline !important;
+}
+
+code:not(pre *) {
+  background-color: var(--mantine-color-indigo-1);
+  border-radius: var(--mantine-radius-sm);
+  font-family: var(--mantine-font-family-monospace);
+  font-size: var(--mantine-font-size-sm);
+  padding: calc(0.125rem * var(--mantine-scale))
+    calc(var(--mantine-spacing-xs) / 2);
+  line-height: var(--mantine-line-height);
+}

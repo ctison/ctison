@@ -16,8 +16,22 @@ import { WindowExpando } from './_ui/WindowExpando';
 import { ReactQueryProvider } from './_ui/ReactQueryProvider';
 
 export const metadata: Metadata = {
-  title: '@ctison',
-  description: "@ctison's personal website",
+  title: {
+    default: 'Home | @ctison',
+    template: '%s | @ctison',
+  },
+  description: "@ctison's website",
+  alternates: {
+    canonical: `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`,
+    types: {
+      'application/rss+xml': [
+        {
+          url: 'feed.xml',
+          title: `@ctison's blog`,
+        },
+      ],
+    },
+  },
 };
 
 export default function RootLayout({
