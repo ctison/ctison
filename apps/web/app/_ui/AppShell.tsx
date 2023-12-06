@@ -67,7 +67,7 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
           collapsed: { mobile: !asideOpened, desktop: !asideOpened },
         }}
         style={{
-          '--app-footer-height': '200px',
+          '--app-footer-height': '100px',
         }}
       >
         {/* HEADER */}
