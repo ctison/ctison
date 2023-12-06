@@ -11,6 +11,7 @@ import {
 } from '@mantine/core';
 import { allPosts } from 'contentlayer/generated';
 import { compareDesc, format, parseISO } from 'date-fns';
+import { RssButton } from './RssButton';
 
 export default function Blog() {
   const posts = allPosts.sort((a, b) =>
@@ -21,6 +22,7 @@ export default function Blog() {
     <>
       <Title ta='center' my='xl'>
         Blog
+        <RssButton />
       </Title>
       <SimpleGrid cols={{ base: 2, md: 2, lg: 3 }}>
         {posts.map((post) => (
