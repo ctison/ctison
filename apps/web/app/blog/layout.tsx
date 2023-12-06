@@ -8,5 +8,9 @@ export const metadata = {
 };
 
 export default function Layout({ children }: React.PropsWithChildren) {
-  return <Container my='md'>{children}</Container>;
+  return (
+    <Container my='md' size='md'>
+      {children}
+    </Container>
+  );
 }
