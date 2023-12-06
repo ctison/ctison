@@ -4,6 +4,10 @@ import { SignMessage } from './SignMessage';
 import { VerifyMessage } from './VerifyMessage';
 import { ContractUi } from './ContractUi';
 
+export const metadata = {
+  title: 'Web3',
+};
+
 export default function Web3() {
   return (
     <Container py='xl'>

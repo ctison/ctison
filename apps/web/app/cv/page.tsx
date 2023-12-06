@@ -22,6 +22,11 @@ import { IoTerminal } from 'react-icons/io5';
 import { SiKubernetes } from 'react-icons/si';
 import { IconType } from 'react-icons';
 
+export const metadata = {
+  title: 'CV',
+  robots: 'noindex, nofollow, noarchive, nosnippet, noimageindex',
+};
+
 export default async function Page() {
   const cv = await getCV();
   return (

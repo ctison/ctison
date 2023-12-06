@@ -16,8 +16,11 @@ import { WindowExpando } from './_ui/WindowExpando';
 import { ReactQueryProvider } from './_ui/ReactQueryProvider';
 
 export const metadata: Metadata = {
-  title: '@ctison',
-  description: "@ctison's personal website",
+  title: {
+    default: 'Home | @ctison',
+    template: '%s | @ctison',
+  },
+  description: "@ctison's website",
 };
 
 export default function RootLayout({

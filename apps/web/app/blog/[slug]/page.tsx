@@ -5,11 +5,22 @@ import { allPosts } from 'contentlayer/generated';
 import { notFound } from 'next/navigation';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import type { MDXComponents } from 'mdx/types';
+import { Metadata } from 'next';
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
     slug: post._raw.flattenedPath,
   }));
+}
+
+export async function generateMetadata({
+  params: { slug },
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  return {
+    title: allPosts.find((post) => post._raw.flattenedPath === slug)?.title,
+  };
 }
 
 export default function BlogPost({
