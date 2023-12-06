@@ -1,5 +1,3 @@
-'use client';
-
 import { FavoriteTools } from '@/_ui/FavoriteTools';
 import { FavoriteStack } from './_ui/FavoriteStack';
 

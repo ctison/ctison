@@ -1,21 +1,37 @@
+import './layout.css';
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/nprogress/styles.css';
 import '@mantine/spotlight/styles.css';
 
-import { AppShell } from '@/_ui/AppShell';
-import { WindowExpando } from '@/_ui/WindowExpando';
+import { AppShell } from './_ui/AppShell';
+import { NavigationProgress } from '@/_ui/NavigationProgress';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
-import { NavigationProgress } from '@/_ui/NavigationProgress';
 import type { Metadata } from 'next';
-import { Wallet } from './_ui/Wallet';
-import { theme } from './theme';
 import { Suspense } from 'react';
+import { WalletProvider } from './_ui/WalletProvider';
+import { theme } from './theme';
+import { WindowExpando } from './_ui/WindowExpando';
+import { ReactQueryProvider } from './_ui/ReactQueryProvider';
 
 export const metadata: Metadata = {
-  title: '@ctison',
-  description: "@ctison's personal website",
+  title: {
+    default: 'Home | @ctison',
+    template: '%s | @ctison',
+  },
+  description: "@ctison's website",
+  alternates: {
+    canonical: `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`,
+    types: {
+      'application/rss+xml': [
+        {
+          url: 'feed.xml',
+          title: `@ctison's blog`,
+        },
+      ],
+    },
+  },
 };
 
 export default function RootLayout({
@@ -31,16 +47,18 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body>
-        <Wallet>
-          <WindowExpando />
-          <MantineProvider theme={theme}>
-            <Suspense fallback={null}>
-              <NavigationProgress />
-            </Suspense>
-            <Notifications />
-            <AppShell>{children}</AppShell>
-          </MantineProvider>
-        </Wallet>
+        <ReactQueryProvider>
+          <WalletProvider>
+            <WindowExpando />
+            <MantineProvider theme={theme}>
+              <Suspense fallback={null}>
+                <NavigationProgress />
+              </Suspense>
+              <Notifications />
+              <AppShell>{children}</AppShell>
+            </MantineProvider>
+          </WalletProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

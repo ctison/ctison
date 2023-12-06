@@ -56,6 +56,7 @@
     ".lintstagedrc.mjs",
     ".eslintrc.cjs",
     "apps/*/src/**/*",
-    "scripts/**/*"
+    "scripts/**/*",
+    "x/**/*"
   ]
 }

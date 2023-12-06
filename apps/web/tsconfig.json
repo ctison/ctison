@@ -14,15 +14,19 @@
     "jsx": "preserve",
     "incremental": true,
     "plugins": [{ "name": "next" }],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./app/*"]
+      "@/public/*": ["./public/*"],
+      "@/*": ["./app/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },
   "include": [
     "next-env.d.ts",
     "app/**/*",
     ".next/types/**/*",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".contentlayer/generated"
   ],
   "exclude": ["node_modules"]
 }

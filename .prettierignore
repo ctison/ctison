@@ -3,3 +3,4 @@
 /apps/*/artifacts/
 /apps/*/cache/
 /apps/evm/lib/
+/x/

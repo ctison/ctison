@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://ctison.dev/abi.schema.json",
+  "title": "EVM ABI",
+  "type": "array",
+  "items": {
+    "oneOf": [
+      {
+        "type": "object",
+        "properties": {
+          "type": { "const": "constructor" },
+          "inputs": { "$ref": "#/$defs/AbiParameters" },
+          "payable": { "type": "boolean", "deprecated": true },
+          "stateMutability": {
+            "enum": ["nonpayable", "payable"]
+          }
+        },
+        "required": ["inputs", "stateMutability"]
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": { "const": "error" },
+          "name": { "type": "string" },
+          "inputs": { "$ref": "#/$defs/AbiParameters" }
+        },
+        "required": ["name", "inputs"]
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": { "const": "event" },
+          "name": { "type": "string" },
+          "inputs": { "$ref": "#/$defs/AbiParameters" },
+          "anonymous": { "type": "boolean" }
+        },
+        "required": ["name", "inputs"]
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": { "const": "fallback" },
+          "inputs": { "type": "array", "maxItems": 0 },
+          "payable": { "type": "boolean", "deprecated": true },
+          "stateMutability": {
+            "enum": ["nonpayable", "payable"]
+          }
+        },
+        "required": ["stateMutability"]
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": { "const": "function" },
+          "name": { "type": "string" },
+          "inputs": { "$ref": "#/$defs/AbiParameters" },
+          "outputs": { "$ref": "#/$defs/AbiParameters" },
+          "stateMutability": {
+            "enum": ["nonpayable", "payable", "view", "pure"]
+          },
+          "constant": { "type": "boolean", "deprecated": true },
+          "gas": { "type": "integer", "deprecated": true },
+          "payable": { "type": "boolean", "deprecated": true }
+        },
+        "required": ["name", "inputs", "outputs", "stateMutability"]
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": { "const": "receive" },
+          "stateMutability": {
+            "enum": ["payable"]
+          }
+        },
+        "required": ["stateMutability"]
+      }
+    ],
+    "required": ["type"]
+  },
+  "$defs": {
+    "AbiParameters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" }
+        }
+      }
+    }
+  }
+}

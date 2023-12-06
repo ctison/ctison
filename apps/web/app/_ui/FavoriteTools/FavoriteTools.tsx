@@ -1,4 +1,3 @@
-'use client';
 import {
   Badge,
   Button,
@@ -20,7 +19,14 @@ export const FavoriteTools: React.FC = () => {
       </Title>
       <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }}>
         {favoriteTools.map((tool) => (
-          <Card key={tool.name} withBorder p='lg' radius='md' shadow='sm'>
+          <Card
+            key={tool.name}
+            withBorder
+            p='lg'
+            radius='md'
+            shadow='sm'
+            className='print-avoid-break'
+          >
             <Group justify='space-between'>
               <Text fw={500}>{tool.name}</Text>
               <Badge color='pink' variant='light'>
@@ -36,6 +42,7 @@ export const FavoriteTools: React.FC = () => {
                 href={tool.link}
                 target='_blank'
                 variant='light'
+                referrerPolicy='no-referrer'
                 color='blue'
                 fullWidth
                 mt='md'
