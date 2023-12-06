@@ -20,7 +20,7 @@
     "@mantine/spotlight": "7.3.0",
     "@monaco-editor/react": "4.6.0",
     "@splinetool/react-spline": "2.2.6",
-    "@splinetool/runtime": "0.9.517",
+    "@splinetool/runtime": "0.9.518",
     "@tanstack/react-query": "5.12.2",
     "@web3modal/wagmi": "3.4.0",
     "airtable": "0.12.2",
