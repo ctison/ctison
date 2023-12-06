@@ -16,7 +16,9 @@ export const RssButton = () => {
           style={{ verticalAlign: 'sub' }}
           size='3rem'
           onClick={() =>
-            clipboard.copy(`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/feed`)
+            clipboard.copy(
+              `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/feed.xml`,
+            )
           }
         >
           <TiRss size='80%' />

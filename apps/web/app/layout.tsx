@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     types: {
       'application/rss+xml': [
         {
-          url: 'feed',
+          url: 'feed.xml',
           title: `@ctison's blog`,
         },
       ],
