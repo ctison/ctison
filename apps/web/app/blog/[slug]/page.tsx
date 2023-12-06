@@ -57,4 +57,5 @@ const mdxComponents: MDXComponents = {
       {...props}
     />
   ),
+  a: (props) => <a {...props} target='_blank' referrerPolicy='no-referrer' />,
 };
