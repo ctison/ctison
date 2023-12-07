@@ -39,17 +39,14 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
   const isMobile = useMediaQuery(`(max-width: 48em)`);
   const [navbarOpened, { toggle: toggleNavbar, close: closeNavbar }] =
     useDisclosure(!isMobile);
-  const [asideOpened, { toggle: toggleAside, close: closeAside }] =
-    useDisclosure(!isMobile);
 
   const pathname = usePathname();
 
   useEffect(() => {
     if (isMobile) {
       closeNavbar();
-      closeAside();
     }
-  }, [isMobile, closeNavbar, closeAside]);
+  }, [isMobile, closeNavbar]);
 
   return (
     <>
@@ -60,11 +57,6 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
           width: 200,
           breakpoint: 'sm',
           collapsed: { mobile: !navbarOpened, desktop: !navbarOpened },
-        }}
-        aside={{
-          width: 200,
-          breakpoint: 'sm',
-          collapsed: { mobile: !asideOpened, desktop: !asideOpened },
         }}
         style={{
           '--app-footer-height': '100px',
@@ -92,18 +84,10 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
                     @ctison
                   </Anchor>
                 </Group>
-                <Group align='stretch'>
-                  <Burger
-                    opened={asideOpened}
-                    onClick={toggleAside}
-                    size='sm'
-                    // hiddenFrom='md'
-                  />
-                </Group>
               </Group>
             </MantineAppShell.Header>
           ),
-          [navbarOpened, toggleNavbar, asideOpened, toggleAside, isMobile],
+          [navbarOpened, toggleNavbar, isMobile],
         )}
 
         {/* NAVBAR */}
@@ -112,6 +96,7 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
             <MantineAppShell.Navbar>
               <MantineAppShell.Section grow>
                 <Stack p='sm'>
+                  <Web3ConnectButton />
                   <Button
                     onClick={() => spotlight.open()}
                     variant='default'
@@ -161,28 +146,6 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
             </MantineAppShell.Navbar>
           ),
           [pathname],
-        )}
-
-        {/* ASIDE */}
-        {useMemo(
-          () => (
-            <MantineAppShell.Aside withBorder>
-              <Stack p='sm'>
-                <Web3ConnectButton />
-                <Button
-                  component='a'
-                  target='_blank'
-                  href='https://github.com/ctison'
-                  variant='outline'
-                  leftSection={<VscGithub />}
-                  ta='center'
-                >
-                  Github
-                </Button>
-              </Stack>
-            </MantineAppShell.Aside>
-          ),
-          [],
         )}
 
         {/* MAIN */}
