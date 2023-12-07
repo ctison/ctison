@@ -13,7 +13,7 @@ export const links: {
   startsWith?: boolean;
 }[] = [
   { href: '/', label: 'Home', Icon: IoHome },
-  { href: '/web3', label: 'Web3', Icon: FaEthereum },
+  { href: '/web3' as Route, label: 'Web3', Icon: FaEthereum },
   { href: '/blog', label: 'Blog', Icon: TiRss, startsWith: true },
   { href: '/links', label: 'Links', Icon: FaLink },
   { href: '/data/france', label: 'Data', Icon: BiWorld, startsWith: true },

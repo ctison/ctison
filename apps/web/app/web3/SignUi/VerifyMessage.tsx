@@ -1,13 +1,15 @@
-'use client';
-
 import { Button, Group, Textarea, Title } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useMutation } from '@tanstack/react-query';
 import { useCallback, useMemo } from 'react';
 import { isAddress, isHex, verifyMessage } from 'viem';
-import { InputAddress } from '../_ui/InputAddress';
+import { InputAddress } from '@/_ui/InputAddress';
+import { History } from '.';
 
-export const VerifyMessage: React.FC = () => {
+export const VerifyMessage: React.FC<{
+  addHistory: (history: Omit<History, 'id' | 'date'>) => string;
+  updateHistory: (id: string, history: Partial<History>) => void;
+}> = ({ addHistory, updateHistory }) => {
   const form = useForm({
     initialValues: {
       address: '',
@@ -27,8 +29,23 @@ export const VerifyMessage: React.FC = () => {
         signature: values.signature as `0x${string}`,
       });
     },
+    onMutate(variables) {
+      const id = addHistory({
+        type: 'verify',
+        address: variables.address as `0x${string}`,
+        message: variables.message,
+        signature: variables.signature as `0x${string}`,
+      });
+      return { id };
+    },
     onError(error) {
       form.setFieldError('signature', error.message);
+    },
+    onSettled(result, error, _, ctx) {
+      updateHistory(ctx!.id, {
+        valid: result,
+        error,
+      });
     },
   });
 
