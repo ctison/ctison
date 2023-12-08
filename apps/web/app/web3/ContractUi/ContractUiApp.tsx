@@ -9,7 +9,6 @@ import {
   Accordion,
   ActionIcon,
   Alert,
-  Box,
   Button,
   Fieldset,
   Group,
@@ -19,7 +18,6 @@ import {
   SimpleGrid,
   Stack,
   TextInput,
-  Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import {
@@ -39,7 +37,7 @@ import { z } from 'zod';
 
 type Abi = z.infer<typeof AbiParser>;
 
-export const ContractUi: React.FC = () => {
+export const ContractUiApp: React.FC<{ id: string }> = ({ id }) => {
   const form = useForm<{ chain: keyof typeof chainToApi; address: string }>({
     initialValues: {
       chain: 'Ethereum',
@@ -50,7 +48,7 @@ export const ContractUi: React.FC = () => {
     },
   });
   const [abiStr, setAbiStr] = useLocalStorage<string | undefined>({
-    key: 'ctison.contract.abi',
+    key: `ctison.contract.abi-${id}`,
   });
   const abi = useMemo<
     | {
@@ -70,7 +68,7 @@ export const ContractUi: React.FC = () => {
   }, [abiStr]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const storedValues = window.localStorage.getItem('ctison.contract');
+    const storedValues = window.localStorage.getItem(`ctison.contract-${id}`);
     try {
       if (storedValues) {
         form.setValues(JSON.parse(storedValues));
@@ -84,7 +82,7 @@ export const ContractUi: React.FC = () => {
   }, []);
   useDidUpdate(() => {
     window.localStorage.setItem(
-      'ctison.contract',
+      `ctison.contract-${id}`,
       JSON.stringify({ ...form.values }),
     );
   }, [form.values, abi]);
@@ -100,8 +98,7 @@ export const ContractUi: React.FC = () => {
 
   return (
     <>
-      <Title mb='md'>Contract UI</Title>
-      <SimpleGrid cols={{ base: 1, xl: 2 }}>
+      <SimpleGrid cols={{ base: 1, md: 2 }} mt='xl'>
         <Fieldset legend='Where is the contract?'>
           <form
             onSubmit={form.onSubmit(() => {
@@ -153,9 +150,10 @@ export const ContractUi: React.FC = () => {
         >
           <OptionalPortal
             withinPortal={modalOpened}
-            target='#json-abi-modal-body'
+            target={`#json-abi-modal-${id}-body`}
           >
             <EditorAbiJson
+              path={`abi-${id}.json`}
               value={abiStr}
               onChange={setAbiStr}
               height={modalOpened ? (isMobile ? '100dvh' : '75dvh') : 300}
@@ -164,7 +162,7 @@ export const ContractUi: React.FC = () => {
         </Fieldset>
       </SimpleGrid>
       <Modal
-        id='json-abi-modal'
+        id={`json-abi-modal-${id}`}
         title='JSON Abi'
         centered
         opened={modalOpened}
@@ -214,7 +212,6 @@ export const EditorAbiJson: React.FC<EditorProps> = (props) => {
       height={300}
       defaultLanguage='json'
       defaultValue='[]'
-      defaultPath='abi.json'
       beforeMount={(monaco) => {
         monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
           validate: true,

@@ -20,7 +20,7 @@ export const Content: React.FC<{ slug: string }> = ({ slug }) => {
   });
 
   return (
-    <Container py='xl'>
+    <Container size='xl' p='xl'>
       <Tabs
         value={selectedTab}
         variant='default'
@@ -38,7 +38,12 @@ export const Content: React.FC<{ slug: string }> = ({ slug }) => {
         </TabsList>
         <Space h='md' />
         {tabs.map((tab) => (
-          <TabsPanel key={tab.slug} value={tab.slug}>
+          <TabsPanel
+            key={tab.slug}
+            value={tab.slug}
+            pos='relative'
+            mih='calc(100dvh / 2)'
+          >
             <tab.children />
           </TabsPanel>
         ))}
