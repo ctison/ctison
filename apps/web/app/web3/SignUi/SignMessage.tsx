@@ -1,6 +1,6 @@
 import { CodeHighlight } from '@/_ui/CodeHighlight';
 import { Web3ConnectButton } from '@/_ui/Web3ConnectButton';
-import { Textarea, Title } from '@mantine/core';
+import { Fieldset, Textarea } from '@mantine/core';
 import { useMutation } from '@tanstack/react-query';
 import { useCallback, useState } from 'react';
 import { useWalletClient } from 'wagmi';
@@ -38,8 +38,7 @@ export const SignMessage: React.FC<{
   }, [message, signMessage]);
 
   return (
-    <>
-      <Title mb='lg'>Sign a message</Title>
+    <Fieldset legend='Sign a message'>
       <Textarea
         label='Message'
         description="This message you're signing proves you own the address you say you do."
@@ -63,6 +62,6 @@ export const SignMessage: React.FC<{
       {signMessage.data && (
         <CodeHighlight mt='lg' code={signMessage.data} language='json' />
       )}
-    </>
+    </Fieldset>
   );
 };

@@ -15,10 +15,9 @@ import {
 import { useDidUpdate, useListState, useLocalStorage } from '@mantine/hooks';
 import { format } from 'date-fns';
 import { useCallback, useState } from 'react';
-import { Tool } from '../Tool';
+import { IoTrashBinOutline } from 'react-icons/io5';
 import { SignMessage } from './SignMessage';
 import { VerifyMessage } from './VerifyMessage';
-import { IoTrashBinOutline } from 'react-icons/io5';
 
 export type History = {
   id: string;
@@ -85,16 +84,9 @@ export const SignUi: React.FC = () => {
 
   return (
     <Stack>
-      <SimpleGrid cols={{ base: 1, lg: 2 }}>
-        <Tool>
-          <SignMessage addHistory={addHistory} updateHistory={updateHistory} />
-        </Tool>
-        <Tool>
-          <VerifyMessage
-            addHistory={addHistory}
-            updateHistory={updateHistory}
-          />
-        </Tool>
+      <SimpleGrid cols={{ base: 1, md: 2 }}>
+        <SignMessage addHistory={addHistory} updateHistory={updateHistory} />
+        <VerifyMessage addHistory={addHistory} updateHistory={updateHistory} />
       </SimpleGrid>
       <Stack>
         {history.length > 0 && (
