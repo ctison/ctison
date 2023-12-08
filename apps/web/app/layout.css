@@ -46,3 +46,7 @@ code:not(pre *) {
     calc(var(--mantine-spacing-xs) / 2);
   line-height: var(--mantine-line-height);
 }
+
+html {
+  overflow-y: scroll;
+}
