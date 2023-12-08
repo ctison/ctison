@@ -1,4 +1,5 @@
 import { ContractUi } from '../ContractUi';
+import { GnosisUi } from '../GnosisUi';
 import { SignUi } from '../SignUi';
 
 export const tabs: { slug: string; label: string; children: React.FC }[] = [
@@ -11,5 +12,10 @@ export const tabs: { slug: string; label: string; children: React.FC }[] = [
     slug: 'sign',
     label: 'Sign',
     children: SignUi,
+  },
+  {
+    slug: 'gnosis',
+    label: 'Gnosis',
+    children: GnosisUi,
   },
 ];
