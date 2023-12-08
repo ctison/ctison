@@ -60,6 +60,7 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
         }}
         style={{
           '--app-footer-height': '100px',
+          '--app-main-min-height': 'calc(100dvh - var(--app-footer-height))',
         }}
       >
         {/* HEADER */}
@@ -149,7 +150,7 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
         )}
 
         {/* MAIN */}
-        <MantineAppShell.Main mih={`calc(100dvh - var(--app-footer-height))`}>
+        <MantineAppShell.Main mih={`var(--app-main-min-height)`}>
           {children}
         </MantineAppShell.Main>
         <Footer />
