@@ -1,18 +1,36 @@
-'use client';
-
 import { CodeHighlight } from '@/_ui/CodeHighlight';
 import { Web3ConnectButton } from '@/_ui/Web3ConnectButton';
-import { Textarea, Title } from '@mantine/core';
+import { Fieldset, Textarea } from '@mantine/core';
 import { useMutation } from '@tanstack/react-query';
 import { useCallback, useState } from 'react';
 import { useWalletClient } from 'wagmi';
+import { History } from '.';
 
-export const SignMessage: React.FC = () => {
+export const SignMessage: React.FC<{
+  addHistory: (history: Omit<History, 'id' | 'date'>) => string;
+  updateHistory: (id: string, history: Partial<History>) => void;
+}> = ({ addHistory, updateHistory }) => {
   const { data: walletClient } = useWalletClient();
   const [message, setMessage] = useState('');
   const signMessage = useMutation({
     mutationFn: async (message: string) => {
+      walletClient!.account.address;
       return await walletClient!.signMessage({ message });
+    },
+    onMutate(message) {
+      const address = walletClient!.account.address;
+      const id = addHistory({
+        type: 'sign',
+        address,
+        message,
+      });
+      return { id };
+    },
+    onSettled(signature, error, _, ctx) {
+      updateHistory(ctx!.id, {
+        signature,
+        error,
+      });
     },
   });
   const handleSign = useCallback(async () => {
@@ -20,8 +38,7 @@ export const SignMessage: React.FC = () => {
   }, [message, signMessage]);
 
   return (
-    <>
-      <Title mb='lg'>Sign a message</Title>
+    <Fieldset legend='Sign a message'>
       <Textarea
         label='Message'
         description="This message you're signing proves you own the address you say you do."
@@ -45,6 +62,6 @@ export const SignMessage: React.FC = () => {
       {signMessage.data && (
         <CodeHighlight mt='lg' code={signMessage.data} language='json' />
       )}
-    </>
+    </Fieldset>
   );
 };

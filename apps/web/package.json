@@ -19,6 +19,7 @@
     "@mantine/nprogress": "7.3.0",
     "@mantine/spotlight": "7.3.0",
     "@monaco-editor/react": "4.6.0",
+    "@safe-global/api-kit": "2.0.0",
     "@splinetool/react-spline": "2.2.6",
     "@splinetool/runtime": "0.9.518",
     "@tanstack/react-query": "5.12.2",
@@ -42,7 +43,8 @@
     "reverse-mirage": "1.0.3",
     "viem": "1.19.11",
     "wagmi": "1.4.7",
-    "zod": "3.22.4"
+    "zod": "3.22.4",
+    "zustand": "4.4.7"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "14.0.3",
