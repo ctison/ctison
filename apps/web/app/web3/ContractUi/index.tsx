@@ -21,6 +21,7 @@ export const ContractUi: React.FC = () => {
   const [tabStorage, setTabStorage] = useLocalStorage<TabState[]>({
     key: 'contract-ui-tabs',
     defaultValue: [],
+    getInitialValueInEffect: true,
   });
   const [tabs, tabsHandlers] = useListState<TabState>(tabStorage);
   const [loaded, setLoaded] = useState(false);
