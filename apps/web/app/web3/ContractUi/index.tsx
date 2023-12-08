@@ -1,17 +1,10 @@
 'use client';
 
-import {
-  ActionIcon,
-  Badge,
-  CloseButton,
-  Group,
-  LoadingOverlay,
-  Tabs,
-} from '@mantine/core';
+import { ActionIcon, Badge, CloseButton, Group, Tabs } from '@mantine/core';
 import { useDidUpdate, useListState, useLocalStorage } from '@mantine/hooks';
-import { useCallback, useState } from 'react';
-import { ContractUiApp } from './ContractUiApp';
+import { useCallback, useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa6';
+import { ContractUiApp } from './ContractUiApp';
 
 interface TabState {
   id: string;
@@ -21,17 +14,10 @@ export const ContractUi: React.FC = () => {
   const [tabStorage, setTabStorage] = useLocalStorage<TabState[]>({
     key: 'contract-ui-tabs',
     defaultValue: [],
-    getInitialValueInEffect: true,
+    getInitialValueInEffect: false,
   });
+  useEffect(() => console.log(tabStorage), [tabStorage]);
   const [tabs, tabsHandlers] = useListState<TabState>(tabStorage);
-  const [loaded, setLoaded] = useState(false);
-
-  useDidUpdate(() => {
-    if (!loaded) {
-      setLoaded(true);
-      tabsHandlers.setState(tabStorage);
-    }
-  }, [tabStorage]);
 
   useDidUpdate(() => {
     setTabStorage(tabs);
@@ -83,42 +69,39 @@ export const ContractUi: React.FC = () => {
 
   return (
     <>
-      <LoadingOverlay visible={!loaded} loaderProps={{ type: 'bars' }} />
-      {loaded && (
-        <Tabs value={activeTab} onChange={changeTab} variant='outline'>
-          <Tabs.List>
-            {tabs.map((tab, idx) => (
-              <Tabs.Tab key={tab.id} value={tab.id}>
-                <Group gap='xs'>
-                  <Badge
-                    variant='dot'
-                    color={tab.id === activeTab ? 'green' : 'gray'}
-                  >
-                    {idx}
-                  </Badge>
-                  <CloseButton
-                    size='sm'
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      removeTab(tab.id);
-                    }}
-                  />
-                </Group>
-              </Tabs.Tab>
-            ))}
-            <Tabs.Tab value='+'>
-              <ActionIcon variant='subtle' color='black'>
-                <FaPlus />
-              </ActionIcon>
+      <Tabs value={activeTab} onChange={changeTab} variant='outline'>
+        <Tabs.List>
+          {tabs.map((tab, idx) => (
+            <Tabs.Tab key={tab.id} value={tab.id}>
+              <Group gap='xs'>
+                <Badge
+                  variant='dot'
+                  color={tab.id === activeTab ? 'green' : 'gray'}
+                >
+                  {idx}
+                </Badge>
+                <CloseButton
+                  size='sm'
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    removeTab(tab.id);
+                  }}
+                />
+              </Group>
             </Tabs.Tab>
-          </Tabs.List>
-          {tabs.map((tab) => (
-            <Tabs.Panel key={tab.id} value={tab.id}>
-              <ContractUiApp id={tab.id} />
-            </Tabs.Panel>
           ))}
-        </Tabs>
-      )}
+          <Tabs.Tab value='+'>
+            <ActionIcon variant='subtle' color='black'>
+              <FaPlus />
+            </ActionIcon>
+          </Tabs.Tab>
+        </Tabs.List>
+        {tabs.map((tab) => (
+          <Tabs.Panel key={tab.id} value={tab.id}>
+            <ContractUiApp id={tab.id} />
+          </Tabs.Panel>
+        ))}
+      </Tabs>
     </>
   );
 };
