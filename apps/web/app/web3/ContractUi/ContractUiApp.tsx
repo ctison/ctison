@@ -1,6 +1,7 @@
 'use client';
 
 import { CodeHighlight } from '@/_ui/CodeHighlight';
+import { TabState } from '@/_ui/OrderableTabs';
 import { chainToChainId } from '@/_ui/WalletProvider';
 import { Web3ConnectButton } from '@/_ui/Web3ConnectButton';
 import abiSchema from '@/public/abi.schema.json';
@@ -37,7 +38,7 @@ import { z } from 'zod';
 
 type Abi = z.infer<typeof AbiParser>;
 
-export const ContractUiApp: React.FC<{ id: string }> = ({ id }) => {
+export const ContractUiApp: React.FC<{ tab: TabState }> = ({ tab: { id } }) => {
   const form = useForm<{ chain: keyof typeof chainToApi; address: string }>({
     initialValues: {
       chain: 'Ethereum',
