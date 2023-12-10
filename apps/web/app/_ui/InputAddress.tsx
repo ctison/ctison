@@ -43,6 +43,7 @@ export const InputAddress = createPolymorphicComponent<
             </ActionIcon>
           </Tooltip>
         }
+        spellCheck={false}
         {...others}
       />
     );

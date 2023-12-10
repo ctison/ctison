@@ -4,6 +4,7 @@ import {
   Accordion,
   Button,
   Fieldset,
+  Group,
   Select,
   Stack,
   Text,
@@ -12,8 +13,12 @@ import { useForm } from '@mantine/form';
 import { useQuery } from '@tanstack/react-query';
 import React, { useMemo } from 'react';
 import { isAddress } from 'viem';
-import { Tab, safeSupportedChains, useSafeApiKit } from '.';
+import { Tab, safeSupportedChains } from '.';
 import { Result } from './Result';
+import { useSafeApiKit } from './useSafeApiKit';
+import { GnosisSafe2 } from 'react-web3-icons';
+
+export const SafeIcon = GnosisSafe2;
 
 export const SafeInfosForm: React.FC<{
   createTab: (tab: Partial<Tab>) => void;
@@ -33,6 +38,7 @@ export const SafeInfosForm: React.FC<{
     () =>
       formOnSubmit((values) => {
         createTab({
+          title: `${values.chain} ${values.safeAddress}`,
           type: 'safe-infos',
           safeAddress: values.safeAddress,
           chain: values.chain,
@@ -44,7 +50,13 @@ export const SafeInfosForm: React.FC<{
   return (
     <Stack>
       <form onSubmit={onSubmit}>
-        <Fieldset legend='Get Safe Infos'>
+        <Fieldset
+          legend={
+            <Group>
+              <SafeIcon /> Get Safe Infos
+            </Group>
+          }
+        >
           <Select
             label='Chain'
             data={Object.keys(safeSupportedChains)}
@@ -52,6 +64,7 @@ export const SafeInfosForm: React.FC<{
             searchable
             nothingFoundMessage='No chain found...'
             checkIconPosition='right'
+            spellCheck={false}
             {...form.getInputProps('chain')}
           />
           <InputAddress

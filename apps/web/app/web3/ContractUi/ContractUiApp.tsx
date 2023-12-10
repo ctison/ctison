@@ -1,7 +1,6 @@
 'use client';
 
 import { CodeHighlight } from '@/_ui/CodeHighlight';
-import { TabState } from '@/_ui/OrderableTabs';
 import { chainToChainId } from '@/_ui/WalletProvider';
 import { Web3ConnectButton } from '@/_ui/Web3ConnectButton';
 import abiSchema from '@/public/abi.schema.json';
@@ -38,7 +37,7 @@ import { z } from 'zod';
 
 type Abi = z.infer<typeof AbiParser>;
 
-export const ContractUiApp: React.FC<{ tab: TabState }> = ({ tab: { id } }) => {
+export const ContractUiApp: React.FC<{ id: string }> = ({ id }) => {
   const form = useForm<{ chain: keyof typeof chainToApi; address: string }>({
     initialValues: {
       chain: 'Ethereum',
@@ -115,12 +114,14 @@ export const ContractUiApp: React.FC<{ tab: TabState }> = ({ tab: { id } }) => {
                 nothingFoundMessage='No chain found...'
                 checkIconPosition='right'
                 disabled={loading || fetchAbi.isPending}
+                spellCheck={false}
                 {...form.getInputProps('chain')}
               />
               <TextInput
                 label='Contract address'
                 placeholder='0x...'
                 disabled={loading || fetchAbi.isPending}
+                spellCheck={false}
                 {...form.getInputProps('address')}
               />
               <Group>

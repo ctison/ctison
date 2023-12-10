@@ -1,13 +1,15 @@
 'use client';
 
-import { OrderableTabs } from '@/_ui/OrderableTabs';
+import { Tabs } from '@/_ui/Tabs/Tabs';
 import { ContractUiApp } from './ContractUiApp';
+import { FaCode } from 'react-icons/fa6';
 
 export const ContractUi: React.FC = () => {
   return (
-    <OrderableTabs
+    <Tabs
       localStorageKey='contract-ui-tabs'
-      Content={ContractUiApp}
+      TitleLeftSection={() => <FaCode />}
+      Content={({ tab }) => <ContractUiApp id={tab.id} />}
       creatable
     />
   );

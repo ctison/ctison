@@ -4,6 +4,7 @@ import {
   Accordion,
   Button,
   Fieldset,
+  Group,
   Select,
   Stack,
   Text,
@@ -11,9 +12,13 @@ import {
 import { useForm } from '@mantine/form';
 import { useQuery } from '@tanstack/react-query';
 import React, { useMemo } from 'react';
+import { FaUser } from 'react-icons/fa';
 import { isAddress } from 'viem';
-import { Tab, safeSupportedChains, useSafeApiKit } from '.';
+import { Tab, safeSupportedChains } from '.';
 import { Result } from './Result';
+import { useSafeApiKit } from './useSafeApiKit';
+
+export const UserIcon = FaUser;
 
 export const UserInfosForm: React.FC<{
   createTab: (tab: Partial<Tab>) => void;
@@ -33,6 +38,7 @@ export const UserInfosForm: React.FC<{
     () =>
       form.onSubmit((values) => {
         createTab({
+          title: `${values.chain} ${values.userAddress}`,
           type: 'user-infos',
           userAddress: values.userAddress,
           chain: values.chain,
@@ -44,7 +50,13 @@ export const UserInfosForm: React.FC<{
   return (
     <Stack>
       <form onSubmit={onSubmit}>
-        <Fieldset legend='Get User Infos'>
+        <Fieldset
+          legend={
+            <Group>
+              <UserIcon /> Get User Infos
+            </Group>
+          }
+        >
           <Select
             label='Chain'
             data={Object.keys(safeSupportedChains)}
@@ -52,6 +64,7 @@ export const UserInfosForm: React.FC<{
             searchable
             nothingFoundMessage='No chain found...'
             checkIconPosition='right'
+            spellCheck={false}
             {...form.getInputProps('chain')}
           />
           <InputAddress
@@ -91,15 +104,6 @@ export const UserInfos: React.FC<{
   });
   return (
     <Stack mt='md' gap='xs'>
-      <Button
-        onClick={async () => {
-          console.log(await safeApiKit.getServiceInfo());
-          console.log(await safeApiKit.getServiceSingletonsInfo());
-          console.log(await safeApiKit.getTokenList());
-        }}
-      >
-        Click
-      </Button>
       <Text fw='bold'>User Address on {chain}</Text>
       <CodeHighlight language='json' code={userAddress} />
       <Accordion

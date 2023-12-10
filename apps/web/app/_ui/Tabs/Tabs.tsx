@@ -12,11 +12,12 @@ import { CSS } from '@dnd-kit/utilities';
 import {
   ActionIcon,
   CloseButton,
+  Tabs as MantineTabs,
+  TabsProps as MantineTabsProps,
   Menu,
-  Tabs,
-  TabsProps,
   TabsTabProps,
   TextInput,
+  Tooltip,
 } from '@mantine/core';
 import {
   useDidUpdate,
@@ -27,39 +28,33 @@ import {
   useSessionStorage,
   useToggle,
 } from '@mantine/hooks';
-import { useCallback } from 'react';
+import React, { forwardRef, useCallback, useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import { HiOutlineTrash } from 'react-icons/hi';
+import { CustomProps, TabState } from '.';
+import { TabsController } from './Controller';
 
-export interface TabState {
-  id: string;
-  title?: string;
-}
-
-export interface CustomProps {
-  tab: TabState;
-  idx: number;
-  active: boolean;
-}
-
-export interface OrderableTabsProps extends Omit<TabsProps, 'children'> {
+export interface TabsProps<T extends TabState = TabState>
+  extends Omit<MantineTabsProps, 'children'> {
   localStorageKey: string;
-  Content: React.JSXElementConstructor<CustomProps>;
+  Content: React.JSXElementConstructor<CustomProps<T>>;
+  TitleLeftSection?: React.JSXElementConstructor<CustomProps<T>>;
   creatable?: boolean;
+  createTab?: () => Omit<T, 'id'>;
+  controller?: TabsController<T>;
 }
 
-export const OrderableTabs = ({
-  localStorageKey,
-  Content,
-  creatable,
-}: OrderableTabsProps) => {
-  const [tabsStorage, setTabsStorage] = useLocalStorage<TabState[]>({
+const _Tabs = <T extends TabState>(
+  { localStorageKey, Content, creatable, controller, ...props }: TabsProps<T>,
+  ref?: React.ForwardedRef<HTMLDivElement>,
+) => {
+  const [tabsStorage, setTabsStorage] = useLocalStorage<T[]>({
     key: localStorageKey,
     defaultValue: [],
     getInitialValueInEffect: false,
   });
 
-  const [tabs, tabsHandlers] = useListState<TabState>(tabsStorage);
+  const [tabs, tabsHandlers] = useListState<T>(tabsStorage);
 
   useDidUpdate(() => {
     setTabsStorage(tabs);
@@ -70,13 +65,19 @@ export const OrderableTabs = ({
     defaultValue: null,
   });
 
-  const createTab = useCallback(() => {
-    const id = `${Date.now()}-${Math.random()}`.replaceAll('.', '');
-    tabsHandlers.append({
-      id,
-    });
-    setActiveTab(id);
-  }, [tabsHandlers, setActiveTab]);
+  const createTab = useCallback(
+    (tab?: Partial<T>) => {
+      const id = `${Date.now()}-${Math.random()}`.replaceAll('.', '');
+      tabsHandlers.append({
+        title: 'Untitled',
+        ...props.createTab?.(),
+        ...tab,
+        id,
+      } as T);
+      setActiveTab(id);
+    },
+    [tabsHandlers, props, setActiveTab],
+  );
 
   const changeTab = useCallback(
     (value: string | null) => {
@@ -124,6 +125,18 @@ export const OrderableTabs = ({
     }),
   );
 
+  useEffect(() => {
+    const createTabListener: Parameters<
+      TabsController<T>['addEventListener']
+    >[1] = (e) => {
+      createTab(e.detail);
+    };
+    controller?.addEventListener('create-tab', createTabListener);
+    return () => {
+      controller?.removeEventListener('create-tab', createTabListener);
+    };
+  });
+
   return (
     <DndContext
       sensors={sensors}
@@ -137,16 +150,17 @@ export const OrderableTabs = ({
         }
       }}
     >
-      <Tabs
+      <MantineTabs
+        ref={ref}
         value={activeTab}
         onChange={changeTab}
         variant='outline'
         activateTabWithKeyboard={false}
       >
-        <Tabs.List>
+        <MantineTabs.List>
           <SortableContext items={tabs.map((_tab, idx) => idx + 1)}>
             {tabs.map((tab, idx) => (
-              <OrderableTab
+              <Tab
                 key={tab.id}
                 value={tab.id}
                 idx={idx + 1}
@@ -161,60 +175,81 @@ export const OrderableTabs = ({
                 }
                 closeTab={() => removeTab(idx)}
               >
-                <TextInput
-                  w={100}
-                  value={tab.title ?? 'Untitled'}
-                  pointer={true}
-                  variant='unstyled'
-                  onMouseDown={(e) => e.preventDefault()}
-                  onDoubleClick={(e) => {
-                    e.currentTarget.focus();
-                    e.currentTarget.select();
-                  }}
-                  onChange={(e) => {
-                    tabsHandlers.setItem(idx, {
-                      ...tab,
-                      title: e.currentTarget.value,
-                    });
-                  }}
-                  onKeyDown={(e) => {
-                    e.stopPropagation();
-                    if (e.key === 'Enter') {
-                      e.currentTarget.blur();
+                <Tooltip
+                  label={`${tab.title} (Double click to edit)`}
+                  withArrow
+                  multiline
+                  openDelay={500}
+                >
+                  <TextInput
+                    w={100}
+                    value={tab.title}
+                    pointer={true}
+                    variant='unstyled'
+                    onMouseDown={(e) => e.preventDefault()}
+                    onDoubleClick={(e) => {
+                      e.currentTarget.focus();
+                      e.currentTarget.select();
+                    }}
+                    onChange={(e) => {
+                      tabsHandlers.setItem(idx, {
+                        ...tab,
+                        title: e.currentTarget.value,
+                      });
+                    }}
+                    onKeyDown={(e) => {
+                      e.stopPropagation();
+                      if (e.key === 'Enter') {
+                        e.currentTarget.blur();
+                      }
+                    }}
+                    styles={{
+                      input: {
+                        textOverflow: 'ellipsis',
+                      },
+                    }}
+                    leftSection={
+                      props.TitleLeftSection ? (
+                        <props.TitleLeftSection
+                          idx={idx}
+                          tab={tab}
+                          active={activeTab === tab.id}
+                        />
+                      ) : undefined
                     }
-                  }}
-                />
-              </OrderableTab>
+                  />
+                </Tooltip>
+              </Tab>
             ))}
           </SortableContext>
           {creatable && (
-            <Tabs.Tab value='+'>
+            <MantineTabs.Tab value='+'>
               <ActionIcon component='div' variant='subtle' color='gray'>
                 <FaPlus />
               </ActionIcon>
-            </Tabs.Tab>
+            </MantineTabs.Tab>
           )}
-        </Tabs.List>
+        </MantineTabs.List>
         {tabs.map((tab, idx) => (
-          <Tabs.Panel key={tab.id} value={tab.id}>
+          <MantineTabs.Panel key={tab.id} value={tab.id}>
             <Content idx={idx} tab={tab} active={activeTab === tab.id} />
-          </Tabs.Panel>
+          </MantineTabs.Panel>
         ))}
-      </Tabs>
+      </MantineTabs>
     </DndContext>
   );
 };
 
-interface OrderableTabProps extends TabsTabProps {
+export const Tabs = forwardRef(_Tabs) as <T extends TabState = TabState>(
+  props: React.PropsWithRef<TabsProps<T>>,
+) => React.ReactElement;
+
+interface TabProps extends TabsTabProps {
   idx: number;
   closeTab: () => void;
 }
 
-const OrderableTab: React.FC<OrderableTabProps> = ({
-  idx,
-  closeTab,
-  ...props
-}) => {
+const Tab: React.FC<TabProps> = ({ idx, closeTab, ...props }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({
       id: idx,
@@ -240,7 +275,7 @@ const OrderableTab: React.FC<OrderableTabProps> = ({
       shadow='md'
     >
       <Menu.Target>
-        <Tabs.Tab
+        <MantineTabs.Tab
           ref={ref}
           component='div'
           {...props}
