@@ -9,8 +9,8 @@
     "update": "forge update"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "5.0.0",
-    "@openzeppelin/contracts-upgradeable": "5.0.0",
-    "@thirdweb-dev/contracts": "3.10.3"
+    "@openzeppelin/contracts": "5.0.1",
+    "@openzeppelin/contracts-upgradeable": "5.0.1",
+    "@thirdweb-dev/contracts": "3.10.4"
   }
 }

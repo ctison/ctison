@@ -2,6 +2,7 @@
 
 import {
   Container,
+  Group,
   Space,
   Tabs,
   TabsList,
@@ -20,7 +21,7 @@ export const Content: React.FC<{ slug: string }> = ({ slug }) => {
   });
 
   return (
-    <Container size='xl' p='xl'>
+    <Container size='xl' pt='md' pb='xl'>
       <Tabs
         value={selectedTab}
         variant='default'
@@ -29,10 +30,13 @@ export const Content: React.FC<{ slug: string }> = ({ slug }) => {
           setSelectedTab(value!);
         }}
       >
-        <TabsList>
+        <TabsList pt='sm' justify='center'>
           {tabs.map((tab) => (
-            <TabsTab key={tab.slug} value={tab.slug}>
-              {tab.label}
+            <TabsTab key={tab.slug} value={tab.slug} fw={500}>
+              <Group gap={5}>
+                {tab.icon && <tab.icon />}
+                {tab.label}
+              </Group>
             </TabsTab>
           ))}
         </TabsList>

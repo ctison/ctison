@@ -3,21 +3,21 @@
 import { EIP6963Connector, walletConnectProvider } from '@web3modal/wagmi';
 import { createWeb3Modal } from '@web3modal/wagmi/react';
 import {
-  EthereumMono as IconEthereum,
   Arbitrum as IconArbitrum,
   Avalanche as IconAvalanche,
   BinanceSmartChain as IconBinanceSmartChain,
+  EthereumMono as IconEthereum,
   Polygon2 as IconPolygon,
 } from 'react-web3-icons';
 import { WagmiConfig, configureChains, createConfig } from 'wagmi';
 import {
-  goerli,
-  mainnet,
-  sepolia,
   arbitrum,
   avalanche,
   bsc,
+  goerli,
+  mainnet,
   polygon,
+  sepolia,
 } from 'wagmi/chains';
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet';
 import { InjectedConnector } from 'wagmi/connectors/injected';

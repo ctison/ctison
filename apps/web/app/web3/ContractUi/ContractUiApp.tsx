@@ -114,12 +114,14 @@ export const ContractUiApp: React.FC<{ id: string }> = ({ id }) => {
                 nothingFoundMessage='No chain found...'
                 checkIconPosition='right'
                 disabled={loading || fetchAbi.isPending}
+                spellCheck={false}
                 {...form.getInputProps('chain')}
               />
               <TextInput
                 label='Contract address'
                 placeholder='0x...'
                 disabled={loading || fetchAbi.isPending}
+                spellCheck={false}
                 {...form.getInputProps('address')}
               />
               <Group>

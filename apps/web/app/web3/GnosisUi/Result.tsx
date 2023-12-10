@@ -1,7 +1,10 @@
+'use client';
+
 import { CopyButton } from '@/_ui/CopyButton';
 import {
   Accordion,
   ActionIcon,
+  Alert,
   Box,
   Center,
   Group,
@@ -12,7 +15,7 @@ import {
 import { Editor } from '@monaco-editor/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import { format } from 'date-fns';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { MdOutlineRefresh } from 'react-icons/md';
 
 export const Result: React.FC<{
@@ -24,6 +27,9 @@ export const Result: React.FC<{
     () => JSON.stringify(query.data, undefined, 2),
     [query.data],
   );
+  useEffect(() => {
+    if (query.isError) console.log(query.error);
+  }, [query.error, query.isError]);
   return (
     <Accordion.Item value={title}>
       <Accordion.Control>
@@ -38,13 +44,20 @@ export const Result: React.FC<{
       </Accordion.Control>
       <Accordion.Panel>
         <Group>
-          <Text size='xs' c='dimmed'>
+          <Text size='xs' c={query.isError ? 'red' : 'dimmed'}>
             {query.isPending
               ? 'Fetching'
-              : `Fetched at ${format(
-                  query.dataUpdatedAt,
-                  'u/LLL/dd HH:mm:ss',
-                )}`}
+              : query.isSuccess
+                ? `Fetched at ${format(
+                    query.dataUpdatedAt,
+                    'HH:mm:ss u/LLL/dd',
+                  )}`
+                : query.isError
+                  ? `Error at ${format(
+                      query.errorUpdatedAt,
+                      'HH:mm:ss u/LLL/dd',
+                    )}`
+                  : ''}
           </Text>
           <ActionIcon
             variant='subtle'
@@ -56,7 +69,15 @@ export const Result: React.FC<{
           </ActionIcon>
           <CopyButton value={data} />
         </Group>
-        {query.isSuccess ? (
+        {query.isPending ? (
+          <Center>
+            <Loader type='dots' size='sm' />
+          </Center>
+        ) : query.isError ? (
+          <Alert color='red' title={`${query.error.name}`}>
+            {query.error.message}
+          </Alert>
+        ) : query.isSuccess ? (
           <Box
             style={{ resize: 'vertical', overflow: 'auto' }}
             mih={300}
@@ -79,9 +100,7 @@ export const Result: React.FC<{
             />
           </Box>
         ) : (
-          <Center>
-            <Loader type='dots' size='sm' />
-          </Center>
+          <>{}</>
         )}
       </Accordion.Panel>
     </Accordion.Item>
