@@ -12,11 +12,11 @@ import {
 import { useForm } from '@mantine/form';
 import { useQuery } from '@tanstack/react-query';
 import React, { useMemo } from 'react';
+import { GnosisSafe2 } from 'react-web3-icons';
 import { isAddress } from 'viem';
 import { Tab, safeSupportedChains } from '.';
 import { Result } from './Result';
 import { useSafeApiKit } from './useSafeApiKit';
-import { GnosisSafe2 } from 'react-web3-icons';
 
 export const SafeIcon = GnosisSafe2;
 
@@ -125,12 +125,15 @@ export const SafeInfos: React.FC<{
 
   return (
     <Stack mt='md' gap='xs'>
-      <Text fw='bold'>Safe Address on {chain}</Text>
-      <CodeHighlight language='json' code={safeAddress} />
+      <Group justify='center'>
+        <SafeIcon />
+        <Text fw='bold'>{chain}</Text>
+        <CodeHighlight language='json' code={safeAddress} />
+      </Group>
       <Accordion
         defaultValue={['Safe Infos']}
         chevronPosition='left'
-        variant='separated'
+        variant='contained'
         multiple={true}
       >
         <Result id={id} title='Safe Infos' query={safeInfos} />

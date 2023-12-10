@@ -24,7 +24,6 @@ import { MuseoModerno } from 'next/font/google';
 import { usePathname, useRouter } from 'next/navigation';
 import { memo, useEffect, useMemo } from 'react';
 import { IoSearch } from 'react-icons/io5';
-import { VscGithub } from 'react-icons/vsc';
 import { Footer } from './Footer';
 import { links } from './links';
 

@@ -104,12 +104,15 @@ export const UserInfos: React.FC<{
   });
   return (
     <Stack mt='md' gap='xs'>
-      <Text fw='bold'>User Address on {chain}</Text>
-      <CodeHighlight language='json' code={userAddress} />
+      <Group justify='center'>
+        <UserIcon />
+        <Text fw='bold'>{chain}</Text>
+        <CodeHighlight language='json' code={userAddress} />
+      </Group>
       <Accordion
         defaultValue={['Safes']}
         chevronPosition='left'
-        variant='separated'
+        variant='contained'
         multiple={true}
       >
         <Result id={id} title='Safes' query={safes} />

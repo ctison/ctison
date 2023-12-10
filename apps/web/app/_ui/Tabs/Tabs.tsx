@@ -137,6 +137,10 @@ const _Tabs = <T extends TabState>(
     };
   });
 
+  if (tabs.length === 0 && !creatable) {
+    return null;
+  }
+
   return (
     <DndContext
       sensors={sensors}

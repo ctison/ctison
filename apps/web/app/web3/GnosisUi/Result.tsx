@@ -1,3 +1,5 @@
+'use client';
+
 import { CopyButton } from '@/_ui/CopyButton';
 import {
   Accordion,

@@ -18,6 +18,9 @@ import { useCallback, useState } from 'react';
 import { IoTrashBinOutline } from 'react-icons/io5';
 import { SignMessage } from './SignMessage';
 import { VerifyMessage } from './VerifyMessage';
+import { AiFillEdit } from 'react-icons/ai';
+
+export const SignIcon = AiFillEdit;
 
 export type History = {
   id: string;
