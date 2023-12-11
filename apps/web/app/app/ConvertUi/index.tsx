@@ -2,19 +2,23 @@
 
 import { CodeHighlight } from '@/_ui/CodeHighlight';
 import {
+  ActionIcon,
   Alert,
   Button,
   Fieldset,
   Group,
   Loader,
   Stack,
+  Text,
   TextInput,
+  ThemeIcon,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useMutation } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { FaCalculator } from 'react-icons/fa';
 import { PiMathOperationsFill } from 'react-icons/pi';
+import { VscGithub } from 'react-icons/vsc';
 
 export const ConvertUiIcon = FaCalculator;
 
@@ -47,8 +51,15 @@ export const ConvertUi: React.FC = () => {
       <Fieldset
         legend={
           <Group gap='xs'>
-            <PiMathOperationsFill />
-            Base Converter
+            <ThemeIcon variant='subtle' color='black'>
+              <PiMathOperationsFill size='70%' />
+            </ThemeIcon>
+            <Text fw='bold'>Base Converter</Text>
+            <a href='https://github.com/ctison/base-converter' target='_blank'>
+              <ActionIcon size='md' variant='subtle' color='black'>
+                <VscGithub size='70%' />
+              </ActionIcon>
+            </a>
           </Group>
         }
       >

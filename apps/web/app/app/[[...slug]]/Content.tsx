@@ -26,7 +26,7 @@ export const Content: React.FC<{ slug: string }> = ({ slug }) => {
         value={selectedTab}
         variant='default'
         onChange={(value) => {
-          window.history.replaceState(selectedTab, '', `/web3/${value}`);
+          window.history.replaceState(selectedTab, '', `/app/${value}`);
           setSelectedTab(value!);
         }}
       >
