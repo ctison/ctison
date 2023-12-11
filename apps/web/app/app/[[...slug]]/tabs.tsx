@@ -1,4 +1,5 @@
 import { ContractUi, ContractUiIcon } from '../ContractUi';
+import { ConvertUi, ConvertUiIcon } from '../ConvertUi';
 import { GnosisUi } from '../GnosisUi';
 import { SafeIcon } from '../GnosisUi/SafeInfos';
 import { SignIcon, SignUi } from '../SignUi';
@@ -9,6 +10,12 @@ export const tabs: {
   children: React.FC;
   icon?: React.FC;
 }[] = [
+  {
+    slug: 'convert',
+    label: 'Convert',
+    children: ConvertUi,
+    icon: ConvertUiIcon,
+  },
   {
     slug: 'contract',
     label: 'Contract',

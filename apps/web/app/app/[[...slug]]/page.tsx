@@ -14,7 +14,7 @@ export default function Page({
 }) {
   if (slug !== undefined && slug.length > 0) {
     if (slug.length > 1 || tabs.findIndex((tab) => tab.slug === slug[0]) === -1)
-      permanentRedirect('/web3');
+      permanentRedirect('/app');
   }
 
   return <Content slug={slug?.[0] ?? tabs[0].slug} />;
