@@ -10,6 +10,7 @@
     "lint:": "next lint --max-warnings=0"
   },
   "dependencies": {
+    "@binance/connector-typescript": "0.3.4",
     "@ctison/base-converter": "2.0.0",
     "@dnd-kit/core": "6.1.0",
     "@dnd-kit/modifiers": "7.0.0",
@@ -29,6 +30,8 @@
     "@splinetool/runtime": "0.9.521",
     "@tanstack/react-query": "5.13.4",
     "@web3modal/wagmi": "3.4.0",
+    "ag-grid-community": "31.0.1",
+    "ag-grid-react": "31.0.1",
     "airtable": "0.12.2",
     "bright": "0.8.4",
     "contentlayer": "0.3.4",
@@ -49,6 +52,7 @@
     "viem": "1.19.13",
     "wagmi": "1.4.7",
     "zod": "3.22.4",
+    "zod-form-data": "2.0.2",
     "zustand": "4.4.7"
   },
   "devDependencies": {
