@@ -1,10 +1,9 @@
 'use client';
 
-import { CodeHighlight } from '@/_ui/CodeHighlight';
 import { chainToChainId } from '@/_ui/WalletProvider';
 import { Web3ConnectButton } from '@/_ui/Web3ConnectButton';
 import abiSchema from '@/public/abi.schema.json';
-import { InlineCodeHighlight } from '@mantine/code-highlight';
+import { CodeHighlight, InlineCodeHighlight } from '@mantine/code-highlight';
 import {
   Accordion,
   ActionIcon,
