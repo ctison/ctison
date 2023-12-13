@@ -1,5 +1,5 @@
-import { CodeHighlight } from '@/_ui/CodeHighlight';
 import { Web3ConnectButton } from '@/_ui/Web3ConnectButton';
+import { CodeHighlight } from '@mantine/code-highlight';
 import { Fieldset, Textarea } from '@mantine/core';
 import { useMutation } from '@tanstack/react-query';
 import { useCallback, useState } from 'react';

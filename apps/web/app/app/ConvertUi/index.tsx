@@ -1,6 +1,6 @@
 'use client';
 
-import { CodeHighlight } from '@/_ui/CodeHighlight';
+import { CodeHighlight } from '@mantine/code-highlight';
 import {
   ActionIcon,
   Alert,

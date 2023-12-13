@@ -1,4 +1,3 @@
-import { CodeHighlight } from '@/_ui/CodeHighlight';
 import { InputAddress } from '@/_ui/InputAddress';
 import {
   Accordion,
@@ -17,6 +16,7 @@ import { isAddress } from 'viem';
 import { Tab, safeSupportedChains } from '.';
 import { Result } from './Result';
 import { useSafeApiKit } from './useSafeApiKit';
+import { CodeHighlight } from '@mantine/code-highlight';
 
 export const UserIcon = FaUser;
 

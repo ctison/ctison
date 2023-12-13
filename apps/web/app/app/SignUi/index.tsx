@@ -1,6 +1,5 @@
 'use client';
 
-import { CodeHighlight } from '@/_ui/CodeHighlight';
 import {
   Alert,
   Button,
@@ -19,6 +18,7 @@ import { IoTrashBinOutline } from 'react-icons/io5';
 import { SignMessage } from './SignMessage';
 import { VerifyMessage } from './VerifyMessage';
 import { AiFillEdit } from 'react-icons/ai';
+import { CodeHighlight } from '@mantine/code-highlight';
 
 export const SignIcon = AiFillEdit;
 

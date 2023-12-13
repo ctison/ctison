@@ -1,5 +1,6 @@
 'use client';
 
+import { CodeHighlight } from '@mantine/code-highlight';
 import { Anchor, createTheme, useMantineTheme } from '@mantine/core';
 
 export const theme = createTheme({
@@ -8,6 +9,18 @@ export const theme = createTheme({
     Anchor: Anchor.extend({
       defaultProps: {
         underline: 'never',
+      },
+    }),
+    CodeHighlight: CodeHighlight.extend({
+      defaultProps: {
+        copyLabel: 'Copy',
+        pr: 'lg',
+        styles: {
+          code: {
+            wordBreak: 'break-all',
+            whiteSpace: 'initial',
+          },
+        },
       },
     }),
   },
