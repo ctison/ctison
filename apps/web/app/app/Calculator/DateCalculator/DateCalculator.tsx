@@ -150,9 +150,9 @@ export const DateCalculator: React.FC<DateCalculatorProps> = () => {
         </Group>
       }
     >
-      <Flex justify='stretch' align='stretch'>
-        <Fieldset legend='Select date and time' pb='xs'>
-          <Stack align='center' h='100%' maw={260} gap={5}>
+      <Flex justify='stretch' align='stretch' wrap='wrap'>
+        <Fieldset legend='Select date and time' pb='xs' w='100%'>
+          <Stack align='center' h='100%' gap={5}>
             <DatePicker {...form.getInputProps('date')} />
             <Group wrap='nowrap'>
               <TimeInput
@@ -220,29 +220,31 @@ export const DateCalculator: React.FC<DateCalculatorProps> = () => {
           </Stack>
         </Fieldset>
       </Flex>
-      <Autocomplete
-        label={
-          <Group gap={5}>
-            Output format
-            <Tooltip label='Format documentation'>
-              <ActionIcon
-                component='a'
-                variant='subtle'
-                href='https://day.js.org/docs/en/display/format'
-                referrerPolicy='no-referrer'
-                target='_blank'
-                color='gray'
-              >
-                <FaCircleInfo />
-              </ActionIcon>
-            </Tooltip>
-          </Group>
-        }
-        data={dateFormat as unknown as string[]}
-        filter={selectFilter}
-        {...form.getInputProps('format')}
-      />
-      {result && <CodeHighlight code={result} language='text' mt='md' />}
+      <Fieldset legend='Output'>
+        <Autocomplete
+          label={
+            <Group gap={5}>
+              Format
+              <Tooltip label='Format documentation'>
+                <ActionIcon
+                  component='a'
+                  variant='subtle'
+                  href='https://day.js.org/docs/en/display/format'
+                  referrerPolicy='no-referrer'
+                  target='_blank'
+                  color='gray'
+                >
+                  <FaCircleInfo />
+                </ActionIcon>
+              </Tooltip>
+            </Group>
+          }
+          data={dateFormat as unknown as string[]}
+          filter={selectFilter}
+          {...form.getInputProps('format')}
+        />
+        {result && <CodeHighlight code={result} language='text' mt='md' />}
+      </Fieldset>
     </Fieldset>
   );
 };
