@@ -1,13 +1,4 @@
-import {
-  ActionIcon,
-  Box,
-  Center,
-  Container,
-  Group,
-  Stack,
-  Text,
-  Tooltip,
-} from '@mantine/core';
+import { ActionIcon, Center, Group, Stack, Text, Tooltip } from '@mantine/core';
 import { VscGithub } from 'react-icons/vsc';
 import { DeBankMono } from 'react-web3-icons';
 

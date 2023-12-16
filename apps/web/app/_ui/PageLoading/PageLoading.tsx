@@ -1,6 +1,9 @@
+import classes from './PageLoading.module.css';
 import { Loader, Stack } from '@mantine/core';
 
-export const PageLoading: React.FC = () => {
+export interface PageLoadingProps {}
+
+export const PageLoading: React.FC<PageLoadingProps> = () => {
   return (
     <Stack
       justify='center'

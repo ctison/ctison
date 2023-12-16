@@ -1,9 +1,9 @@
+import { Web3InputAddress } from '@/_ui/Web3InputAddress';
 import { Button, Fieldset, Group, Textarea, Title } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useMutation } from '@tanstack/react-query';
 import { useCallback, useMemo } from 'react';
 import { isAddress, isHex, verifyMessage } from 'viem';
-import { InputAddress } from '@/_ui/InputAddress';
 import { History } from '.';
 
 export const VerifyMessage: React.FC<{
@@ -57,7 +57,7 @@ export const VerifyMessage: React.FC<{
       )}
     >
       <Fieldset legend='Verify a message'>
-        <InputAddress
+        <Web3InputAddress
           setAddress={useCallback(
             (address) => form.setFieldValue('address', address),
             [form],

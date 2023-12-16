@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { links } from '@/_ui/links';
+import { links } from '@/_layout/links';
 import { allPosts } from 'contentlayer/generated';
 
 export default function sitemap(): MetadataRoute.Sitemap {

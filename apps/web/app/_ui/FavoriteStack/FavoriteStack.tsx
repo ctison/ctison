@@ -18,6 +18,16 @@ import {
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
+export interface FavoriteStackProps {}
+
+export const FavoriteStack: React.FC<FavoriteStackProps> = () => {
+  return (
+    <ReactFlowProvider>
+      <FavoriteStackInner />
+    </ReactFlowProvider>
+  );
+};
+
 let initialNodes: Node[] = [
   {
     id: 'app-web',
@@ -60,6 +70,7 @@ let initialNodes: Node[] = [
     targetPosition: Position.Left,
   },
 ];
+
 const initialEdges: Edge[] = [
   { id: 'app-desktop->api', source: 'app-desktop', target: 'api' },
   { id: 'app-mobile->api', source: 'app-mobile', target: 'api' },
@@ -70,17 +81,9 @@ const initialEdges: Edge[] = [
   { id: 'microservice->database', source: 'microservice', target: 'database' },
 ];
 
-export const FavoriteStack: React.FC = () => {
-  return (
-    <ReactFlowProvider>
-      <FavoriteStackInner />
-    </ReactFlowProvider>
-  );
-};
-
 const FavoriteStackInner: React.FC = () => {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [nodes, _setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [edges, _setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
   const { fitView } = useReactFlow();
   const { width: viewportWidth, height: viewportHeight } = useViewportSize();

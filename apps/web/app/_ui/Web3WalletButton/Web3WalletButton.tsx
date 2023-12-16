@@ -4,7 +4,9 @@ import { Button, Group, Image, Indicator, Stack, Text } from '@mantine/core';
 import { useWeb3Modal } from '@web3modal/wagmi/react';
 import { useCallback, useMemo } from 'react';
 import { useAccount, useBalance, useEnsName, useNetwork } from 'wagmi';
-import { chainIdToIcon } from './WalletProvider';
+import { chainIdToIcon } from '../../_layout/Web3Provider';
+
+export interface Web3WalletButtonProps {}
 
 export const Web3WalletButton: React.FC = () => {
   const { address, isConnected } = useAccount();

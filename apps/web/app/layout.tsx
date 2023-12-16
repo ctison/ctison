@@ -1,19 +1,20 @@
-import './layout.css';
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/nprogress/styles.css';
 import '@mantine/spotlight/styles.css';
+import './layout.css';
 
-import { AppShell } from './_ui/AppShell';
-import { NavigationProgress } from '@/_ui/NavigationProgress';
+import { NavigationProgress } from '@/_layout/NavigationProgress';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
-import { WalletProvider } from './_ui/WalletProvider';
+import { AppShell } from './_layout/AppShell';
+import { ReactQueryProvider } from './_layout/ReactQueryProvider';
+import { Web3Provider } from './_layout/Web3Provider';
+import { WindowExpando } from './_layout/WindowExpando';
 import { theme } from './theme';
-import { WindowExpando } from './_ui/WindowExpando';
-import { ReactQueryProvider } from './_ui/ReactQueryProvider';
+import { Spotlight } from './_layout/Spotlight';
 
 export const metadata: Metadata = {
   title: {
@@ -48,16 +49,17 @@ export default function RootLayout({
       </head>
       <body>
         <ReactQueryProvider>
-          <WalletProvider>
+          <Web3Provider>
             <WindowExpando />
             <MantineProvider theme={theme}>
               <Suspense fallback={null}>
                 <NavigationProgress />
               </Suspense>
               <Notifications />
+              <Spotlight />
               <AppShell>{children}</AppShell>
             </MantineProvider>
-          </WalletProvider>
+          </Web3Provider>
         </ReactQueryProvider>
       </body>
     </html>

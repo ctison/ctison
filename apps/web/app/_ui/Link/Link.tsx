@@ -1,8 +1,8 @@
 'use client';
 
 import {
+  completeNavigationProgress,
   startNavigationProgress,
-  stopNavigationProgress,
 } from '@mantine/nprogress';
 import NextLink, { LinkProps } from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -18,7 +18,7 @@ export const Link = forwardRef<
       ref={ref}
       onClick={() => {
         if (pathname !== props.href) startNavigationProgress();
-        else stopNavigationProgress();
+        else completeNavigationProgress();
       }}
       {...props}
     />

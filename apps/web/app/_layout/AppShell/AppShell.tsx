@@ -8,33 +8,25 @@ import {
   Group,
   AppShell as MantineAppShell,
   NavLink,
-  Skeleton,
   Stack,
   Text,
 } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
-import {
-  Spotlight as MantineSpotlight,
-  SpotlightActionData,
-  spotlight,
-} from '@mantine/spotlight';
+import { spotlight } from '@mantine/spotlight';
 
-import dynamic from 'next/dynamic';
+import { NoSsrWeb3WalletButton } from '@/_ui/Web3WalletButton';
 import { MuseoModerno } from 'next/font/google';
-import { usePathname, useRouter } from 'next/navigation';
-import { memo, useEffect, useMemo } from 'react';
+import { usePathname } from 'next/navigation';
+import { useEffect, useMemo } from 'react';
 import { IoSearch } from 'react-icons/io5';
 import { Footer } from './Footer';
 import { links } from './links';
 
-const Web3ConnectButton = dynamic(
-  () => import('./Web3WalletButton').then((m) => m.Web3WalletButton),
-  { ssr: false, loading: () => <Skeleton h={42} /> },
-);
-
 const brandFont = MuseoModerno({ subsets: ['latin'], weight: '600' });
 
-export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
+export interface AppShellProps extends React.PropsWithChildren {}
+
+export const AppShell: React.FC<AppShellProps> = ({ children }) => {
   const isMobile = useMediaQuery(`(max-width: 48em)`);
   const [navbarOpened, { toggle: toggleNavbar, close: closeNavbar }] =
     useDisclosure(!isMobile);
@@ -49,7 +41,6 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
 
   return (
     <>
-      <Spotlight />
       <MantineAppShell
         header={{ height: { base: 64, sm: 76, lg: 76 } }}
         navbar={{
@@ -96,7 +87,7 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
             <MantineAppShell.Navbar>
               <MantineAppShell.Section grow>
                 <Stack p='sm'>
-                  <Web3ConnectButton />
+                  <NoSsrWeb3WalletButton />
                   <Button
                     onClick={() => spotlight.open()}
                     variant='default'
@@ -157,38 +148,3 @@ export const AppShell: React.FC<React.PropsWithChildren> = ({ children }) => {
     </>
   );
 };
-
-export const Spotlight = memo(function Spotlight() {
-  const router = useRouter();
-
-  const spotlightActions: SpotlightActionData[] = useMemo(
-    () =>
-      links.map(
-        ({ href, label, Icon }) =>
-          ({
-            id: href,
-            label: label,
-            onClick: () => router.push(href),
-            description: href,
-            leftSection: <Icon />,
-          }) satisfies SpotlightActionData,
-      ),
-    [router],
-  );
-  return (
-    <MantineSpotlight
-      actions={spotlightActions}
-      highlightQuery
-      nothingFound='Nothing found...'
-      styles={{
-        content: {
-          border: 'solid 1px grey',
-        },
-      }}
-      searchProps={{
-        leftSection: <IoSearch fill='var(--mantine-color-placeholder)' />,
-        placeholder: 'Search',
-      }}
-    />
-  );
-});
