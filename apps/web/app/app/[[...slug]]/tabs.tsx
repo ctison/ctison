@@ -1,5 +1,5 @@
 import { ContractUi, ContractUiIcon } from '../ContractUi';
-import { ConvertUi, ConvertUiIcon } from '../ConvertUi';
+import { Calculator, CalculatorIcon } from '../Calculator';
 import { GnosisUi } from '../GnosisUi';
 import { SafeIcon } from '../GnosisUi/SafeInfos';
 import { SignIcon, SignUi } from '../SignUi';
@@ -14,8 +14,8 @@ export const tabs: {
   {
     slug: 'convert',
     label: 'Convert',
-    children: ConvertUi,
-    icon: ConvertUiIcon,
+    children: Calculator,
+    icon: CalculatorIcon,
   },
   {
     slug: 'contract',

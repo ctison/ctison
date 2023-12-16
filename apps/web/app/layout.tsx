@@ -2,7 +2,7 @@ import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/nprogress/styles.css';
 import '@mantine/spotlight/styles.css';
-import './layout.css';
+import './global.css';
 
 import { NavigationProgress } from '@/_layout/NavigationProgress';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
