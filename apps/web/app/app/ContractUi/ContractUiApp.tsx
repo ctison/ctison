@@ -1,7 +1,7 @@
 'use client';
 
-import { chainToChainId } from '@/_ui/WalletProvider';
-import { Web3ConnectButton } from '@/_ui/Web3ConnectButton';
+import { chainToChainId } from '@/_layout/Web3Provider';
+import { Web3ButtonConnect } from '@/_ui/Web3ButtonConnect';
 import abiSchema from '@/public/abi.schema.json';
 import { CodeHighlight, InlineCodeHighlight } from '@mantine/code-highlight';
 import {
@@ -327,7 +327,7 @@ export const ContractFunction: React.FC<ContractFunctionProps> = ({
                 />
               );
             })}
-            <Web3ConnectButton
+            <Web3ButtonConnect
               disableConnect={isReadFn}
               chainId={chainId}
               type='submit'
@@ -336,7 +336,7 @@ export const ContractFunction: React.FC<ContractFunctionProps> = ({
               loading={interactContract.isPending}
             >
               {isReadFn ? 'Read' : 'Write'}
-            </Web3ConnectButton>
+            </Web3ButtonConnect>
             {interactContract.error && (
               <Alert
                 title={interactContract.error.name}

@@ -22,6 +22,7 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/require-await': 'off',
+        '@typescript-eslint/switch-exhaustiveness-check': 'error',
       },
     },
   ],

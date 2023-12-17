@@ -16,6 +16,7 @@
   "cSpell.words": [
     "airtable",
     "arbitrum",
+    "clsx",
     "contentlayer",
     "devcontainer",
     "Devdotto",
@@ -40,6 +41,13 @@
     "windi",
     "windicss",
     "zora"
+  ],
+  "cssVariables.lookupFiles": [
+    "**/*.css",
+    "**/*.scss",
+    "**/*.sass",
+    "**/*.less",
+    "node_modules/@mantine/core/styles.css"
   ],
   "editor.formatOnSave": true,
   "search.exclude": {

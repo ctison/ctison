@@ -1,4 +1,4 @@
-import { Web3ConnectButton } from '@/_ui/Web3ConnectButton';
+import { Web3ButtonConnect } from '@/_ui/Web3ButtonConnect';
 import { CodeHighlight } from '@mantine/code-highlight';
 import { Fieldset, Textarea } from '@mantine/core';
 import { useMutation } from '@tanstack/react-query';
@@ -50,7 +50,7 @@ export const SignMessage: React.FC<{
         placeholder='Type a message to sign here.'
         required
       />
-      <Web3ConnectButton
+      <Web3ButtonConnect
         mt='lg'
         miw={124}
         onClick={handleSign}
@@ -58,7 +58,7 @@ export const SignMessage: React.FC<{
         disabled={message.length === 0}
       >
         Sign
-      </Web3ConnectButton>
+      </Web3ButtonConnect>
       {signMessage.data && (
         <CodeHighlight mt='lg' code={signMessage.data} language='json' />
       )}

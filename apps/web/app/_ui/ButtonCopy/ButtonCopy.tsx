@@ -1,3 +1,4 @@
+import classes from './ButtonCopy.module.css';
 import {
   ActionIcon,
   Popover,
@@ -8,7 +9,11 @@ import { useClipboard } from '@mantine/hooks';
 import { useCallback } from 'react';
 import { IoCopyOutline } from 'react-icons/io5';
 
-export const CopyButton: React.FC<{ value: string }> = ({ value }) => {
+export interface ButtonCopyProps {
+  value: string;
+}
+
+export const CopyButton: React.FC<ButtonCopyProps> = ({ value }) => {
   const clipboard = useClipboard();
   const copy = useCallback(() => {
     clipboard.copy(value);

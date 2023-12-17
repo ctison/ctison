@@ -1,10 +1,11 @@
 'use client';
 
 import { CodeHighlight } from '@mantine/code-highlight';
-import { Anchor, createTheme, useMantineTheme } from '@mantine/core';
+import { Anchor, createTheme } from '@mantine/core';
 
 export const theme = createTheme({
-  primaryShade: 6,
+  primaryShade: 5,
+  cursorType: 'pointer',
   components: {
     Anchor: Anchor.extend({
       defaultProps: {
@@ -25,8 +26,3 @@ export const theme = createTheme({
     }),
   },
 });
-
-export function usePrimaryColor() {
-  const theme = useMantineTheme();
-  return theme.colors[theme.primaryColor][theme.primaryShade as number];
-}

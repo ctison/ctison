@@ -1,5 +1,6 @@
 'use client';
 
+import classes from './BaseConverter.module.css';
 import { CodeHighlight } from '@mantine/code-highlight';
 import {
   ActionIcon,
@@ -21,8 +22,9 @@ import { PiMathOperationsFill } from 'react-icons/pi';
 import { VscGithub } from 'react-icons/vsc';
 
 export const ConvertUiIcon = FaCalculator;
+export interface BaseConverterProps {}
 
-export const ConvertUi: React.FC = () => {
+export const BaseConverter: React.FC<BaseConverterProps> = () => {
   const { onSubmit: formOnSubmit, ...form } = useForm({
     initialValues: {
       number: '51966',
@@ -79,7 +81,7 @@ export const ConvertUi: React.FC = () => {
             label='To Base'
             {...form.getInputProps('toBase')}
           />
-          <Button miw={200} style={{ alignSelf: 'flex-start' }} type='submit'>
+          <Button miw={200} className={classes['submit-button']} type='submit'>
             Convert
           </Button>
           {convertBase.isPending ? (

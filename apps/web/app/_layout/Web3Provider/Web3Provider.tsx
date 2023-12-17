@@ -66,7 +66,7 @@ createWeb3Modal({
   },
 });
 
-export const WalletProvider: React.FC<React.PropsWithChildren> = ({
+export const Web3Provider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
   return <WagmiConfig config={wagmiConfig}>{children}</WagmiConfig>;

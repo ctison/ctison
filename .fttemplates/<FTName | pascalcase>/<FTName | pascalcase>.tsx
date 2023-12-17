@@ -1,5 +1,11 @@
-export type <FTName | pascalcase>Props = {}
+import classes from './<FTName | pascalcase>.module.css';
 
-export const <FTName | pascalcase>: React.FC<<FTName | pascalcase>Props> = ({}) => {
-  return <></>
+export interface <FTName | pascalcase>Props {}
+
+export const <FTName | pascalcase>: React.FC<<FTName | pascalcase>Props> = () => {
+  return (
+    <>
+      <></>
+    </>
+  );
 }

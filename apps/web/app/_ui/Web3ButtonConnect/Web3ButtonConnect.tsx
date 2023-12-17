@@ -3,16 +3,16 @@ import { useWeb3Modal } from '@web3modal/wagmi/react';
 import { forwardRef, useCallback, useMemo } from 'react';
 import { useAccount, useChainId, useSwitchNetwork } from 'wagmi';
 
-interface Web3ConnectButtonProps
+export interface Web3ButtonConnectProps
   extends ButtonProps,
     Omit<React.ComponentPropsWithoutRef<'button'>, keyof ButtonProps> {
   disableConnect?: boolean;
   chainId?: number;
 }
 
-export const Web3ConnectButton = forwardRef<
+export const Web3ButtonConnect = forwardRef<
   HTMLButtonElement,
-  Web3ConnectButtonProps
+  Web3ButtonConnectProps
 >(function Web3ConnectButton({ disableConnect, chainId, ...props }, ref) {
   const { isConnected, isConnecting } = useAccount();
   const currentChain = useChainId();

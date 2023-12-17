@@ -1,4 +1,5 @@
-import { InputAddress } from '@/_ui/InputAddress';
+import { Web3InputAddress } from '@/_ui/Web3InputAddress';
+import { CodeHighlight } from '@mantine/code-highlight';
 import {
   Accordion,
   Button,
@@ -16,7 +17,6 @@ import { isAddress } from 'viem';
 import { Tab, safeSupportedChains } from '.';
 import { Result } from './Result';
 import { useSafeApiKit } from './useSafeApiKit';
-import { CodeHighlight } from '@mantine/code-highlight';
 
 export const SafeIcon = GnosisSafe2;
 
@@ -67,7 +67,7 @@ export const SafeInfosForm: React.FC<{
             spellCheck={false}
             {...form.getInputProps('chain')}
           />
-          <InputAddress
+          <Web3InputAddress
             setAddress={(address) =>
               form.setFieldValue('safeAddress', address as `0x${string}`)
             }

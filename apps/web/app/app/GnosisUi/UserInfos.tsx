@@ -1,4 +1,5 @@
-import { InputAddress } from '@/_ui/InputAddress';
+import { Web3InputAddress } from '@/_ui/Web3InputAddress';
+import { CodeHighlight } from '@mantine/code-highlight';
 import {
   Accordion,
   Button,
@@ -16,7 +17,6 @@ import { isAddress } from 'viem';
 import { Tab, safeSupportedChains } from '.';
 import { Result } from './Result';
 import { useSafeApiKit } from './useSafeApiKit';
-import { CodeHighlight } from '@mantine/code-highlight';
 
 export const UserIcon = FaUser;
 
@@ -67,7 +67,7 @@ export const UserInfosForm: React.FC<{
             spellCheck={false}
             {...form.getInputProps('chain')}
           />
-          <InputAddress
+          <Web3InputAddress
             label='User Address'
             placeholder='0x...'
             setAddress={(address) =>

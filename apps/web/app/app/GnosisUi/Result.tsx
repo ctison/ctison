@@ -1,6 +1,6 @@
 'use client';
 
-import { CopyButton } from '@/_ui/CopyButton';
+import { CopyButton } from '@/_ui/ButtonCopy';
 import {
   Accordion,
   ActionIcon,

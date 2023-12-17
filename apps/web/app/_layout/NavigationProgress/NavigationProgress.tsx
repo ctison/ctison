@@ -7,7 +7,9 @@ import {
   NavigationProgress as MantineNavigationProgress,
 } from '@mantine/nprogress';
 
-export const NavigationProgress: React.FC = () => {
+export interface NavigationProgressProps {}
+
+export const NavigationProgress: React.FC<NavigationProgressProps> = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   useEffect(() => {

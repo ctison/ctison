@@ -9,15 +9,15 @@ import { forwardRef, useCallback } from 'react';
 import { BiWallet } from 'react-icons/bi';
 import { useAccount } from 'wagmi';
 
-export type InputAddressProps = TextInputProps & {
+export interface Web3InputAddressProps extends TextInputProps {
   setAddress: (address: string) => void;
-};
+}
 
-export const InputAddress = createPolymorphicComponent<
+export const Web3InputAddress = createPolymorphicComponent<
   'input',
-  InputAddressProps
+  Web3InputAddressProps
 >(
-  forwardRef<HTMLInputElement, InputAddressProps>(function InputAddress(
+  forwardRef<HTMLInputElement, Web3InputAddressProps>(function Web3InputAddress(
     { setAddress, ...others },
     ref,
   ) {
