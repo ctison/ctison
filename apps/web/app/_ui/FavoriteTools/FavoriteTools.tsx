@@ -7,16 +7,19 @@ import {
   SimpleGrid,
   Stack,
   Text,
-  Title,
 } from '@mantine/core';
-import { favoriteTools } from './data';
+import { FramedTitle } from '../FramedTitle';
+import { favoriteTools, toolColor } from './data';
 
 export const FavoriteTools: React.FC = () => {
   return (
     <Container my='xl'>
-      <Title order={2} mb='md' ta='center'>
+      <FramedTitle
+        order={2}
+        boxProps={{ w: 'fit-content', mx: 'auto', mb: 'xl' }}
+      >
         Favorite Tools
-      </Title>
+      </FramedTitle>
       <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }}>
         {favoriteTools.map((tool) => (
           <Card
@@ -29,13 +32,13 @@ export const FavoriteTools: React.FC = () => {
           >
             <Group justify='space-between'>
               <Text fw={500}>{tool.name}</Text>
-              <Badge color='pink' variant='light'>
+              <Badge color={toolColor[tool.category]} variant='light'>
                 {tool.category}
               </Badge>
             </Group>
             <Stack justify='space-between' h='100%'>
-              <Text size='sm' c='dimmed'>
-                {tool.description}
+              <Text size='sm' c='dimmed' mt='md'>
+                {tool.description}.
               </Text>
               <Button
                 component='a'
@@ -43,9 +46,9 @@ export const FavoriteTools: React.FC = () => {
                 target='_blank'
                 variant='light'
                 referrerPolicy='no-referrer'
-                color='blue'
+                color='blue.4'
                 fullWidth
-                mt='md'
+                mt='xs'
                 radius='md'
               >
                 Visit Website

@@ -6,6 +6,7 @@ export default withBundleAnalyzer({
 })(
   withContentlayer({
     webpack: (config) => {
+      // https://docs.walletconnect.com/web3modal/nextjs/about#extra-configuration
       config.externals.push('pino-pretty', 'lokijs', 'encoding');
       // config.experiments.asyncWebAssembly = true;
       config.experiments.syncWebAssembly = true;

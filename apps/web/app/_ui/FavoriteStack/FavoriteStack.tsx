@@ -17,6 +17,7 @@ import {
   useReactFlow,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
+import { FramedTitle } from '../FramedTitle';
 
 export interface FavoriteStackProps {}
 
@@ -96,9 +97,12 @@ const FavoriteStackInner: React.FC = () => {
 
   return (
     <Box py='xl' className='print-hide'>
-      <Title order={2} ta='center' mb='xl'>
+      <FramedTitle
+        order={2}
+        boxProps={{ w: 'fit-content', mx: 'auto', mb: 'xl' }}
+      >
         Favorite Stack
-      </Title>
+      </FramedTitle>
       <Box h='500px'>
         <ReactFlow
           nodes={nodes}

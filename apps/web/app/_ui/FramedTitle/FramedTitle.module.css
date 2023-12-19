@@ -1,0 +1,32 @@
+.box {
+  --frame-border-size: 0.25rem;
+  --frame-height: 1rem;
+  --frame-width: 1rem;
+
+  border: var(--frame-border-size) solid rgb(30 41 59);
+  padding: var(--frame-height) var(--frame-width);
+
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: var(--frame-width);
+    right: var(--frame-width);
+    top: calc(-1 * var(--frame-border-size));
+    bottom: calc(-1 * var(--frame-border-size));
+    border-top: var(--frame-height) solid #fff;
+    border-bottom: var(--frame-height) solid #fff;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: var(--frame-height);
+    bottom: var(--frame-height);
+    left: calc(-1 * var(--frame-border-size));
+    right: calc(-1 * var(--frame-border-size));
+    border-left: var(--frame-width) solid #fff;
+    border-right: var(--frame-width) solid #fff;
+  }
+}
