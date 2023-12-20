@@ -7,12 +7,19 @@ export interface FavoriteTool {
 
 export type ToolCategory = 'frontend' | 'backend' | 'infra' | 'language';
 
+export const toolColor: Record<ToolCategory, string> = {
+  frontend: 'teal',
+  backend: 'orange',
+  infra: 'pink',
+  language: 'grape',
+};
+
 export const favoriteTools: FavoriteTool[] = [
   {
-    name: 'Mantine',
-    category: 'frontend',
-    description: 'A wonderful React UI library',
-    link: 'https://mantine.dev',
+    name: 'Rust',
+    category: 'language',
+    description: 'The best language in the world',
+    link: 'https://www.rust-lang.org',
   },
   {
     name: 'Typescript',
@@ -21,10 +28,11 @@ export const favoriteTools: FavoriteTool[] = [
     link: 'https://www.typescriptlang.org/',
   },
   {
-    name: 'Rust',
+    name: 'Solidity',
     category: 'language',
-    description: 'The best language in the world',
-    link: 'https://www.rust-lang.org',
+    description:
+      'The language to write smart contracts on Ethereum virtual machines',
+    link: 'https://soliditylang.org',
   },
   {
     name: 'Pulumi',
@@ -53,11 +61,10 @@ export const favoriteTools: FavoriteTool[] = [
     link: 'https://nextjs.org',
   },
   {
-    name: 'Solidity',
-    category: 'language',
-    description:
-      'The language to write smart contracts on Ethereum virtual machines',
-    link: 'https://soliditylang.org',
+    name: 'Mantine',
+    category: 'frontend',
+    description: 'A wonderful React UI library',
+    link: 'https://mantine.dev',
   },
   {
     name: 'Bun',

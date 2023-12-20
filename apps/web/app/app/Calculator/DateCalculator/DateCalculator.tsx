@@ -34,7 +34,6 @@ const dateFormat = [
   'UNIX (milliseconds)',
   'UNIX',
 ] as const;
-type DateFormat = (typeof dateFormat)[number];
 
 const timeRegex = /(?<hours>\d{2}):(?<minutes>\d{2})(:(?<seconds>\d{2}))?/;
 
@@ -45,7 +44,7 @@ export const DateCalculator: React.FC<DateCalculatorProps> = () => {
         Intl.DateTimeFormat().resolvedOptions().timeZone
       } UTC${new Intl.NumberFormat('en-US', {
         signDisplay: 'always',
-      }).format(new Date().getTimezoneOffset() / 60)}`,
+      }).format(-new Date().getTimezoneOffset() / 60)}`,
     [],
   );
   const date = useMemo(() => new Date(), []);
