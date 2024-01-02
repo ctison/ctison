@@ -68,7 +68,7 @@
     "@types/react-dom": "18.2.18",
     "eslint-config-next": "14.0.3",
     "postcss": "8.4.32",
-    "postcss-preset-mantine": "1.12.0",
+    "postcss-preset-mantine": "1.12.3",
     "postcss-simple-vars": "7.0.1"
   }
 }
