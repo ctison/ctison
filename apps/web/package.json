@@ -36,7 +36,7 @@
     "airtable": "0.12.2",
     "bright": "0.8.4",
     "contentlayer": "0.3.4",
-    "date-fns": "3.0.1",
+    "date-fns": "3.1.0",
     "dayjs": "1.11.10",
     "echarts": "5.4.3",
     "feed": "4.2.2",
