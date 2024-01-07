@@ -13,6 +13,7 @@
     "allowImportingTsExtensions": true,
 
     /* Language and Environment */
+    "jsx": "react",
     "lib": ["ESNext"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -56,6 +57,7 @@
     ".lintstagedrc.mjs",
     ".eslintrc.cjs",
     "apps/*/src/**/*",
+    "libs/*/src/**/*",
     "scripts/**/*",
     "x/**/*"
   ]
