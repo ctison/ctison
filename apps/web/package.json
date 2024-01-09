@@ -52,7 +52,6 @@
     "reactflow": "11.10.1",
     "remark-gfm": "4.0.0",
     "reverse-mirage": "1.0.3",
-    "sharp": "0.33.1",
     "viem": "1.20.3",
     "wagmi": "1.4.12",
     "zod": "3.22.4",
