@@ -42,7 +42,7 @@
     "feed": "4.2.2",
     "million": "2.6.4",
     "moralis": "2.23.2",
-    "next": "14.0.3",
+    "next": "14.1.0",
     "next-contentlayer": "0.3.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -59,14 +59,14 @@
     "zustand": "4.4.7"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "14.0.4",
+    "@next/bundle-analyzer": "14.1.0",
     "@tanstack/eslint-plugin-query": "5.17.7",
     "@tanstack/react-query-devtools": "5.17.9",
     "@types/echarts": "4.9.22",
     "@types/node": "20.10.8",
     "@types/react": "18.2.45",
     "@types/react-dom": "18.2.18",
-    "eslint-config-next": "14.0.3",
+    "eslint-config-next": "14.1.0",
     "postcss": "8.4.33",
     "postcss-preset-mantine": "1.12.3",
     "postcss-simple-vars": "7.0.1"
