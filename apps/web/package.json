@@ -10,7 +10,7 @@
     "lint:": "next lint --max-warnings=0"
   },
   "dependencies": {
-    "@binance/connector-typescript": "0.3.4",
+    "@binance/connector-typescript": "0.3.6",
     "@ctison/base-converter": "2.0.0",
     "@dnd-kit/core": "6.1.0",
     "@dnd-kit/modifiers": "7.0.0",
