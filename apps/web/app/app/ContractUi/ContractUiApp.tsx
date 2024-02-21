@@ -31,7 +31,7 @@ import { Abi as AbiParser } from 'abitype/zod';
 import { useEffect, useMemo, useState } from 'react';
 import { CgMaximizeAlt } from 'react-icons/cg';
 import { isAddress, parseUnits } from 'viem';
-import { useNetwork, usePublicClient, useWalletClient } from 'wagmi';
+import { useAccount, usePublicClient, useWalletClient } from 'wagmi';
 import { z } from 'zod';
 
 type Abi = z.infer<typeof AbiParser>;
@@ -248,7 +248,7 @@ export const ContractFunction: React.FC<ContractFunctionProps> = ({
   address,
   fn,
 }) => {
-  const { chain } = useNetwork();
+  const { chain } = useAccount();
   const form = useForm({
     initialValues: {
       value: '',
@@ -278,7 +278,7 @@ export const ContractFunction: React.FC<ContractFunctionProps> = ({
     mutationFn: async ({ value, inputs }: typeof form.values) => {
       console.log(address, fn.name, inputs);
       if (isReadFn) {
-        const result = await publicClient.readContract({
+        const result = await publicClient?.readContract({
           abi,
           address: address as `0x${string}`,
           functionName: fn.name,
@@ -291,7 +291,10 @@ export const ContractFunction: React.FC<ContractFunctionProps> = ({
           address: address as `0x${string}`,
           functionName: fn.name,
           args: inputs.length > 0 ? inputs : undefined,
-          value: parseUnits(value, chain?.nativeCurrency.decimals ?? 18),
+          value: parseUnits(
+            value,
+            chain?.nativeCurrency.decimals ?? 18,
+          ) as unknown as undefined,
         });
         return `${result}`;
       }

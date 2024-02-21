@@ -2,26 +2,30 @@
 
 import { Button, Group, Image, Indicator, Stack, Text } from '@mantine/core';
 import { useWeb3Modal } from '@web3modal/wagmi/react';
-import { useCallback, useMemo } from 'react';
-import { useAccount, useBalance, useEnsName, useNetwork } from 'wagmi';
+import { useCallback, useEffect, useMemo } from 'react';
+import { useAccount, useBalance, useBlockNumber, useEnsName } from 'wagmi';
 import { chainIdToIcon } from '../../_layout/Web3Provider';
+import { useQueryClient } from '@tanstack/react-query';
 
 export interface Web3WalletButtonProps {}
 
 export const Web3WalletButton: React.FC = () => {
-  const { address, isConnected } = useAccount();
+  const { chain, address, isConnected } = useAccount();
   const { open: openWeb3Modal } = useWeb3Modal();
+  const { data: blockNumber } = useBlockNumber({ watch: true });
+  const queryClient = useQueryClient();
 
   const onClick = useCallback(() => {
     openWeb3Modal();
   }, [openWeb3Modal]);
 
-  const { chain } = useNetwork();
-  const { data: balance } = useBalance({
+  const { data: balance, queryKey: useBalanceQueryKey } = useBalance({
     chainId: chain?.id,
     address,
-    watch: true,
   });
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: useBalanceQueryKey });
+  }, [blockNumber, queryClient, useBalanceQueryKey]);
   const { data: ensName } = useEnsName({
     chainId: 1,
     address: address,

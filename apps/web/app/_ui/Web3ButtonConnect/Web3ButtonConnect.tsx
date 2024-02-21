@@ -1,7 +1,7 @@
 import { Button, ButtonProps } from '@mantine/core';
 import { useWeb3Modal } from '@web3modal/wagmi/react';
 import { forwardRef, useCallback, useMemo } from 'react';
-import { useAccount, useChainId, useSwitchNetwork } from 'wagmi';
+import { useAccount, useChainId, useSwitchChain } from 'wagmi';
 
 export interface Web3ButtonConnectProps
   extends ButtonProps,
@@ -25,12 +25,12 @@ export const Web3ButtonConnect = forwardRef<
     () => !isConnected || shouldSwitchChain,
     [isConnected, shouldSwitchChain],
   );
-  const switchNetwork = useSwitchNetwork();
+  const switchNetwork = useSwitchChain();
   const connectOnClick = useCallback(() => {
     if (!isConnected) {
       openConnectModal();
-    } else if (shouldSwitchChain) {
-      switchNetwork.switchNetwork!(chainId);
+    } else if (shouldSwitchChain && chainId !== undefined) {
+      switchNetwork.switchChain({ chainId });
     }
   }, [
     openConnectModal,
@@ -48,7 +48,7 @@ export const Web3ButtonConnect = forwardRef<
   return (
     <Button
       ref={ref}
-      loading={isConnecting || switchNetwork.isLoading || loading}
+      loading={isConnecting || switchNetwork.isPending || loading}
       color={shouldOverrideProps ? 'black' : color}
       type={shouldOverrideProps ? 'button' : type}
       disabled={shouldOverrideProps ? false : disabled}

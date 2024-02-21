@@ -48,8 +48,8 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body>
-        <ReactQueryProvider>
-          <Web3Provider>
+        <Web3Provider>
+          <ReactQueryProvider>
             <WindowExpando />
             <MantineProvider theme={theme}>
               <Suspense fallback={null}>
@@ -59,8 +59,8 @@ export default function RootLayout({
               <Spotlight />
               <AppShell>{children}</AppShell>
             </MantineProvider>
-          </Web3Provider>
-        </ReactQueryProvider>
+          </ReactQueryProvider>
+        </Web3Provider>
       </body>
     </html>
   );

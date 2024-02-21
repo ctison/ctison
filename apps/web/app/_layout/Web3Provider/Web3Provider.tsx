@@ -1,7 +1,7 @@
 'use client';
 
-import { EIP6963Connector, walletConnectProvider } from '@web3modal/wagmi';
 import { createWeb3Modal } from '@web3modal/wagmi/react';
+import { defaultWagmiConfig } from '@web3modal/wagmi/react/config';
 import {
   Arbitrum as IconArbitrum,
   Avalanche as IconAvalanche,
@@ -9,7 +9,7 @@ import {
   EthereumMono as IconEthereum,
   Polygon2 as IconPolygon,
 } from 'react-web3-icons';
-import { WagmiConfig, configureChains, createConfig } from 'wagmi';
+import { WagmiProvider } from 'wagmi';
 import {
   arbitrum,
   avalanche,
@@ -19,46 +19,32 @@ import {
   polygon,
   sepolia,
 } from 'wagmi/chains';
-import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet';
-import { InjectedConnector } from 'wagmi/connectors/injected';
-import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
-import { publicProvider } from 'wagmi/providers/public';
 
 const walletConnectProjectId =
   process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID!;
 
-const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [mainnet, goerli, sepolia, arbitrum, avalanche, bsc, polygon],
-  [
-    walletConnectProvider({
-      projectId: walletConnectProjectId,
-    }),
-    publicProvider(),
-  ],
-);
+const chains = [
+  mainnet,
+  goerli,
+  sepolia,
+  arbitrum,
+  avalanche,
+  bsc,
+  polygon,
+] as const;
 
-const wagmiConfig = createConfig({
-  autoConnect: true,
-  publicClient,
-  webSocketPublicClient,
-  connectors: [
-    new WalletConnectConnector({
-      chains,
-      options: { projectId: walletConnectProjectId, showQrModal: false },
-    }),
-    new EIP6963Connector({ chains }),
-    new InjectedConnector({ chains, options: { shimDisconnect: true } }),
-    new CoinbaseWalletConnector({
-      chains,
-      options: {
-        appName: '@ctison',
-      },
-    }),
-  ],
+const wagmiConfig = defaultWagmiConfig({
+  chains,
+  projectId: walletConnectProjectId,
+  metadata: {
+    name: 'Next Starter Template',
+    description: 'A Next.js starter template with Web3Modal v3 + Wagmi',
+    url: 'https://web3modal.com',
+    icons: ['https://avatars.githubusercontent.com/u/37784886'],
+  },
 });
 
 createWeb3Modal({
-  chains,
   wagmiConfig,
   projectId: walletConnectProjectId,
   themeVariables: {
@@ -69,7 +55,7 @@ createWeb3Modal({
 export const Web3Provider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
-  return <WagmiConfig config={wagmiConfig}>{children}</WagmiConfig>;
+  return <WagmiProvider config={wagmiConfig}>{children}</WagmiProvider>;
 };
 
 export const chainToChainId = chains.reduce(
