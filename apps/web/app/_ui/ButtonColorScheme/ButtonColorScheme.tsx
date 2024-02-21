@@ -24,8 +24,8 @@ export const ButtonColorScheme: React.FC<ButtonColorSchemeProps> = () => {
       size='xl'
       aria-label='Toggle color scheme'
     >
-      <LuSunMedium className={cx(classes.icon, classes.light)} stroke={1.5} />
-      <LuMoon className={cx(classes.icon, classes.dark)} stroke={1.5} />
+      <LuSunMedium className={cx(classes.icon, classes.light)} stroke='1.5' />
+      <LuMoon className={cx(classes.icon, classes.dark)} stroke='1.5' />
     </ActionIcon>
   );
 };

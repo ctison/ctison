@@ -47,7 +47,7 @@ export const Hero: React.FC<HeroProps> = () => {
               <ThemeIcon size={20} radius='xl' color='teal.2'>
                 <FaCheck
                   style={{ width: rem(10), height: rem(10) }}
-                  stroke={1.5}
+                  stroke='1.5'
                 />
               </ThemeIcon>
             }

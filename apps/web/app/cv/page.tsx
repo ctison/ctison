@@ -1,4 +1,4 @@
-import { getCV } from '@/_lib/airtable';
+// import { getCV } from '@/_lib/airtable';
 import {
   Badge,
   Box,
@@ -21,6 +21,7 @@ import { SiSolidity } from 'react-icons/si';
 import { IoTerminal } from 'react-icons/io5';
 import { SiKubernetes } from 'react-icons/si';
 import { IconType } from 'react-icons';
+import { SiPython } from 'react-icons/si';
 
 export const metadata = {
   title: 'CV',
@@ -28,7 +29,7 @@ export const metadata = {
 };
 
 export default async function Page() {
-  const cv = await getCV();
+  // const cv = await getCV();
   return (
     <Container my='xl' size='sm'>
       <Group justify='space-between'>
@@ -37,6 +38,7 @@ export default async function Page() {
           <Icon Icon_={IoTerminal} label='Scripting' color='black' />
           <Icon Icon_={FaRust} label='Rust' color='black' />
           <Icon Icon_={SiTypescript} label='Typescript' />
+          <Icon Icon_={SiPython} label='Python' color='yellow.6' />
           <Icon Icon_={SiSolidity} label='Solidity' color='violet.6' />
           <Icon Icon_={SiKubernetes} label='Kubernetes' />
         </Group>
@@ -47,7 +49,7 @@ export default async function Page() {
         geopolitics and travels.
       </Text>
       <Timeline mt='md'>
-        {cv.map((props, i) => (
+        {/* {cv.map((props, i) => (
           <TimelineItem
             key={i}
             title={<Text fw='bold'>{props.name}</Text>}
@@ -80,7 +82,7 @@ export default async function Page() {
               </Group>
             </Stack>
           </TimelineItem>
-        ))}
+        ))} */}
       </Timeline>
     </Container>
   );
