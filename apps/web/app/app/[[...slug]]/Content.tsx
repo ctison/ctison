@@ -17,7 +17,7 @@ export const Content: React.FC<{ slug: string }> = ({ slug }) => {
   const [selectedTab, setSelectedTab] = useState(slug);
 
   useWindowEvent('popstate', (event) => {
-    setSelectedTab(event.state ?? tabs[0].slug);
+    setSelectedTab(event.state?.selectedTab ?? tabs[0].slug);
   });
 
   return (
@@ -26,7 +26,7 @@ export const Content: React.FC<{ slug: string }> = ({ slug }) => {
         value={selectedTab}
         variant='default'
         onChange={(value) => {
-          window.history.replaceState(selectedTab, '', `/app/${value}`);
+          window.history.replaceState({ selectedTab }, '', `/app/${value}`);
           setSelectedTab(value!);
         }}
       >
