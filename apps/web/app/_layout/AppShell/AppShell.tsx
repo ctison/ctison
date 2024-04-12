@@ -21,6 +21,7 @@ import { useEffect, useMemo } from 'react';
 import { IoSearch } from 'react-icons/io5';
 import { Footer } from './Footer';
 import { links } from './links';
+import { AptosWalletButton } from '@/_ui/AptosWalletButton';
 
 const brandFont = MuseoModerno({ subsets: ['latin'], weight: '600' });
 
@@ -88,6 +89,7 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
               <MantineAppShell.Section grow>
                 <Stack p='sm'>
                   <NoSsrWeb3WalletButton />
+                  <AptosWalletButton />
                   <Button
                     onClick={() => spotlight.open()}
                     variant='default'

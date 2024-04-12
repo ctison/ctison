@@ -15,6 +15,7 @@ import { Web3Provider } from './_layout/Web3Provider';
 import { WindowExpando } from './_layout/WindowExpando';
 import { theme } from './theme';
 import { Spotlight } from './_layout/Spotlight';
+import { AptosProvider } from './_layout/AptosProvider';
 
 export const metadata: Metadata = {
   title: {
@@ -48,19 +49,21 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body>
-        <Web3Provider>
-          <ReactQueryProvider>
-            <WindowExpando />
-            <MantineProvider theme={theme}>
-              <Suspense fallback={null}>
-                <NavigationProgress />
-              </Suspense>
-              <Notifications />
-              <Spotlight />
-              <AppShell>{children}</AppShell>
-            </MantineProvider>
-          </ReactQueryProvider>
-        </Web3Provider>
+        <AptosProvider>
+          <Web3Provider>
+            <ReactQueryProvider>
+              <WindowExpando />
+              <MantineProvider theme={theme}>
+                <Suspense fallback={null}>
+                  <NavigationProgress />
+                </Suspense>
+                <Notifications />
+                <Spotlight />
+                <AppShell>{children}</AppShell>
+              </MantineProvider>
+            </ReactQueryProvider>
+          </Web3Provider>
+        </AptosProvider>
       </body>
     </html>
   );

@@ -16,4 +16,10 @@ export const links: {
     Icon: HiLightningBolt,
     startsWith: true,
   },
+  {
+    href: '/aptos',
+    label: 'Aptos',
+    Icon: HiLightningBolt,
+    startsWith: true,
+  },
 ];
