@@ -15,7 +15,7 @@ import {
 } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-quartz.min.css';
+import 'ag-grid-community/styles/ag-theme-quartz.css';
 import React, { useMemo, useState } from 'react';
 import { CiWarning } from 'react-icons/ci';
 import { IoIosCheckmark } from 'react-icons/io';
