@@ -24,14 +24,6 @@ export const metadata: Metadata = {
   description: "@ctison's website",
   alternates: {
     canonical: `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`,
-    types: {
-      'application/rss+xml': [
-        {
-          url: 'feed.xml',
-          title: `@ctison's blog`,
-        },
-      ],
-    },
   },
 };
 
