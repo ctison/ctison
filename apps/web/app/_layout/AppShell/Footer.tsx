@@ -1,5 +1,19 @@
-import { ActionIcon, Center, Group, Stack, Text, Tooltip } from '@mantine/core';
-import { VscGithub } from 'react-icons/vsc';
+import {
+  ActionIcon,
+  Center,
+  Group,
+  Popover,
+  PopoverDropdown,
+  PopoverTarget,
+  Stack,
+  Text,
+  ThemeIcon,
+  Tooltip,
+} from '@mantine/core';
+import { useClipboard } from '@mantine/hooks';
+import { HiOutlineMail as IconMail } from 'react-icons/hi';
+import { LuClipboardCheck as IconClipboard } from 'react-icons/lu';
+import { VscGithub as IconGithub } from 'react-icons/vsc';
 import { DeBankMono } from 'react-web3-icons';
 
 export const Footer: React.FC = () => {
@@ -18,13 +32,16 @@ export const Footer: React.FC = () => {
       <Stack h='100%' mx='auto' gap={5} justify='center'>
         <Group gap='xs'>
           <FooterIcon tooltip='Github' href='https://github.com/ctison/ctison'>
-            <VscGithub />
+            <IconGithub />
           </FooterIcon>
           <FooterIcon
             tooltip='DeBank'
             href='https://debank.com/profile/0x6ee4696cd792ec25a28b5cc1ba22b71fd2f3a1dd'
           >
             <DeBankMono />
+          </FooterIcon>
+          <FooterIcon tooltip='ctison@pm.me' copy='ctison@pm.me'>
+            <IconMail size='1.2rem' />
           </FooterIcon>
         </Group>
         <Text size='sm' ta='center'>
@@ -36,18 +53,35 @@ export const Footer: React.FC = () => {
 };
 
 const FooterIcon: React.FC<
-  React.PropsWithChildren<{ href: string; tooltip: string }>
-> = ({ tooltip, href, children }) => (
-  <Tooltip label={tooltip}>
-    <ActionIcon
-      component='a'
-      href={href}
-      target='_blank'
-      referrerPolicy='no-referrer'
-      variant='subtle'
-      color='black'
-    >
-      {children}
-    </ActionIcon>
-  </Tooltip>
-);
+  React.PropsWithChildren<{ href?: string; tooltip: string; copy?: string }>
+> = ({ tooltip, href, children, copy }) => {
+  const clipboard = useClipboard();
+
+  return (
+    <Popover position='right' opened={clipboard.copied} withArrow shadow='xl'>
+      <PopoverTarget>
+        <Tooltip label={tooltip}>
+          <ActionIcon
+            component='a'
+            href={href}
+            target='_blank'
+            referrerPolicy='no-referrer'
+            variant='subtle'
+            color='black'
+            onClick={copy ? () => clipboard.copy(copy) : undefined}
+          >
+            {children}
+          </ActionIcon>
+        </Tooltip>
+      </PopoverTarget>
+      <PopoverDropdown>
+        <Group gap={2}>
+          <ThemeIcon variant='transparent' c='teal.5'>
+            <IconClipboard />
+          </ThemeIcon>
+          <Text>Copied to clipboard</Text>
+        </Group>
+      </PopoverDropdown>
+    </Popover>
+  );
+};
