@@ -2,8 +2,8 @@
 
 import { Link } from '@/_ui/Link';
 import {
+  ActionIcon,
   Anchor,
-  Burger,
   Button,
   Group,
   AppShell as MantineAppShell,
@@ -19,6 +19,10 @@ import { MuseoModerno } from 'next/font/google';
 import { usePathname } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
 import { IoSearch } from 'react-icons/io5';
+import {
+  LuPanelLeftClose as IconCloseLeftPanel,
+  LuPanelLeftOpen as IconOpenLeftPanel,
+} from 'react-icons/lu';
 import { Footer } from './Footer';
 import { links } from './links';
 
@@ -59,12 +63,21 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
             <MantineAppShell.Header withBorder={true}>
               <Group justify='space-between' h='100%' px='md'>
                 <Group>
-                  <Burger
-                    opened={navbarOpened}
+                  <ActionIcon
                     onClick={toggleNavbar}
-                    size='sm'
-                    // hiddenFrom='sm'
-                  />
+                    variant='subtle'
+                    color='black'
+                    size='md'
+                    style={{
+                      alignSelf: 'flex-end',
+                    }}
+                  >
+                    {navbarOpened ? (
+                      <IconCloseLeftPanel size='100%' />
+                    ) : (
+                      <IconOpenLeftPanel size='100%' />
+                    )}
+                  </ActionIcon>
                   <Anchor
                     component={Link}
                     href='/'
