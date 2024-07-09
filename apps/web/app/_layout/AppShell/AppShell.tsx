@@ -55,6 +55,8 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
         style={{
           '--app-footer-height': '100px',
           '--app-main-min-height': 'calc(100dvh - var(--app-footer-height))',
+          '--app-min-height':
+            'calc(var(--app-main-min-height) - var(--app-shell-header-height))',
         }}
       >
         {/* HEADER */}
