@@ -18,6 +18,7 @@ import { NoSsrWeb3WalletButton } from '@/_ui/Web3WalletButton';
 import { MuseoModerno } from 'next/font/google';
 import { usePathname } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
+import { IoMdClose as IconClose } from 'react-icons/io';
 import { IoSearch } from 'react-icons/io5';
 import {
   LuPanelLeftClose as IconCloseLeftPanel,
@@ -73,6 +74,7 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
                     style={{
                       alignSelf: 'flex-end',
                     }}
+                    aria-label={navbarOpened ? 'Close navbar' : 'Open navbar'}
                   >
                     {navbarOpened ? (
                       <IconCloseLeftPanel size='100%' />
@@ -90,6 +92,17 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
                     @ctison
                   </Anchor>
                 </Group>
+                {navbarOpened && isMobile && (
+                  <ActionIcon
+                    onClick={toggleNavbar}
+                    variant='subtle'
+                    color='black'
+                    size='md'
+                    aria-label='Close navbar'
+                  >
+                    <IconClose size='100%' />
+                  </ActionIcon>
+                )}
               </Group>
             </MantineAppShell.Header>
           ),
