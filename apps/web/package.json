@@ -37,7 +37,7 @@
     "dayjs": "1.11.11",
     "feed": "4.2.2",
     "moralis": "2.26.8",
-    "next": "14.2.4",
+    "next": "14.2.5",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-icons": "5.2.1",
@@ -52,7 +52,7 @@
     "zustand": "4.5.4"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "14.2.4",
+    "@next/bundle-analyzer": "14.2.5",
     "@tanstack/eslint-plugin-query": "5.50.1",
     "@tanstack/react-query-devtools": "5.50.1",
     "@types/echarts": "4.9.22",
@@ -60,7 +60,7 @@
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "autoprefixer": "10.4.19",
-    "eslint-config-next": "14.2.4",
+    "eslint-config-next": "14.2.5",
     "postcss": "8.4.39",
     "postcss-preset-mantine": "1.15.0",
     "postcss-simple-vars": "7.0.1",
