@@ -21,7 +21,7 @@ export const SignMessage: React.FC<{
       const address = walletClient!.account.address;
       const id = addHistory({
         type: 'sign',
-        address,
+        address: address as `0x${string}`,
         message,
       });
       return { id };
