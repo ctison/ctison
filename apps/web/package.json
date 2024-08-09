@@ -45,7 +45,7 @@
     "react-web3-icons": "1.7.0",
     "reactflow": "11.11.4",
     "reverse-mirage": "1.1.0",
-    "viem": "2.17.3",
+    "viem": "2.19.3",
     "wagmi": "2.10.9",
     "zod": "3.23.8",
     "zod-form-data": "2.0.2",
