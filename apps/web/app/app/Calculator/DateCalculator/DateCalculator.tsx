@@ -127,7 +127,7 @@ export const DateCalculator: React.FC<DateCalculatorProps> = () => {
 
   // Trigger form onValuesChange on mount
   useEffect(() => {
-    form.setFieldValue('format', '');
+    form.setFieldValue('format', 'String');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
