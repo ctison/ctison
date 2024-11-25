@@ -6,8 +6,6 @@ const nextConfig = {
     config.externals.push('pino-pretty', 'lokijs', 'encoding');
     return config;
   },
-  // https://docs.li.fi/integrate-li.fi-widget/next.js-compatibility
-  transpilePackages: ['@lifi/widget', '@lifi/wallet-management'],
   experimental: {
     typedRoutes: true,
     // https://mantine.dev/guides/next/#app-router-tree-shaking

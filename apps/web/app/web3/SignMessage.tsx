@@ -3,19 +3,16 @@
 import { CodeHighlight } from '@mantine/code-highlight';
 import '@mantine/code-highlight/styles.css';
 import { Button, Textarea, Title } from '@mantine/core';
-import {
-  useAddress,
-  useSDK,
-  useSetIsWalletModalOpen,
-} from '@thirdweb-dev/react';
+import { useWeb3Modal } from '@web3modal/wagmi/react';
 import { useCallback, useMemo, useState } from 'react';
+import { useAccount, useWalletClient } from 'wagmi';
 
 export const SignMessage: React.FC = () => {
-  const address = useAddress();
+  const { address } = useAccount();
   const isLoggedIn = useMemo(() => address !== undefined, [address]);
-  const openConnectModal = useSetIsWalletModalOpen();
+  const { open: openConnectModal } = useWeb3Modal();
+  const { data: walletClient } = useWalletClient();
 
-  const sdk = useSDK();
   const [message, setMessage] = useState('');
   const [signedMessage, setSignedMessage] = useState<string | null>(null);
   const [isSigning, setIsSigning] = useState(false);
@@ -23,21 +20,21 @@ export const SignMessage: React.FC = () => {
 
   const handleSign = useCallback(async () => {
     if (!isLoggedIn) {
-      openConnectModal(true);
+      openConnectModal();
       return;
     }
     try {
       setIsSigning(true);
       setSignError(null);
       setSignedMessage(null);
-      const signature = await sdk!.wallet.sign(message);
+      const signature = await walletClient!.signMessage({ message });
       setSignedMessage(signature);
     } catch (e) {
       setSignError(e as Error);
     } finally {
       setIsSigning(false);
     }
-  }, [isLoggedIn, openConnectModal, sdk, message]);
+  }, [isLoggedIn, openConnectModal, message, walletClient]);
 
   return (
     <>

@@ -3,15 +3,16 @@ import '@mantine/notifications/styles.css';
 import '@mantine/nprogress/styles.css';
 import '@mantine/spotlight/styles.css';
 
-import { AppShell } from '@/_ui/AppShell';
-import { WindowExpando } from '@/_ui/WindowExpando';
+import { AppShell } from './_ui/AppShell';
+import { NavigationProgress } from '@/_ui/NavigationProgress';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
-import { NavigationProgress } from '@/_ui/NavigationProgress';
 import type { Metadata } from 'next';
-import { Wallet } from './_ui/Wallet';
-import { theme } from './theme';
 import { Suspense } from 'react';
+import { WalletProvider } from './_ui/WalletProvider';
+import { theme } from './theme';
+import { WindowExpando } from './_ui/WindowExpando';
+import { ReactQueryProvider } from './_ui/ReactQueryProvider';
 
 export const metadata: Metadata = {
   title: '@ctison',
@@ -31,16 +32,18 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body>
-        <Wallet>
-          <WindowExpando />
-          <MantineProvider theme={theme}>
-            <Suspense fallback={null}>
-              <NavigationProgress />
-            </Suspense>
-            <Notifications />
-            <AppShell>{children}</AppShell>
-          </MantineProvider>
-        </Wallet>
+        <ReactQueryProvider>
+          <WalletProvider>
+            <WindowExpando />
+            <MantineProvider theme={theme}>
+              <Suspense fallback={null}>
+                <NavigationProgress />
+              </Suspense>
+              <Notifications />
+              <AppShell>{children}</AppShell>
+            </MantineProvider>
+          </WalletProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

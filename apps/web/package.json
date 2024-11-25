@@ -7,7 +7,7 @@
     "clean": "rm -rf -- .next/ next-env.d.ts",
     "dev": "next dev",
     "lint": "turbo run lint:",
-    "lint:": "next lint"
+    "lint:": "next lint --max-warnings=0"
   },
   "dependencies": {
     "@mantine/code-highlight": "7.2.2",
@@ -19,20 +19,24 @@
     "@mantine/spotlight": "7.2.2",
     "@splinetool/react-spline": "2.2.6",
     "@splinetool/runtime": "0.9.508",
-    "@thirdweb-dev/react": "4.1.10",
-    "@uniswap/token-lists": "1.0.0-beta.33",
-    "alchemy-sdk": "3.0.0",
+    "@tanstack/react-query": "5.8.7",
+    "@thirdweb-dev/chain-icons": "1.0.5",
+    "@web3modal/wagmi": "3.3.2",
     "moralis": "2.23.2",
     "next": "14.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "4.12.0",
+    "react-web3-icons": "1.7.0",
     "reactflow": "11.10.1",
     "reverse-mirage": "1.0.3",
-    "viem": "1.19.8"
+    "viem": "1.19.9",
+    "wagmi": "1.4.7"
   },
   "devDependencies": {
-    "@types/node": "20.9.5",
+    "@tanstack/eslint-plugin-query": "5.8.4",
+    "@tanstack/react-query-devtools": "5.8.7",
+    "@types/node": "20.10.0",
     "@types/react": "18.2.38",
     "@types/react-dom": "18.2.17",
     "eslint-config-next": "14.0.3",

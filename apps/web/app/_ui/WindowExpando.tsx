@@ -1,12 +1,13 @@
 'use client';
 
-import { useSDK } from '@thirdweb-dev/react';
 import { useEffect } from 'react';
+import { usePublicClient, useWalletClient } from 'wagmi';
 
 export const WindowExpando: React.FC = () => {
-  const thirdWeb = useSDK();
+  const publicClient = usePublicClient();
+  const walletClient = useWalletClient();
 
-  useWindowExpando('thirdWeb', thirdWeb);
+  useWindowExpando('viem', { public: publicClient, wallet: walletClient });
 
   return null;
 };

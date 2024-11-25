@@ -1,21 +1,23 @@
 'use client';
 
 import '@mantine/code-highlight/styles.css';
-import { Container, Paper, SimpleGrid } from '@mantine/core';
+import { Container, Paper, SimpleGrid, Stack } from '@mantine/core';
 import { SignMessage } from './SignMessage';
 import { VerifyMessage } from './VerifyMessage';
 
 export default function Web3() {
   return (
     <Container py='xl'>
-      <SimpleGrid cols={{ base: 1, md: 2 }}>
-        <Tool>
-          <SignMessage />
-        </Tool>
-        <Tool>
-          <VerifyMessage />
-        </Tool>
-      </SimpleGrid>
+      <Stack>
+        <SimpleGrid cols={{ base: 1, md: 2 }}>
+          <Tool>
+            <SignMessage />
+          </Tool>
+          <Tool>
+            <VerifyMessage />
+          </Tool>
+        </SimpleGrid>
+      </Stack>
     </Container>
   );
 }
