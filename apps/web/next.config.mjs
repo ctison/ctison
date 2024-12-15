@@ -11,7 +11,6 @@ export default withBundleAnalyzer({
     return config;
   },
   experimental: {
-    typedRoutes: true,
     // https://mantine.dev/guides/next/#app-router-tree-shaking
     optimizePackageImports: [
       '@mantine/core',

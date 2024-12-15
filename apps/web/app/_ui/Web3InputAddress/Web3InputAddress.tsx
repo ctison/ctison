@@ -1,51 +1,45 @@
-import {
-  ActionIcon,
-  TextInput,
-  TextInputProps,
-  Tooltip,
-  createPolymorphicComponent,
-} from '@mantine/core';
-import { forwardRef, useCallback } from 'react';
+import { ActionIcon, TextInput, Tooltip } from '@mantine/core';
+import React, { useCallback } from 'react';
 import { BiWallet } from 'react-icons/bi';
 import { useAccount } from 'wagmi';
 
-export interface Web3InputAddressProps extends TextInputProps {
-  setAddress: (address: string) => void;
-}
+export type Web3InputAddressProps<Element extends React.ElementType> =
+  PolymorphicComponentProps<Element> & {
+    setAddress: (address: string) => void;
+  };
 
-export const Web3InputAddress = createPolymorphicComponent<
-  'input',
-  Web3InputAddressProps
->(
-  forwardRef<HTMLInputElement, Web3InputAddressProps>(function Web3InputAddress(
-    { setAddress, ...others },
-    ref,
-  ) {
-    const { address } = useAccount();
-    const fillAddressFromWallet = useCallback(() => {
-      setAddress(address as string);
-    }, [setAddress, address]);
+export const Web3InputAddress = <
+  Element extends React.ElementType = typeof TextInput,
+>({
+  as,
+  setAddress,
+  ...props
+}: Web3InputAddressProps<Element>) => {
+  const { address } = useAccount();
+  const fillAddressFromWallet = useCallback(() => {
+    setAddress(address as string);
+  }, [setAddress, address]);
 
-    return (
-      <TextInput
-        ref={ref}
-        label='Address'
-        placeholder='Type an address here.'
-        rightSection={
-          <Tooltip label='Use current wallet address'>
-            <ActionIcon
-              variant='subtle'
-              aria-label='Use current wallet address'
-              onClick={fillAddressFromWallet}
-              disabled={!address}
-            >
-              <BiWallet />
-            </ActionIcon>
-          </Tooltip>
-        }
-        spellCheck={false}
-        {...others}
-      />
-    );
-  }),
-);
+  const Element: React.ElementType = as || TextInput;
+
+  return (
+    <Element
+      label='Address'
+      placeholder='Type an address here.'
+      rightSection={
+        <Tooltip label='Use current wallet address'>
+          <ActionIcon
+            variant='subtle'
+            aria-label='Use current wallet address'
+            onClick={fillAddressFromWallet}
+            disabled={!address}
+          >
+            <BiWallet />
+          </ActionIcon>
+        </Tooltip>
+      }
+      spellCheck={false}
+      {...props}
+    />
+  );
+};

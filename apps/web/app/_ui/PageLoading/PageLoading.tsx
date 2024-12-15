@@ -1,4 +1,3 @@
-import classes from './PageLoading.module.css';
 import { Loader, Stack } from '@mantine/core';
 
 export interface PageLoadingProps {}

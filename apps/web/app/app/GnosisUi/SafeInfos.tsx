@@ -14,7 +14,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useMemo } from 'react';
 import { GnosisSafe2 } from 'react-web3-icons';
 import { isAddress } from 'viem';
-import { Tab, safeSupportedChains } from '.';
+import { type Tab, safeSupportedChains } from '.';
 import { Result } from './Result';
 import { useSafeApiKit } from './useSafeApiKit';
 
@@ -68,9 +68,9 @@ export const SafeInfosForm: React.FC<{
             {...form.getInputProps('chain')}
           />
           <Web3InputAddress
-            setAddress={(address) =>
-              form.setFieldValue('safeAddress', address as `0x${string}`)
-            }
+            setAddress={(address) => {
+              form.setFieldValue('safeAddress', address as `0x${string}`);
+            }}
             label='Safe Address'
             placeholder='0x...'
             {...form.getInputProps('safeAddress')}
@@ -84,11 +84,13 @@ export const SafeInfosForm: React.FC<{
   );
 };
 
-export const SafeInfos: React.FC<{
-  chain: keyof typeof safeSupportedChains;
-  safeAddress: `0x${string}`;
-  id: string;
-}> = ({ chain, safeAddress, id }) => {
+export const SafeInfos: React.FC<
+  Readonly<{
+    chain: keyof typeof safeSupportedChains;
+    safeAddress: `0x${string}`;
+    id: string;
+  }>
+> = ({ chain, safeAddress, id }) => {
   const safeApiKit = useSafeApiKit(chain);
   const safeInfos = useQuery({
     queryKey: ['safe-infos', chain, safeAddress],

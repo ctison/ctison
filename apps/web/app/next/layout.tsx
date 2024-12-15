@@ -1,5 +1,5 @@
 import { Box, Group, Title } from '@mantine/core';
-import { Metadata } from 'next';
+import { type Metadata } from 'next';
 import { Counter } from './Counter';
 import { Navigation } from './Navigation';
 
@@ -7,10 +7,9 @@ export const metadata: Metadata = {
   title: 'Layout',
 };
 
-const Layout: React.FC<React.PropsWithChildren<{ slot1: React.ReactNode }>> = ({
-  children,
-  slot1,
-}) => {
+const Layout: React.FC<
+  Readonly<React.PropsWithChildren<{ slot1: React.ReactNode }>>
+> = ({ children, slot1 }) => {
   return (
     <Box style={{ border: 'solid 5px purple' }} p='sm'>
       <Group justify='space-between'>

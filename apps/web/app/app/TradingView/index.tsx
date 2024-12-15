@@ -1,6 +1,6 @@
 'use client';
 
-import { RestMarketTypes } from '@binance/connector-typescript';
+import { type RestMarketTypes } from '@binance/connector-typescript';
 import { CodeHighlight } from '@mantine/code-highlight';
 import {
   ActionIcon,
@@ -33,7 +33,8 @@ export const TradingView: React.FC = () => {
       );
       if (!response.ok) {
         throw new Error(
-          `Failed to fetch Binance infos: ${response.status} ${response.body}`,
+          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+          `Failed to fetch Binance infos: ${response.status} ${response.body ?? ''}`,
         );
       }
       return (await response.json()) as RestMarketTypes.exchangeInformationResponse;
@@ -56,7 +57,9 @@ export const TradingView: React.FC = () => {
     );
   }, [symbols]);
 
-  const [selectedSymbols, setSelectedSymbols] = useState<any[]>([]);
+  const [selectedSymbols, setSelectedSymbols] = useState<
+    { quoteAsset: string; baseAsset: string; symbol: string }[]
+  >([]);
   const [selectedCategories, setSelectedCategories] = useState<
     { asset: string }[]
   >([]);
@@ -69,7 +72,7 @@ export const TradingView: React.FC = () => {
   const isOver1000 = useMemo(() => selectedCount > 1000, [selectedCount]);
 
   const watchList = useMemo(() => {
-    let acc: Record<string, string[]> = {};
+    const acc: Record<string, string[]> = {};
     let _selectedRows = [...selectedSymbols];
     selectedCategories.forEach(({ asset: category }) => {
       acc[category] = [];
@@ -112,7 +115,15 @@ export const TradingView: React.FC = () => {
             <Grid.Col span='auto' className='ag-theme-quartz' h='65dvh'>
               <Table
                 _data={symbols}
-                _setSelectedData={setSelectedSymbols}
+                _setSelectedData={(data) => {
+                  setSelectedSymbols(
+                    data as {
+                      quoteAsset: string;
+                      baseAsset: string;
+                      symbol: string;
+                    }[],
+                  );
+                }}
                 columnDefs={[{ headerName: 'Symbols', field: 'symbol' }]}
               />
             </Grid.Col>
@@ -124,7 +135,9 @@ export const TradingView: React.FC = () => {
             >
               <Table
                 _data={categories}
-                _setSelectedData={setSelectedCategories}
+                _setSelectedData={(data) => {
+                  setSelectedCategories(data as { asset: string }[]);
+                }}
                 columnDefs={[{ headerName: 'Categories', field: 'asset' }]}
               />
             </Grid.Col>

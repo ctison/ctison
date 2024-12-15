@@ -6,7 +6,7 @@ export interface SpotlightProps {}
 
 import {
   Spotlight as MantineSpotlight,
-  SpotlightActionData,
+  type SpotlightActionData,
 } from '@mantine/spotlight';
 
 import { useRouter } from 'next/navigation';
@@ -15,7 +15,7 @@ import { IoSearch } from 'react-icons/io5';
 import { links } from '../links';
 
 export const Spotlight = memo(function Spotlight() {
-  const { push } = useRouter();
+  const router = useRouter();
 
   const spotlightActions: SpotlightActionData[] = useMemo(
     () =>
@@ -24,12 +24,14 @@ export const Spotlight = memo(function Spotlight() {
           ({
             id: href,
             label: label,
-            onClick: () => push(href),
+            onClick: () => {
+              router.push(href);
+            },
             description: href,
             leftSection: <Icon />,
           }) satisfies SpotlightActionData,
       ),
-    [push],
+    [router],
   );
 
   return (

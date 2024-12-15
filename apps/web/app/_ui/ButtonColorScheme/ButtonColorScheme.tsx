@@ -17,15 +17,18 @@ export const ButtonColorScheme: React.FC<ButtonColorSchemeProps> = () => {
 
   return (
     <ActionIcon
-      onClick={() =>
-        setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')
-      }
+      onClick={() => {
+        setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light');
+      }}
       variant='default'
       size='xl'
       aria-label='Toggle color scheme'
     >
-      <LuSunMedium className={cx(classes.icon, classes.light)} stroke='1.5' />
-      <LuMoon className={cx(classes.icon, classes.dark)} stroke='1.5' />
+      <LuSunMedium
+        className={cx(classes['icon'], classes['light'])}
+        stroke='1.5'
+      />
+      <LuMoon className={cx(classes['icon'], classes['dark'])} stroke='1.5' />
     </ActionIcon>
   );
 };

@@ -1,14 +1,14 @@
 'use client';
 
-import { Box, Title } from '@mantine/core';
+import { Box } from '@mantine/core';
 import { useViewportSize } from '@mantine/hooks';
 import React, { useEffect } from 'react';
 import {
   Background,
   BackgroundVariant,
   Controls,
-  Edge,
-  Node,
+  type Edge,
+  type Node,
   Position,
   ReactFlow,
   ReactFlowProvider,
@@ -29,7 +29,7 @@ export const FavoriteStack: React.FC<FavoriteStackProps> = () => {
   );
 };
 
-let initialNodes: Node[] = [
+const initialNodes: Node[] = [
   {
     id: 'app-web',
     position: { x: 0, y: 0 },

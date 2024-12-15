@@ -8,7 +8,13 @@ export const Counter: React.FC = () => {
 
   return (
     <>
-      <Button onClick={() => setCounter((n) => n + 1)}>Increment</Button>
+      <Button
+        onClick={() => {
+          setCounter((n) => n + 1);
+        }}
+      >
+        Increment
+      </Button>
       <span>{counter}</span>
     </>
   );

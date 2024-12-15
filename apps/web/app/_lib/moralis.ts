@@ -2,12 +2,12 @@
 
 import { default as Moralis } from 'moralis';
 
-let started = false;
+const started = false;
 
 export async function getWalletTokenBalances(chain: number, address: string) {
   if (!started) {
     await Moralis.start({
-      apiKey: process.env.MORALIS_API_KEY,
+      apiKey: process.env['MORALIS_API_KEY'],
     });
   }
 

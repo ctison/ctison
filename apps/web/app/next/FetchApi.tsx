@@ -17,33 +17,44 @@ export const FetchApi: React.FC = () => {
       <Title>Fetch API</Title>
       <Checkbox
         checked={stream}
-        onChange={(event) => setStream(event.currentTarget.checked)}
+        onChange={(event) => {
+          setStream(event.currentTarget.checked);
+        }}
         label='Stream'
       />
       <Button
-        onClick={async () => {
-          const data = await fetch('/next/api?stream=' + stream);
-          if (stream) {
-            if (data.body === null) {
-              setData('No body');
-              return;
+        onClick={() => {
+          async function f() {
+            const data = await fetch(`/next/api?stream=${stream}`);
+            if (stream) {
+              if (data.body === null) {
+                setData('No body');
+                return;
+              }
+              setData(null);
+              const decoder = new TextDecoder();
+              const reader = data.body.getReader();
+              for (;;) {
+                const { done, value } = await reader.read();
+                if (done) break;
+                setData((s) => `${s ?? ''}${decoder.decode(value)}\n`);
+              }
+            } else {
+              setData(JSON.stringify(await data.json(), undefined, 2));
             }
-            setData(null);
-            const decoder = new TextDecoder();
-            const reader = data.body.getReader();
-            for (;;) {
-              const { done, value } = await reader.read();
-              if (done) break;
-              setData((s) => `${s ?? ''}${decoder.decode(value)}\n`);
-            }
-          } else {
-            setData(JSON.stringify(await data.json(), undefined, 2));
           }
+          void f();
         }}
       >
         Fetch API
       </Button>
-      <Button onClick={() => setData(null)}>Reset</Button>
+      <Button
+        onClick={() => {
+          setData(null);
+        }}
+      >
+        Reset
+      </Button>
       {data !== null && (
         <CodeHighlight
           code={data}

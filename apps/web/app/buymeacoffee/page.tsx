@@ -11,6 +11,7 @@ const Page: React.FC = () => {
       bd='solid 2px gray'
     >
       <iframe
+        sandbox=''
         src='https://nowpayments.io/embeds/donation-widget?api_key=8DS4R17-7DJ44MV-G0DVEM4-715WMV8&source=lk_donation&medium=referral'
         style={{
           overflow: 'hidden',

@@ -13,11 +13,13 @@ import { useWindowEvent } from '@mantine/hooks';
 import { useState } from 'react';
 import { tabs } from './tabs';
 
-export const Content: React.FC<{ slug: string }> = ({ slug }) => {
+export const Content: React.FC<Readonly<{ slug: string }>> = ({ slug }) => {
   const [selectedTab, setSelectedTab] = useState(slug);
 
   useWindowEvent('popstate', (event) => {
-    setSelectedTab(event.state?.selectedTab ?? tabs[0].slug);
+    setSelectedTab(
+      (event.state as { selectedTab: string })?.selectedTab ?? tabs[0]!.slug,
+    );
   });
 
   return (

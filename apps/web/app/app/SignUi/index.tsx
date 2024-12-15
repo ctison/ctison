@@ -97,7 +97,9 @@ export const SignUi: React.FC = () => {
             <Button
               color='red'
               variant='subtle'
-              onClick={() => historyHandlers.setState([])}
+              onClick={() => {
+                historyHandlers.setState([]);
+              }}
               leftSection={<IoTrashBinOutline />}
             >
               Clear history

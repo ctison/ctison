@@ -1,8 +1,6 @@
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-quartz.css';
-import { IconBase, IconBaseProps } from 'react-icons';
+import { IconBase, type IconBaseProps } from 'react-icons';
 
-export const TradingViewIcon: React.FC<IconBaseProps> = (props) => (
+export const TradingViewIcon: React.FC<Readonly<IconBaseProps>> = (props) => (
   <IconBase
     strokeLinecap='round'
     strokeLinejoin='round'

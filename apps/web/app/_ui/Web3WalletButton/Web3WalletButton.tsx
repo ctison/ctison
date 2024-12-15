@@ -6,6 +6,7 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { useAccount, useBalance, useBlockNumber, useEnsName } from 'wagmi';
 import { chainIdToIcon } from '../../_layout/Web3Provider';
 import { useQueryClient } from '@tanstack/react-query';
+import { formatUnits } from 'viem';
 
 export interface Web3WalletButtonProps {}
 
@@ -16,7 +17,7 @@ export const Web3WalletButton: React.FC = () => {
   const queryClient = useQueryClient();
 
   const onClick = useCallback(() => {
-    openWeb3Modal();
+    void openWeb3Modal();
   }, [openWeb3Modal]);
 
   const { data: balance, queryKey: useBalanceQueryKey } = useBalance({
@@ -24,7 +25,7 @@ export const Web3WalletButton: React.FC = () => {
     address,
   });
   useEffect(() => {
-    queryClient.invalidateQueries({ queryKey: useBalanceQueryKey });
+    void queryClient.invalidateQueries({ queryKey: useBalanceQueryKey });
   }, [blockNumber, queryClient, useBalanceQueryKey]);
   const { data: ensName } = useEnsName({
     chainId: 1,
@@ -64,7 +65,11 @@ export const Web3WalletButton: React.FC = () => {
               : `${address?.slice(0, 6)}...${address?.slice(-4)}`}
           </Text>
           <Text c='gray.7' size='xs' fw={400} truncate='end'>
-            {balance?.formatted.slice(0, -balance.decimals + 3)}{' '}
+            {balance !== undefined &&
+              formatUnits(balance.value, balance.decimals).slice(
+                0,
+                -balance.decimals + 3,
+              )}{' '}
             {balance?.symbol}
           </Text>
         </Stack>

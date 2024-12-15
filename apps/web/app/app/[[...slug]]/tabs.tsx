@@ -9,7 +9,7 @@ export const tabs: {
   slug: string;
   label: string;
   children: React.FC;
-  icon?: React.JSXElementConstructor<any>;
+  icon?: React.ElementType;
 }[] = [
   {
     slug: 'convert',

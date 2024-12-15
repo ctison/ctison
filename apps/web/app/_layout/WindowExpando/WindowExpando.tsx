@@ -14,6 +14,7 @@ export const WindowExpando: React.FC = () => {
 
 function useWindowExpando(key: string, value: unknown) {
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
     (window as any)[key] = value;
   }, [key, value]);
 }

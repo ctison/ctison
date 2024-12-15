@@ -13,9 +13,9 @@ import {
   ActionIcon,
   CloseButton,
   Tabs as MantineTabs,
-  TabsProps as MantineTabsProps,
+  type TabsProps as MantineTabsProps,
   Menu,
-  TabsTabProps,
+  type TabsTabProps,
   TextInput,
   Tooltip,
 } from '@mantine/core';
@@ -28,10 +28,10 @@ import {
   useSessionStorage,
   useToggle,
 } from '@mantine/hooks';
-import React, { forwardRef, useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import { HiOutlineTrash } from 'react-icons/hi';
-import { CustomProps, TabState } from '.';
+import type { CustomProps, TabState } from '.';
 import { TabsController } from './Controller';
 
 export interface TabsProps<T extends TabState = TabState>
@@ -42,12 +42,17 @@ export interface TabsProps<T extends TabState = TabState>
   creatable?: boolean;
   createTab?: () => Omit<T, 'id'>;
   controller?: TabsController<T>;
+  ref?: React.ForwardedRef<HTMLDivElement>;
 }
 
-const _Tabs = <T extends TabState>(
-  { localStorageKey, Content, creatable, controller, ...props }: TabsProps<T>,
-  ref?: React.ForwardedRef<HTMLDivElement>,
-) => {
+export const Tabs = <T extends TabState>({
+  localStorageKey,
+  Content,
+  creatable,
+  controller,
+  ref,
+  ...props
+}: Readonly<TabsProps<T>>) => {
   const [tabsStorage, setTabsStorage] = useLocalStorage<T[]>({
     key: localStorageKey,
     defaultValue: [],
@@ -100,13 +105,14 @@ const _Tabs = <T extends TabState>(
       } else {
         idx = tabs.findIndex((tab) => tab.id === idOrIdx);
       }
-      if (activeTab === tabs[idx].id) {
+      if (activeTab === tabs[idx]?.id) {
         let newActiveTab: string | null = null;
         if (tabs.length === 1) {
+          void 0;
         } else if (idx >= tabs.length - 1) {
-          newActiveTab = tabs[idx - 1].id;
+          newActiveTab = tabs[idx - 1]!.id;
         } else {
-          newActiveTab = tabs[idx + 1].id;
+          newActiveTab = tabs[idx + 1]!.id;
         }
         setActiveTab(newActiveTab);
       }
@@ -149,7 +155,7 @@ const _Tabs = <T extends TabState>(
         if (e.over !== null && e.active.id !== e.over.id) {
           tabsHandlers.reorder({
             from: (e.active.id as number) - 1,
-            to: (e.over!.id as number) - 1,
+            to: (e.over.id as number) - 1,
           });
         }
       }}
@@ -177,7 +183,9 @@ const _Tabs = <T extends TabState>(
                     }}
                   />
                 }
-                closeTab={() => removeTab(idx)}
+                closeTab={() => {
+                  removeTab(idx);
+                }}
               >
                 <Tooltip
                   label={`${tab.title} (Double click to edit)`}
@@ -190,7 +198,9 @@ const _Tabs = <T extends TabState>(
                     value={tab.title}
                     pointer={true}
                     variant='unstyled'
-                    onMouseDown={(e) => e.preventDefault()}
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                    }}
                     onDoubleClick={(e) => {
                       e.currentTarget.focus();
                       e.currentTarget.select();
@@ -244,16 +254,12 @@ const _Tabs = <T extends TabState>(
   );
 };
 
-export const Tabs = forwardRef(_Tabs) as <T extends TabState = TabState>(
-  props: React.PropsWithRef<TabsProps<T>>,
-) => React.ReactElement;
-
 interface TabProps extends TabsTabProps {
   idx: number;
   closeTab: () => void;
 }
 
-const Tab: React.FC<TabProps> = ({ idx, closeTab, ...props }) => {
+const Tab: React.FC<Readonly<TabProps>> = ({ idx, closeTab, ...props }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({
       id: idx,

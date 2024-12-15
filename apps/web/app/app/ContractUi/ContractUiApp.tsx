@@ -25,7 +25,7 @@ import {
   useLocalStorage,
   useMediaQuery,
 } from '@mantine/hooks';
-import { Editor, EditorProps } from '@monaco-editor/react';
+import { Editor, type EditorProps } from '@monaco-editor/react';
 import { useMutation } from '@tanstack/react-query';
 import { Abi as AbiParser } from 'abitype/zod';
 import { useEffect, useMemo, useState } from 'react';
@@ -36,7 +36,7 @@ import { z } from 'zod';
 
 type Abi = z.infer<typeof AbiParser>;
 
-export const ContractUiApp: React.FC<{ id: string }> = ({ id }) => {
+export const ContractUiApp: React.FC<Readonly<{ id: string }>> = ({ id }) => {
   const form = useForm<{ chain: keyof typeof chainToApi; address: string }>({
     initialValues: {
       chain: 'Ethereum',
@@ -70,7 +70,7 @@ export const ContractUiApp: React.FC<{ id: string }> = ({ id }) => {
     const storedValues = window.localStorage.getItem(`ctison.contract-${id}`);
     try {
       if (storedValues) {
-        form.setValues(JSON.parse(storedValues));
+        form.setValues(JSON.parse(storedValues) as typeof form.values);
       }
     } catch {
       // Ignore error
@@ -87,9 +87,15 @@ export const ContractUiApp: React.FC<{ id: string }> = ({ id }) => {
   }, [form.values, abi]);
   const fetchAbi = useMutation({
     mutationFn: () => chainToApi[form.values.chain](form.values.address),
-    onMutate: () => setAbiStr(undefined),
-    onSuccess: (data) => setAbiStr(JSON.stringify(data, undefined, 2)),
-    onError: (error) => form.setFieldError('address', error.message),
+    onMutate: () => {
+      setAbiStr(undefined);
+    },
+    onSuccess: (data) => {
+      setAbiStr(JSON.stringify(data, undefined, 2));
+    },
+    onError: (error) => {
+      form.setFieldError('address', error.message);
+    },
   });
   const [modalOpened, { open: openModal, close: closeModal }] =
     useDisclosure(false);
@@ -207,7 +213,7 @@ export const ContractUiApp: React.FC<{ id: string }> = ({ id }) => {
   );
 };
 
-export const EditorAbiJson: React.FC<EditorProps> = (props) => {
+export const EditorAbiJson: React.FC<Readonly<EditorProps>> = (props) => {
   return (
     <Editor
       height={300}
@@ -242,7 +248,7 @@ interface ContractFunctionProps {
   fn: Abi[number] & { type: 'function' };
 }
 
-export const ContractFunction: React.FC<ContractFunctionProps> = ({
+export const ContractFunction: React.FC<Readonly<ContractFunctionProps>> = ({
   chainId,
   abi,
   address,
@@ -274,32 +280,35 @@ export const ContractFunction: React.FC<ContractFunctionProps> = ({
   });
   const isReadFn =
     fn.stateMutability === 'pure' || fn.stateMutability === 'view';
-  const interactContract = useMutation({
-    mutationFn: async ({ value, inputs }: typeof form.values) => {
-      console.log(address, fn.name, inputs);
-      if (isReadFn) {
-        const result = await publicClient?.readContract({
-          abi,
-          address: address as `0x${string}`,
-          functionName: fn.name,
-          args: inputs.length > 0 ? inputs : undefined,
-        });
-        return `${result}`;
-      } else {
-        const result = await walletClient.data!.writeContract({
-          abi,
-          address: address as `0x${string}`,
-          functionName: fn.name,
-          args: inputs.length > 0 ? inputs : undefined,
-          value: parseUnits(
-            value,
-            chain?.nativeCurrency.decimals ?? 18,
-          ) as unknown as undefined,
-        });
-        return `${result}`;
-      }
+  const { mutate: interactContract, ...interactContractMutation } = useMutation(
+    {
+      mutationFn: async ({ value, inputs }: typeof form.values) => {
+        console.log(address, fn.name, inputs);
+        if (isReadFn) {
+          const result = await publicClient?.readContract({
+            abi,
+            address: address as `0x${string}`,
+            functionName: fn.name,
+            args: inputs.length > 0 ? inputs : undefined,
+          });
+          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+          return `${result}`;
+        } else {
+          const result = await walletClient.data!.writeContract({
+            abi,
+            address: address as `0x${string}`,
+            functionName: fn.name,
+            args: inputs.length > 0 ? inputs : undefined,
+            value: parseUnits(
+              value,
+              chain?.nativeCurrency.decimals ?? 18,
+            ) as unknown as undefined,
+          });
+          return result;
+        }
+      },
     },
-  });
+  );
   return (
     <Accordion.Item key={fn.name} value={fn.name}>
       <Accordion.Control>
@@ -307,7 +316,9 @@ export const ContractFunction: React.FC<ContractFunctionProps> = ({
       </Accordion.Control>
       <Accordion.Panel>
         <form
-          onSubmit={form.onSubmit((values) => interactContract.mutate(values))}
+          onSubmit={form.onSubmit((values) => {
+            interactContract(values);
+          })}
         >
           <Stack>
             {!isReadFn && (
@@ -321,11 +332,12 @@ export const ContractFunction: React.FC<ContractFunctionProps> = ({
             {fn.inputs.map((input, idx) => {
               return (
                 <TextInput
+                  // eslint-disable-next-line @eslint-react/no-array-index-key
                   key={idx}
                   label={`${input.name || '_'}: ${input.type}${
                     input.internalType ? ` (${input.internalType})` : ''
                   }`}
-                  disabled={interactContract.isPending}
+                  disabled={interactContractMutation.isPending}
                   {...form.getInputProps(`inputs.${idx}`)}
                 />
               );
@@ -336,23 +348,28 @@ export const ContractFunction: React.FC<ContractFunctionProps> = ({
               type='submit'
               miw='20%'
               style={{ alignSelf: 'baseline' }}
-              loading={interactContract.isPending}
+              loading={interactContractMutation.isPending}
             >
               {isReadFn ? 'Read' : 'Write'}
             </Web3ButtonConnect>
-            {interactContract.error && (
+            {interactContractMutation.error && (
               <Alert
-                title={interactContract.error.name}
+                title={interactContractMutation.error.name}
                 color='red'
                 variant='outline'
                 withCloseButton={true}
-                onClose={() => interactContract.reset()}
+                onClose={() => {
+                  interactContractMutation.reset();
+                }}
               >
-                {interactContract.error.message}
+                {interactContractMutation.error.message}
               </Alert>
             )}
-            {interactContract.data && (
-              <CodeHighlight language='json' code={interactContract.data} />
+            {interactContractMutation.data && (
+              <CodeHighlight
+                language='json'
+                code={interactContractMutation.data}
+              />
             )}
           </Stack>
         </form>
@@ -408,7 +425,7 @@ async function etherscanFetchAbi(
   address: string,
 ) {
   const data = await fetch(
-    `${etherscanEndpoints[chain]}` +
+    etherscanEndpoints[chain] +
       '?module=contract&action=getabi' +
       `&address=${address}`,
   );
@@ -417,7 +434,7 @@ async function etherscanFetchAbi(
       `Failed to fetch ABI: ${data.status}: ${await data.text()}`,
     );
   }
-  const { result } = await data.json();
+  const { result } = (await data.json()) as { result: string };
   const abi = JSON.parse(result) as Abi;
   return abi;
 }

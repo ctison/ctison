@@ -4,18 +4,18 @@ import {
   completeNavigationProgress,
   startNavigationProgress,
 } from '@mantine/nprogress';
-import NextLink, { LinkProps } from 'next/link';
+import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
-import { forwardRef } from 'react';
+import type React from 'react';
 
-export const Link = forwardRef<
-  HTMLAnchorElement,
-  React.PropsWithChildren<LinkProps<any>>
->(function Link(props, ref) {
+export const Link: React.FC<
+  Readonly<
+    React.PropsWithChildren<React.ComponentPropsWithRef<typeof NextLink>>
+  >
+> = (props) => {
   const pathname = usePathname();
   return (
     <NextLink
-      ref={ref}
       onClick={() => {
         if (pathname !== props.href) startNavigationProgress();
         else completeNavigationProgress();
@@ -23,4 +23,4 @@ export const Link = forwardRef<
       {...props}
     />
   );
-});
+};

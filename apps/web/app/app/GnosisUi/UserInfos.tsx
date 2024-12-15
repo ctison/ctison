@@ -14,7 +14,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useMemo } from 'react';
 import { FaUser } from 'react-icons/fa';
 import { isAddress } from 'viem';
-import { Tab, safeSupportedChains } from '.';
+import { type Tab, safeSupportedChains } from '.';
 import { Result } from './Result';
 import { useSafeApiKit } from './useSafeApiKit';
 
@@ -70,9 +70,9 @@ export const UserInfosForm: React.FC<{
           <Web3InputAddress
             label='User Address'
             placeholder='0x...'
-            setAddress={(address) =>
-              form.setFieldValue('userAddress', address as `0x${string}`)
-            }
+            setAddress={(address) => {
+              form.setFieldValue('userAddress', address as `0x${string}`);
+            }}
             {...form.getInputProps('userAddress')}
           />
           <Button type='submit' mt='md'>
@@ -84,11 +84,13 @@ export const UserInfosForm: React.FC<{
   );
 };
 
-export const UserInfos: React.FC<{
-  chain: keyof typeof safeSupportedChains;
-  userAddress: `0x${string}`;
-  id: string;
-}> = ({ chain, userAddress, id }) => {
+export const UserInfos: React.FC<
+  Readonly<{
+    chain: keyof typeof safeSupportedChains;
+    userAddress: `0x${string}`;
+    id: string;
+  }>
+> = ({ chain, userAddress, id }) => {
   const safeApiKit = useSafeApiKit(chain);
   const safes = useQuery({
     queryKey: ['safes', chain, userAddress],
