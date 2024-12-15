@@ -2,6 +2,7 @@
 
 import { createWeb3Modal } from '@web3modal/wagmi/react';
 import { defaultWagmiConfig } from '@web3modal/wagmi/react/config';
+import type React from 'react';
 import {
   Arbitrum as IconArbitrum,
   Avalanche as IconAvalanche,
@@ -21,7 +22,7 @@ import {
 } from 'wagmi/chains';
 
 const walletConnectProjectId =
-  process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID!;
+  process.env['NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID']!;
 
 const chains = [
   mainnet,
@@ -52,7 +53,7 @@ createWeb3Modal({
   },
 });
 
-export const Web3Provider: React.FC<React.PropsWithChildren> = ({
+export const Web3Provider: React.FC<Readonly<React.PropsWithChildren>> = ({
   children,
 }) => {
   return <WagmiProvider config={wagmiConfig}>{children}</WagmiProvider>;
@@ -63,7 +64,7 @@ export const chainToChainId = chains.reduce(
   {},
 ) as Record<(typeof chains)[number]['name'], (typeof chains)[number]['id']>;
 
-export const chainIdToIcon: Record<number, JSX.Element> = {
+export const chainIdToIcon: Record<number, React.ReactNode> = {
   [mainnet.id]: <IconEthereum color='black' />,
   [goerli.id]: <IconEthereum color='gray' />,
   [sepolia.id]: <IconEthereum color='gray' />,

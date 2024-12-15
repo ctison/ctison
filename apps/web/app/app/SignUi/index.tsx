@@ -66,7 +66,11 @@ export const SignUi: React.FC = () => {
     (id: string, history: Partial<History>) => {
       historyHandlers.applyWhere(
         (item) => item.id === id,
-        (item) => ({ ...item, ...history }) as History,
+        (item) =>
+          ({
+            ...item,
+            ...history,
+          }) as History,
       );
     },
     [historyHandlers],
@@ -97,7 +101,9 @@ export const SignUi: React.FC = () => {
             <Button
               color='red'
               variant='subtle'
-              onClick={() => historyHandlers.setState([])}
+              onClick={() => {
+                historyHandlers.setState([]);
+              }}
               leftSection={<IoTrashBinOutline />}
             >
               Clear history

@@ -8,7 +8,7 @@ import {
   Flex,
   Group,
   NumberInput,
-  OptionsFilter,
+  type OptionsFilter,
   SegmentedControl,
   Stack,
   Tabs,
@@ -56,7 +56,7 @@ export const DateCalculator: React.FC<DateCalculatorProps> = () => {
         .padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`,
     [date],
   );
-  const { onSubmit: formOnSubmit, ...form } = useForm({
+  const form = useForm({
     initialValues: {
       date: date,
       time: time,
@@ -88,9 +88,9 @@ export const DateCalculator: React.FC<DateCalculatorProps> = () => {
       return {
         format,
         date: dayjs(date)
-          .set('hour', parseInt(timeMatch?.groups?.hours ?? '0'))
-          .set('minute', parseInt(timeMatch?.groups?.minutes ?? '0'))
-          .set('second', parseInt(timeMatch?.groups?.seconds ?? '0'))
+          .set('hour', parseInt(timeMatch?.groups?.['hours'] ?? '0'))
+          .set('minute', parseInt(timeMatch?.groups?.['minutes'] ?? '0'))
+          .set('second', parseInt(timeMatch?.groups?.['seconds'] ?? '0'))
           .add(years, 'year')
           .add(months, 'month')
           .add(weeks, 'week')
@@ -176,7 +176,9 @@ export const DateCalculator: React.FC<DateCalculatorProps> = () => {
             <SegmentedControl
               data={['Date', 'Time']}
               value={panel}
-              onChange={(e) => setPanel(e)}
+              onChange={(e) => {
+                setPanel(e);
+              }}
             />
             <Tabs value={panel}>
               <Tabs.Panel value='Date'>

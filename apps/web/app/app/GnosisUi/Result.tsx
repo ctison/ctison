@@ -13,16 +13,18 @@ import {
   Tooltip,
 } from '@mantine/core';
 import { Editor } from '@monaco-editor/react';
-import { UseQueryResult } from '@tanstack/react-query';
+import { type UseQueryResult } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import React, { useEffect, useMemo } from 'react';
 import { MdOutlineRefresh } from 'react-icons/md';
 
-export const Result: React.FC<{
-  query: UseQueryResult;
-  title: string;
-  id: string;
-}> = ({ query, title, id }) => {
+export const Result: React.FC<
+  Readonly<{
+    query: UseQueryResult;
+    title: string;
+    id: string;
+  }>
+> = ({ query, title, id }) => {
   const data = useMemo(
     () => JSON.stringify(query.data, undefined, 2),
     [query.data],
@@ -61,7 +63,9 @@ export const Result: React.FC<{
           </Text>
           <ActionIcon
             variant='subtle'
-            onClick={() => query.refetch()}
+            onClick={() => {
+              void query.refetch();
+            }}
             title='Refresh'
             disabled={query.isFetching}
           >
@@ -74,7 +78,7 @@ export const Result: React.FC<{
             <Loader type='dots' size='sm' />
           </Center>
         ) : query.isError ? (
-          <Alert color='red' title={`${query.error.name}`}>
+          <Alert color='red' title={query.error.name}>
             {query.error.message}
           </Alert>
         ) : query.isSuccess ? (

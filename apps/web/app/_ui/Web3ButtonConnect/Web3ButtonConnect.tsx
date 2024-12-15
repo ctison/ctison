@@ -1,6 +1,6 @@
-import { Button, ButtonProps } from '@mantine/core';
+import { Button, type ButtonProps } from '@mantine/core';
 import { useWeb3Modal } from '@web3modal/wagmi/react';
-import { forwardRef, useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useAccount, useChainId, useSwitchChain } from 'wagmi';
 
 export interface Web3ButtonConnectProps
@@ -8,12 +8,15 @@ export interface Web3ButtonConnectProps
     Omit<React.ComponentPropsWithoutRef<'button'>, keyof ButtonProps> {
   disableConnect?: boolean;
   chainId?: number;
+  ref?: React.ForwardedRef<HTMLButtonElement>;
 }
 
-export const Web3ButtonConnect = forwardRef<
-  HTMLButtonElement,
-  Web3ButtonConnectProps
->(function Web3ConnectButton({ disableConnect, chainId, ...props }, ref) {
+export const Web3ButtonConnect: React.FC<Readonly<Web3ButtonConnectProps>> = ({
+  disableConnect,
+  chainId,
+  ref,
+  ...props
+}) => {
   const { isConnected, isConnecting } = useAccount();
   const currentChain = useChainId();
   const { open: openConnectModal } = useWeb3Modal();
@@ -28,7 +31,7 @@ export const Web3ButtonConnect = forwardRef<
   const switchNetwork = useSwitchChain();
   const connectOnClick = useCallback(() => {
     if (!isConnected) {
-      openConnectModal();
+      void openConnectModal();
     } else if (shouldSwitchChain && chainId !== undefined) {
       switchNetwork.switchChain({ chainId });
     }
@@ -62,4 +65,4 @@ export const Web3ButtonConnect = forwardRef<
           : props.children}
     </Button>
   );
-});
+};

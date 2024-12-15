@@ -2,9 +2,9 @@ import { Web3InputAddress } from '@/_ui/Web3InputAddress';
 import { Button, Fieldset, Group, Textarea, Title } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useMutation } from '@tanstack/react-query';
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 import { isAddress, isHex, verifyMessage } from 'viem';
-import { History } from '.';
+import { type History } from '.';
 
 export const VerifyMessage: React.FC<{
   addHistory: (history: Omit<History, 'id' | 'date'>) => string;
@@ -21,7 +21,7 @@ export const VerifyMessage: React.FC<{
       signature: (value) => (isHex(value) ? null : 'Invalid signature'),
     },
   });
-  const verifyMessageMutation = useMutation({
+  const { mutate: _verifyMessage, ...verifyMessageMutation } = useMutation({
     mutationFn: async (values: typeof form.values) => {
       return await verifyMessage({
         address: values.address as `0x${string}`,
@@ -52,16 +52,18 @@ export const VerifyMessage: React.FC<{
   return (
     <form
       onSubmit={useMemo(
-        () => form.onSubmit((values) => verifyMessageMutation.mutate(values)),
-        [form, verifyMessageMutation],
+        () =>
+          form.onSubmit((values) => {
+            _verifyMessage(values);
+          }),
+        [form, _verifyMessage],
       )}
     >
       <Fieldset legend='Verify a message'>
         <Web3InputAddress
-          setAddress={useCallback(
-            (address) => form.setFieldValue('address', address),
-            [form],
-          )}
+          setAddress={(address) => {
+            form.setFieldValue('address', address);
+          }}
           disabled={verifyMessageMutation.isPending}
           description='The Ethereum address that signed the original message.'
           {...form.getInputProps('address')}

@@ -1,24 +1,47 @@
-import { AgGridEvent, ColDef } from 'ag-grid-community';
-import { AgGridReact, AgGridReactProps } from 'ag-grid-react';
+'use client';
+
+import type { AgGridEvent, ColDef } from 'ag-grid-community';
+import {
+  ClientSideRowModelApiModule,
+  ClientSideRowModelModule,
+  ModuleRegistry,
+  RowDragModule,
+  RowSelectionModule,
+  TextFilterModule,
+  ValidationModule,
+} from 'ag-grid-community';
+import { AgGridReact, type AgGridReactProps } from 'ag-grid-react';
 import { useCallback, useMemo } from 'react';
+import './Table.css';
+
+ModuleRegistry.registerModules([
+  ClientSideRowModelApiModule,
+  ClientSideRowModelModule,
+  RowDragModule,
+  RowSelectionModule,
+  TextFilterModule,
+  ValidationModule,
+]);
 
 interface GridProps extends AgGridReactProps {
-  _data?: any[];
-  _setSelectedData: (data: any[]) => void;
+  _data?: unknown[];
+  _setSelectedData: (data: unknown[]) => void;
 }
 
-export const Table: React.FC<GridProps> = ({
+export const Table: React.FC<Readonly<GridProps>> = ({
   _data,
   _setSelectedData,
   columnDefs,
   ...props
 }) => {
   const updateSelectedCategories = useCallback(
-    (e: AgGridEvent) => {
-      let selectedRows = [] as string[];
+    (e: AgGridEvent<string>) => {
+      const selectedRows = [] as unknown[];
       e.api.forEachLeafNode((row) => {
         if (row.isSelected()) {
-          selectedRows.push(row.data);
+          if (row.data !== undefined) {
+            selectedRows.push(row.data);
+          }
         }
       });
       _setSelectedData(selectedRows);
@@ -32,7 +55,7 @@ export const Table: React.FC<GridProps> = ({
         ...categoriesColumns[0],
         ...columnDefs![0],
         ...{
-          headerName: `${columnDefs![0].headerName!}${
+          headerName: `${columnDefs![0]!.headerName!}${
             (_data?.length ?? 0) > 0 ? ` - ${_data?.length}` : ''
           }`,
         },
@@ -45,8 +68,12 @@ export const Table: React.FC<GridProps> = ({
     <AgGridReact
       rowDragManaged
       tooltipShowDelay={500}
-      rowSelection='multiple'
-      rowMultiSelectWithClick={true}
+      rowSelection={{
+        mode: 'multiRow',
+        enableSelectionWithoutKeys: true,
+        enableClickSelection: true,
+      }}
+      cellSelection={false}
       rowData={_data}
       columnDefs={columns}
       onSelectionChanged={updateSelectedCategories}
@@ -75,7 +102,6 @@ const categoriesColumns: ColDef[] = [
     },
     rowDrag: true,
 
-    checkboxSelection: true,
     headerCheckboxSelection: true,
     headerCheckboxSelectionFilteredOnly: true,
     headerCheckboxSelectionCurrentPageOnly: true,

@@ -1,32 +1,15 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "ES2023",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true,
     "plugins": [{ "name": "next" }],
-    "baseUrl": ".",
+    "incremental": true,
     "paths": {
       "@/public/*": ["./public/*"],
-      "@/*": ["./app/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
+      "@/*": ["./app/*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "app/**/*",
-    ".next/types/**/*",
-    ".next/types/**/*.ts",
-    ".contentlayer/generated"
-  ],
-  "exclude": ["node_modules"]
+  "include": ["**/*", ".next/types/**/*.ts"],
+  "exclude": [".*/**", "!.next/types/**/*", "out/**"]
 }

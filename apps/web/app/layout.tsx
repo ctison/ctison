@@ -8,7 +8,7 @@ import { NavigationProgress } from '@/_layout/NavigationProgress';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { AppShell } from './_layout/AppShell';
 import { ReactQueryProvider } from './_layout/ReactQueryProvider';
 import { Web3Provider } from './_layout/Web3Provider';
@@ -23,17 +23,15 @@ export const metadata: Metadata = {
   },
   description: "@ctison's website",
   alternates: {
-    canonical: `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`,
+    canonical: `https://${process.env['NEXT_PUBLIC_VERCEL_URL']}`,
   },
 };
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: Readonly<React.PropsWithChildren>) {
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning>
       <head>
         <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />

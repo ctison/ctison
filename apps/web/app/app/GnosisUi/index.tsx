@@ -1,6 +1,6 @@
 'use client';
 
-import { TabState } from '@/_ui/Tabs';
+import { type TabState } from '@/_ui/Tabs';
 import { TabsController } from '@/_ui/Tabs/Controller';
 import { Tabs } from '@/_ui/Tabs/Tabs';
 import { SimpleGrid, Stack } from '@mantine/core';

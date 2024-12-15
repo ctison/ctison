@@ -7,10 +7,10 @@ import { Box, Button, Stack, Text, Title, Tooltip } from '@mantine/core';
 export default function Error({
   error,
   reset,
-}: {
+}: Readonly<{
   error: Error & { digest?: string };
   reset: () => void;
-}) {
+}>) {
   return (
     <Box mih={500} p='sm' style={{ border: 'solid 10px red' }}>
       <Stack align='center'>

@@ -3,7 +3,7 @@
 import { Link } from '@/_ui/Link';
 import { ActionIcon, Button, TextInput, Tooltip } from '@mantine/core';
 import { startNavigationProgress } from '@mantine/nprogress';
-import { Route } from 'next';
+import { type Route } from 'next';
 import { usePathname, useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
@@ -65,7 +65,9 @@ export const Navigation: React.FC = () => {
           description='Go to /next/3/:slug'
           placeholder='Type a slug here.'
           value={slug}
-          onChange={(event) => setSlug(event.currentTarget.value)}
+          onChange={(event) => {
+            setSlug(event.currentTarget.value);
+          }}
           rightSection={
             <Tooltip label='1s load page + 1s inner suspense'>
               <ActionIcon type='submit' disabled={slug.length === 0}>

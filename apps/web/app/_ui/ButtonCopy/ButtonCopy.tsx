@@ -1,4 +1,3 @@
-import classes from './ButtonCopy.module.css';
 import {
   ActionIcon,
   Popover,
@@ -13,7 +12,7 @@ export interface ButtonCopyProps {
   value: string;
 }
 
-export const CopyButton: React.FC<ButtonCopyProps> = ({ value }) => {
+export const CopyButton: React.FC<Readonly<ButtonCopyProps>> = ({ value }) => {
   const clipboard = useClipboard();
   const copy = useCallback(() => {
     clipboard.copy(value);

@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function Page() {
   // Disable static rendering at build time by using cookies
-  cookies();
+  void cookies();
   await new Promise((resolve) => setTimeout(resolve, 1000));
   return (
     <Stack

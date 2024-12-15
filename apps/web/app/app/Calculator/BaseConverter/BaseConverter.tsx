@@ -33,7 +33,7 @@ export const BaseConverter: React.FC<BaseConverterProps> = () => {
     },
   });
 
-  const convertBase = useMutation({
+  const { mutate: convertBase, ...baseConversion } = useMutation({
     mutationFn: async ({ number, inBase, toBase }: typeof form.values) => {
       const baseConverter = await import('@ctison/base-converter');
       return baseConverter.baseToBase(number, inBase, toBase);
@@ -42,8 +42,8 @@ export const BaseConverter: React.FC<BaseConverterProps> = () => {
 
   const onSubmit = useMemo(
     () =>
-      formOnSubmit(async (values) => {
-        convertBase.mutate(values);
+      formOnSubmit((values) => {
+        convertBase(values);
       }),
     [convertBase, formOnSubmit],
   );
@@ -57,7 +57,11 @@ export const BaseConverter: React.FC<BaseConverterProps> = () => {
               <PiMathOperationsFill size='70%' />
             </ThemeIcon>
             <Text fw='bold'>Base Converter</Text>
-            <a href='https://github.com/ctison/base-converter' target='_blank'>
+            <a
+              href='https://github.com/ctison/base-converter'
+              target='_blank'
+              rel='noreferrer noopener'
+            >
               <ActionIcon size='md' variant='subtle' color='black'>
                 <VscGithub size='70%' />
               </ActionIcon>
@@ -84,15 +88,15 @@ export const BaseConverter: React.FC<BaseConverterProps> = () => {
           <Button miw={200} className={classes['submit-button']} type='submit'>
             Convert
           </Button>
-          {convertBase.isPending ? (
+          {baseConversion.isPending ? (
             <Loader />
-          ) : convertBase.isError ? (
-            <Alert color='red' title={convertBase.error.name}>
-              {convertBase.error.message}
+          ) : baseConversion.isError ? (
+            <Alert color='red' title={baseConversion.error.name}>
+              {baseConversion.error.message}
             </Alert>
-          ) : convertBase.isSuccess ? (
+          ) : baseConversion.isSuccess ? (
             <CodeHighlight
-              code={convertBase.data}
+              code={baseConversion.data}
               language='text'
               c='black'
               bg='green.0'

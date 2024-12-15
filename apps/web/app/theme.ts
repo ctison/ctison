@@ -10,7 +10,7 @@ export const theme = createTheme({
   components: {
     Button: Button.extend({
       classNames: {
-        root: classes.button,
+        root: classes['button'],
       },
     }),
     Anchor: Anchor.extend({

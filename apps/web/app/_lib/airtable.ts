@@ -1,9 +1,9 @@
 'use server';
 
-import { default as Airtable, FieldSet } from 'airtable';
+import { default as Airtable, type FieldSet } from 'airtable';
 import { cache } from 'react';
 
-const airtable = new Airtable({ apiKey: process.env.AIRTABLE_TOKEN! }).base(
+const airtable = new Airtable({ apiKey: process.env['AIRTABLE_TOKEN']! }).base(
   'appcGHd3RQyNKtfzE',
 );
 

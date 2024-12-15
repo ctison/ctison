@@ -1,5 +1,5 @@
-import { Route } from 'next';
-import { IconType } from 'react-icons';
+import { type Route } from 'next';
+import { type IconType } from 'react-icons';
 import { HiLightningBolt } from 'react-icons/hi';
 import { IoHome } from 'react-icons/io5';
 

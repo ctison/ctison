@@ -53,7 +53,9 @@ export const Footer: React.FC = () => {
 };
 
 const FooterIcon: React.FC<
-  React.PropsWithChildren<{ href?: string; tooltip: string; copy?: string }>
+  Readonly<
+    React.PropsWithChildren<{ href?: string; tooltip: string; copy?: string }>
+  >
 > = ({ tooltip, href, children, copy }) => {
   const clipboard = useClipboard();
 
@@ -68,7 +70,9 @@ const FooterIcon: React.FC<
             referrerPolicy='no-referrer'
             variant='subtle'
             color='black'
-            onClick={copy ? () => clipboard.copy(copy) : undefined}
+            onClick={() => {
+              if (copy) clipboard.copy(copy);
+            }}
           >
             {children}
           </ActionIcon>

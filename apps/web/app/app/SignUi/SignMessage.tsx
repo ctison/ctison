@@ -4,7 +4,7 @@ import { Fieldset, Textarea } from '@mantine/core';
 import { useMutation } from '@tanstack/react-query';
 import { useCallback, useState } from 'react';
 import { useWalletClient } from 'wagmi';
-import { History } from '.';
+import { type History } from '.';
 
 export const SignMessage: React.FC<{
   addHistory: (history: Omit<History, 'id' | 'date'>) => string;
@@ -12,9 +12,8 @@ export const SignMessage: React.FC<{
 }> = ({ addHistory, updateHistory }) => {
   const { data: walletClient } = useWalletClient();
   const [message, setMessage] = useState('');
-  const signMessage = useMutation({
+  const { mutate: signMessage, ...signMessageMutation } = useMutation({
     mutationFn: async (message: string) => {
-      walletClient!.account.address;
       return await walletClient!.signMessage({ message });
     },
     onMutate(message) {
@@ -33,8 +32,8 @@ export const SignMessage: React.FC<{
       });
     },
   });
-  const handleSign = useCallback(async () => {
-    signMessage.mutate(message);
+  const handleSign = useCallback(() => {
+    signMessage(message);
   }, [message, signMessage]);
 
   return (
@@ -44,9 +43,11 @@ export const SignMessage: React.FC<{
         description="This message you're signing proves you own the address you say you do."
         minRows={5}
         value={message}
-        onChange={(event) => setMessage(event.currentTarget.value)}
-        error={signMessage.error?.message}
-        disabled={signMessage.isPending}
+        onChange={(event) => {
+          setMessage(event.currentTarget.value);
+        }}
+        error={signMessageMutation.error?.message}
+        disabled={signMessageMutation.isPending}
         placeholder='Type a message to sign here.'
         required
       />
@@ -54,13 +55,17 @@ export const SignMessage: React.FC<{
         mt='lg'
         miw={124}
         onClick={handleSign}
-        loading={signMessage.isPending}
+        loading={signMessageMutation.isPending}
         disabled={message.length === 0}
       >
         Sign
       </Web3ButtonConnect>
-      {signMessage.data && (
-        <CodeHighlight mt='lg' code={signMessage.data} language='json' />
+      {signMessageMutation.data && (
+        <CodeHighlight
+          mt='lg'
+          code={signMessageMutation.data}
+          language='json'
+        />
       )}
     </Fieldset>
   );

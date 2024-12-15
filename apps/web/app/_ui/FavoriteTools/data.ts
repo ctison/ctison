@@ -5,13 +5,19 @@ export interface FavoriteTool {
   link: string;
 }
 
-export type ToolCategory = 'frontend' | 'backend' | 'infra' | 'language';
+export type ToolCategory =
+  | 'frontend'
+  | 'backend'
+  | 'infra'
+  | 'language'
+  | 'database';
 
 export const toolColor: Record<ToolCategory, string> = {
   frontend: 'teal',
   backend: 'orange',
   infra: 'pink',
   language: 'grape',
+  database: 'lime',
 };
 
 export const favoriteTools: FavoriteTool[] = [
@@ -61,10 +67,10 @@ export const favoriteTools: FavoriteTool[] = [
     link: 'https://nextjs.org',
   },
   {
-    name: 'Mantine',
+    name: 'Tailwindcss',
     category: 'frontend',
-    description: 'A wonderful React UI library',
-    link: 'https://mantine.dev',
+    description: 'CSS the right way',
+    link: 'https://tailwindcss.com',
   },
   {
     name: 'Bun',
@@ -72,5 +78,23 @@ export const favoriteTools: FavoriteTool[] = [
     description:
       'A JS runtime with wonderful performance and developer experience',
     link: 'https://bun.sh',
+  },
+  {
+    name: 'SurrealDB',
+    category: 'database',
+    description: "The world's most powerful multi-model database",
+    link: 'https://surrealdb.com',
+  },
+  {
+    name: 'PostgreSQL',
+    category: 'database',
+    description: "The World's Most Advanced Open Source Relational Database",
+    link: 'https://www.postgresql.org',
+  },
+  {
+    name: 'OpenTelemetry',
+    category: 'infra',
+    description: 'To know how applications behave',
+    link: 'https://opentelemetry.io',
   },
 ];

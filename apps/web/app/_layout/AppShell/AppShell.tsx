@@ -31,7 +31,7 @@ const brandFont = MuseoModerno({ subsets: ['latin'], weight: '600' });
 
 export interface AppShellProps extends React.PropsWithChildren {}
 
-export const AppShell: React.FC<AppShellProps> = ({ children }) => {
+export const AppShell: React.FC<Readonly<AppShellProps>> = ({ children }) => {
   const isMobile = useMediaQuery(`(max-width: 48em)`);
   const [navbarOpened, { toggle: toggleNavbar, close: closeNavbar }] =
     useDisclosure(!isMobile);
@@ -117,7 +117,9 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
                 <Stack p='sm'>
                   <NoSsrWeb3WalletButton />
                   <Button
-                    onClick={() => spotlight.open()}
+                    onClick={() => {
+                      spotlight.open();
+                    }}
                     variant='default'
                     mih='40px'
                     radius='md'

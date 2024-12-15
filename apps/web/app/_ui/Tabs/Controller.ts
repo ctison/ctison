@@ -1,6 +1,7 @@
-import { TabState } from '.';
+import { type TabState } from '.';
 
-module TabsController {
+// eslint-disable-next-line @typescript-eslint/no-namespace
+namespace TabsController {
   export type EventMap<T extends TabState> = {
     'create-tab': Partial<T>;
   };
@@ -11,22 +12,22 @@ module TabsController {
 }
 
 export class TabsController<T extends TabState = TabState> extends EventTarget {
-  // @ts-expect-error
+  // @ts-expect-error Override a method with a generic is complex
   public override addEventListener<K extends TabsController.K<T>>(
     type: K,
     callback: (e: TabsController.E<T, K>) => void,
-    options?: boolean | AddEventListenerOptions | undefined,
+    options?: boolean | AddEventListenerOptions,
   ): void {
     super.addEventListener(type, callback as EventListener, options);
   }
 
-  // @ts-expect-error
+  // @ts-expect-error Override a method with a generic is complex
   public override removeEventListener<K extends TabsController.K<T>>(
     type: K,
     callback: (e: TabsController.E<T, K>) => void,
-    options?: boolean | EventListenerOptions | undefined,
+    options?: boolean | EventListenerOptions,
   ): void {
-    return super.removeEventListener(type, callback as EventListener, options);
+    super.removeEventListener(type, callback as EventListener, options);
   }
 
   public dispatch<K extends TabsController.K<T>>(

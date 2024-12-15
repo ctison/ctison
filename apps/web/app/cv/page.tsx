@@ -1,34 +1,29 @@
 // import { getCV } from '@/_lib/airtable';
 import {
-  Badge,
-  Box,
   Container,
   Group,
-  Stack,
   Text,
   ThemeIcon,
   Timeline,
-  TimelineItem,
   Title,
   Tooltip,
 } from '@mantine/core';
+import { type IconType } from 'react-icons';
 import { FaRust } from 'react-icons/fa';
-import { IoCalendarOutline, IoLocationOutline } from 'react-icons/io5';
-import { LuHardHat } from 'react-icons/lu';
-import { default as Markdown } from 'react-markdown';
-import { SiTypescript } from 'react-icons/si';
-import { SiSolidity } from 'react-icons/si';
 import { IoTerminal } from 'react-icons/io5';
-import { SiKubernetes } from 'react-icons/si';
-import { IconType } from 'react-icons';
-import { SiPython } from 'react-icons/si';
+import {
+  SiKubernetes,
+  SiPython,
+  SiSolidity,
+  SiTypescript,
+} from 'react-icons/si';
 
 export const metadata = {
   title: 'CV',
   robots: 'noindex, nofollow, noarchive, nosnippet, noimageindex',
 };
 
-export default async function Page() {
+export default function Page() {
   // const cv = await getCV();
   return (
     <Container my='xl' size='sm'>
@@ -88,12 +83,14 @@ export default async function Page() {
   );
 }
 
-const Icon: React.FC<{
-  Icon_: IconType;
-  label: string;
-  color?: string;
-  size?: string;
-}> = ({ Icon_, label, color, size }) => {
+const Icon: React.FC<
+  Readonly<{
+    Icon_: IconType;
+    label: string;
+    color?: string;
+    size?: string;
+  }>
+> = ({ Icon_, label, color, size }) => {
   return (
     <Tooltip label={label}>
       <ThemeIcon variant='white' c={color}>

@@ -1,26 +1,17 @@
-import {
-  Box,
-  BoxProps,
-  Title,
-  TitleProps,
-  createPolymorphicComponent,
-} from '@mantine/core';
+import { Box, type BoxProps, Title, type TitleProps } from '@mantine/core';
 import classes from './FramedTitle.module.css';
-import { forwardRef } from 'react';
 
 export interface FramedTitleProps extends TitleProps {
   boxProps?: BoxProps;
+  ref?: (typeof Title)['ref'];
 }
 
-export const FramedTitle = createPolymorphicComponent<'h1', FramedTitleProps>(
-  // eslint-disable-next-line react/display-name
-  forwardRef<HTMLHeadingElement, FramedTitleProps>(
-    ({ boxProps, ...props }, ref) => (
-      <Box className={classes['box']} {...boxProps}>
-        <Title {...props} ref={ref} />
-      </Box>
-    ),
-  ),
+export const FramedTitle: React.FC<Readonly<FramedTitleProps>> = ({
+  boxProps,
+  ref,
+  ...props
+}) => (
+  <Box className={classes['box']} {...boxProps}>
+    <Title {...props} ref={ref} />
+  </Box>
 );
-
-FramedTitle.displayName = 'FramedTitle';

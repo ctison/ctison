@@ -1,5 +1,5 @@
 import { Stack, Title } from '@mantine/core';
-import { Metadata, ResolvingMetadata } from 'next';
+import type { Metadata, ResolvingMetadata } from 'next';
 import { ThrowError } from './ThrowError';
 import { FetchApi } from './FetchApi';
 

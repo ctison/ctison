@@ -2,6 +2,7 @@ const Page: React.FC = () => {
   return (
     <>
       <iframe
+        sandbox=''
         src='https://calendar.google.com/calendar/appointments/schedules/AcZssZ3PfJSPEIhVxZMG6O_ZNG4AEXWnPZri8_Enaj_C_Lb0FeoUp-xqS71zck_Go-Synn4nD6tw_AeP?gv=true'
         style={{
           border: 0,
