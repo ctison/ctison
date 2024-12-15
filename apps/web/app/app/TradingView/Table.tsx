@@ -1,10 +1,27 @@
 'use client';
 
 import type { AgGridEvent, ColDef } from 'ag-grid-community';
+import {
+  ClientSideRowModelApiModule,
+  ClientSideRowModelModule,
+  ModuleRegistry,
+  RowDragModule,
+  RowSelectionModule,
+  TextFilterModule,
+  ValidationModule,
+} from 'ag-grid-community';
 import { AgGridReact, type AgGridReactProps } from 'ag-grid-react';
 import { useCallback, useMemo } from 'react';
-// import 'ag-grid-community/styles/ag-grid.css';
-// import 'ag-grid-community/styles/ag-theme-quartz.css';
+import './Table.css';
+
+ModuleRegistry.registerModules([
+  ClientSideRowModelApiModule,
+  ClientSideRowModelModule,
+  RowDragModule,
+  RowSelectionModule,
+  TextFilterModule,
+  ValidationModule,
+]);
 
 interface GridProps extends AgGridReactProps {
   _data?: unknown[];
@@ -51,8 +68,12 @@ export const Table: React.FC<Readonly<GridProps>> = ({
     <AgGridReact
       rowDragManaged
       tooltipShowDelay={500}
-      rowSelection='multiple'
-      rowMultiSelectWithClick={true}
+      rowSelection={{
+        mode: 'multiRow',
+        enableSelectionWithoutKeys: true,
+        enableClickSelection: true,
+      }}
+      cellSelection={false}
       rowData={_data}
       columnDefs={columns}
       onSelectionChanged={updateSelectedCategories}
@@ -81,7 +102,6 @@ const categoriesColumns: ColDef[] = [
     },
     rowDrag: true,
 
-    checkboxSelection: true,
     headerCheckboxSelection: true,
     headerCheckboxSelectionFilteredOnly: true,
     headerCheckboxSelectionCurrentPageOnly: true,

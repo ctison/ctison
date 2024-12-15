@@ -66,7 +66,11 @@ export const SignUi: React.FC = () => {
     (id: string, history: Partial<History>) => {
       historyHandlers.applyWhere(
         (item) => item.id === id,
-        (item) => ({ ...item, ...history }) as History,
+        (item) =>
+          ({
+            ...item,
+            ...history,
+          }) as History,
       );
     },
     [historyHandlers],
