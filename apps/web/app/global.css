@@ -1,5 +1,4 @@
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
 @media print {
   .mantine-AppShell-root {

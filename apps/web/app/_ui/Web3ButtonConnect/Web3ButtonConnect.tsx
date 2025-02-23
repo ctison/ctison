@@ -1,5 +1,5 @@
 import { Button, type ButtonProps } from '@mantine/core';
-import { useWeb3Modal } from '@web3modal/wagmi/react';
+import { useAppKit } from '@reown/appkit/react';
 import React, { useCallback, useMemo } from 'react';
 import { useAccount, useChainId, useSwitchChain } from 'wagmi';
 
@@ -19,7 +19,7 @@ export const Web3ButtonConnect: React.FC<Readonly<Web3ButtonConnectProps>> = ({
 }) => {
   const { isConnected, isConnecting } = useAccount();
   const currentChain = useChainId();
-  const { open: openConnectModal } = useWeb3Modal();
+  const { open: openConnectModal } = useAppKit();
   const shouldSwitchChain = useMemo(
     () => chainId !== undefined && chainId !== currentChain,
     [chainId, currentChain],

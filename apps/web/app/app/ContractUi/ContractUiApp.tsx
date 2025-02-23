@@ -86,7 +86,7 @@ export const ContractUiApp: React.FC<Readonly<{ id: string }>> = ({ id }) => {
     );
   }, [form.values, abi]);
   const fetchAbi = useMutation({
-    mutationFn: () => chainToApi[form.values.chain](form.values.address),
+    mutationFn: () => chainToApi[form.values.chain]!(form.values.address),
     onMutate: () => {
       setAbiStr(undefined);
     },
@@ -197,7 +197,7 @@ export const ContractUiApp: React.FC<Readonly<{ id: string }>> = ({ id }) => {
                 }
                 return (
                   <ContractFunction
-                    chainId={chainToChainId[form.values.chain]}
+                    chainId={chainToChainId[form.values.chain]!}
                     abi={abi.data!}
                     address={form.values.address}
                     key={method.name}
@@ -425,7 +425,7 @@ async function etherscanFetchAbi(
   address: string,
 ) {
   const data = await fetch(
-    etherscanEndpoints[chain] +
+    etherscanEndpoints[chain]! +
       '?module=contract&action=getabi' +
       `&address=${address}`,
   );

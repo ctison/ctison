@@ -1,7 +1,17 @@
 'use client';
 
-import { createWeb3Modal } from '@web3modal/wagmi/react';
-import { defaultWagmiConfig } from '@web3modal/wagmi/react/config';
+import { WagmiAdapter } from '@reown/appkit-adapter-wagmi';
+import {
+  arbitrum,
+  avalanche,
+  bsc,
+  goerli,
+  mainnet,
+  polygon,
+  sepolia,
+} from '@reown/appkit/networks';
+import { createAppKit } from '@reown/appkit/react';
+import { cookieStorage, createStorage } from '@wagmi/core';
 import type React from 'react';
 import {
   Arbitrum as IconArbitrum,
@@ -11,43 +21,42 @@ import {
   Polygon2 as IconPolygon,
 } from 'react-web3-icons';
 import { WagmiProvider } from 'wagmi';
-import {
-  arbitrum,
-  avalanche,
-  bsc,
-  goerli,
-  mainnet,
-  polygon,
-  sepolia,
-} from 'wagmi/chains';
 
 const walletConnectProjectId =
   process.env['NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID']!;
 
-const chains = [
-  mainnet,
-  goerli,
-  sepolia,
+const chains: Parameters<typeof createAppKit>[0]['networks'] = [
   arbitrum,
   avalanche,
   bsc,
+  goerli,
+  mainnet,
   polygon,
-] as const;
+  sepolia,
+];
 
-const wagmiConfig = defaultWagmiConfig({
-  chains,
+const wagmiAdapter = new WagmiAdapter({
+  networks: chains,
   projectId: walletConnectProjectId,
+  storage: createStorage({
+    storage: cookieStorage,
+  }),
+  ssr: true,
+});
+
+createAppKit({
+  adapters: [wagmiAdapter],
+  networks: chains,
   metadata: {
     name: 'Next Starter Template',
     description: 'A Next.js starter template with Web3Modal v3 + Wagmi',
     url: 'https://web3modal.com',
     icons: ['https://avatars.githubusercontent.com/u/37784886'],
   },
-});
-
-createWeb3Modal({
-  wagmiConfig,
   projectId: walletConnectProjectId,
+  features: {
+    analytics: true,
+  },
   themeVariables: {
     '--w3m-z-index': 1000,
   },
@@ -56,13 +65,15 @@ createWeb3Modal({
 export const Web3Provider: React.FC<Readonly<React.PropsWithChildren>> = ({
   children,
 }) => {
-  return <WagmiProvider config={wagmiConfig}>{children}</WagmiProvider>;
+  return (
+    <WagmiProvider config={wagmiAdapter.wagmiConfig}>{children}</WagmiProvider>
+  );
 };
 
 export const chainToChainId = chains.reduce(
-  (acc, chain) => ({ ...acc, [chain.name]: chain.id }),
+  (acc, chain) => ({ ...acc, [chain.name]: parseInt(`${chain.id}`) }),
   {},
-) as Record<(typeof chains)[number]['name'], (typeof chains)[number]['id']>;
+) as Record<(typeof chains)[number]['name'], number>;
 
 export const chainIdToIcon: Record<number, React.ReactNode> = {
   [mainnet.id]: <IconEthereum color='black' />,

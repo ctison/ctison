@@ -15,33 +15,23 @@
   ],
   "cSpell.words": [
     "airtable",
+    "appkit",
     "arbitrum",
     "clsx",
-    "contentlayer",
     "devcontainer",
-    "Devdotto",
-    "echarts",
-    "fontsource",
-    "gsap",
-    "kbox",
-    "linea",
+    "Initializable",
     "moralis",
     "nprogress",
-    "rainbowkit",
     "reactflow",
     "rehype",
+    "reown",
     "splinetool",
     "tanstack",
     "thirdweb",
-    "Tison",
     "tradingview",
-    "unocss",
     "uups",
     "venv",
-    "wagmi",
-    "windi",
-    "windicss",
-    "zora"
+    "wagmi"
   ],
   "cssVariables.lookupFiles": [
     "**/*.css",
@@ -57,7 +47,9 @@
     "**/node_modules": true,
     "pnpm-lock.yaml": true
   },
+  "solidity.compileUsingRemoteVersion": "0.8.23",
   "solidity.formatter": "forge",
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "solidity.compileUsingRemoteVersion": "0.8.23"
+  "turbo.path": "node_modules/turbo/bin/turbo",
+  "turbo.useLocalTurbo": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

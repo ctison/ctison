@@ -10,6 +10,6 @@ legacy_version_file = true
 [[env]]
 _.file = '.env'
 _.python.venv = { path = ".venv" }
-DEBUG = 'eslint:eslint'
+# DEBUG = 'eslint:eslint'
 # [[env]]
 # _.file = '.env.local'

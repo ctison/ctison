@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, Group, Image, Indicator, Stack, Text } from '@mantine/core';
-import { useWeb3Modal } from '@web3modal/wagmi/react';
+import { useAppKit } from '@reown/appkit/react';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useAccount, useBalance, useBlockNumber, useEnsName } from 'wagmi';
 import { chainIdToIcon } from '../../_layout/Web3Provider';
@@ -12,7 +12,7 @@ export interface Web3WalletButtonProps {}
 
 export const Web3WalletButton: React.FC = () => {
   const { chain, address, isConnected } = useAccount();
-  const { open: openWeb3Modal } = useWeb3Modal();
+  const { open: openWeb3Modal } = useAppKit();
   const { data: blockNumber } = useBlockNumber({ watch: true });
   const queryClient = useQueryClient();
 

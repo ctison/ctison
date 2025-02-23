@@ -72,6 +72,8 @@ export const Table: React.FC<Readonly<GridProps>> = ({
         mode: 'multiRow',
         enableSelectionWithoutKeys: true,
         enableClickSelection: true,
+        headerCheckbox: true,
+        selectAll: 'currentPage',
       }}
       cellSelection={false}
       rowData={_data}
@@ -101,9 +103,5 @@ const categoriesColumns: ColDef[] = [
       filterPlaceholder: 'Filter...',
     },
     rowDrag: true,
-
-    headerCheckboxSelection: true,
-    headerCheckboxSelectionFilteredOnly: true,
-    headerCheckboxSelectionCurrentPageOnly: true,
   },
 ];

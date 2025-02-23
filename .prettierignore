@@ -4,3 +4,4 @@
 /apps/*/cache/
 /apps/evm/lib/
 /x/
+/.venv/
