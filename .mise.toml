@@ -1,6 +1,6 @@
 [tools]
 bun = '1'
-poetry = 'latest'
+uv = 'latest'
 
 [settings]
 status.show_env = true
@@ -9,6 +9,7 @@ legacy_version_file = true
 
 [[env]]
 _.file = '.env'
+_.python.venv = { path = ".venv" }
 DEBUG = 'eslint:eslint'
 # [[env]]
 # _.file = '.env.local'
