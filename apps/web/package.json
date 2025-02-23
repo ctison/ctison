@@ -31,6 +31,8 @@
     "@splinetool/react-spline": "4.0.0",
     "@splinetool/runtime": "1.9.69",
     "@tanstack/react-query": "5.66.9",
+    "@vercel/analytics": "1.5.0",
+    "@vercel/speed-insights": "1.2.0",
     "ag-grid-community": "33.1.1",
     "ag-grid-react": "33.1.1",
     "airtable": "0.12.2",

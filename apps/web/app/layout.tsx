@@ -15,6 +15,8 @@ import { Web3Provider } from './_layout/Web3Provider';
 import { WindowExpando } from './_layout/WindowExpando';
 import { theme } from './theme';
 import { Spotlight } from './_layout/Spotlight';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
   title: {
@@ -51,6 +53,8 @@ export default function RootLayout({
             </MantineProvider>
           </ReactQueryProvider>
         </Web3Provider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
