@@ -1,13 +1,9 @@
-import { FavoriteStack } from '@/_ui/FavoriteStack';
-import { FavoriteTools } from '@/_ui/FavoriteTools';
-import { InteractiveKeyboard } from './_ui/InteractiveKeyboard';
+import { Hero } from '@/_ui/Hero';
 
 export default function Home() {
   return (
     <>
-      <InteractiveKeyboard />
-      <FavoriteTools />
-      <FavoriteStack />
+      <Hero />
     </>
   );
 }

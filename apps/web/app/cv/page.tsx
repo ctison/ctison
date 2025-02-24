@@ -1,16 +1,26 @@
 // import { getCV } from '@/_lib/airtable';
+import { getCV } from '@/_lib/airtable';
 import {
+  Badge,
+  Box,
   Container,
   Group,
+  Stack,
   Text,
   ThemeIcon,
   Timeline,
+  TimelineItem,
   Title,
   Tooltip,
 } from '@mantine/core';
 import { type IconType } from 'react-icons';
 import { FaRust } from 'react-icons/fa';
-import { IoTerminal } from 'react-icons/io5';
+import {
+  IoCalendarOutline,
+  IoLocationOutline,
+  IoTerminal,
+} from 'react-icons/io5';
+import { LuHardHat } from 'react-icons/lu';
 import {
   SiKubernetes,
   SiPython,
@@ -23,8 +33,8 @@ export const metadata = {
   robots: 'noindex, nofollow, noarchive, nosnippet, noimageindex',
 };
 
-export default function Page() {
-  // const cv = await getCV();
+export default async function Page() {
+  const cv = await getCV();
   return (
     <Container my='xl' size='sm'>
       <Group justify='space-between'>
@@ -38,14 +48,10 @@ export default function Page() {
           <Icon Icon_={SiKubernetes} label='Kubernetes' />
         </Group>
       </Group>
-      <Text my='xl'>
-        Hey, I am an auto didact french developer who loves to read
-        documentation of about anything! I have deep interest in finance,
-        geopolitics and travels.
-      </Text>
       <Timeline mt='md'>
-        {/* {cv.map((props, i) => (
+        {cv.map((props, i) => (
           <TimelineItem
+            // eslint-disable-next-line @eslint-react/no-array-index-key
             key={i}
             title={<Text fw='bold'>{props.name}</Text>}
             style={{ breakInside: 'avoid' }}
@@ -66,10 +72,12 @@ export default function Page() {
                 </Group>
               </Group>
               <Box>
-                <Markdown>{props.description}</Markdown>
+                {/* <Markdown>{props.description}</Markdown> */}
+                <span>{props.description}</span>
               </Box>
               <Group gap='sm'>
                 {props.badges?.map((badge, i) => (
+                  // eslint-disable-next-line @eslint-react/no-array-index-key
                   <Badge key={i} variant='outline' color='green'>
                     {badge}
                   </Badge>
@@ -77,7 +85,7 @@ export default function Page() {
               </Group>
             </Stack>
           </TimelineItem>
-        ))} */}
+        ))}
       </Timeline>
     </Container>
   );

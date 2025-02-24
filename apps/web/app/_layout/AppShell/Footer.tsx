@@ -1,3 +1,4 @@
+import { IconClipboard, IconDeBank, IconGithub, IconMail } from '@/_ui/icons';
 import {
   ActionIcon,
   Center,
@@ -11,10 +12,6 @@ import {
   Tooltip,
 } from '@mantine/core';
 import { useClipboard } from '@mantine/hooks';
-import { HiOutlineMail as IconMail } from 'react-icons/hi';
-import { LuClipboardCheck as IconClipboard } from 'react-icons/lu';
-import { VscGithub as IconGithub } from 'react-icons/vsc';
-import { DeBankMono } from 'react-web3-icons';
 
 export const Footer: React.FC = () => {
   return (
@@ -38,7 +35,7 @@ export const Footer: React.FC = () => {
             tooltip='DeBank'
             href='https://debank.com/profile/0x6ee4696cd792ec25a28b5cc1ba22b71fd2f3a1dd'
           >
-            <DeBankMono />
+            <IconDeBank />
           </FooterIcon>
           <FooterIcon tooltip='ctison@pm.me' copy='ctison@pm.me'>
             <IconMail size='1.2rem' />
