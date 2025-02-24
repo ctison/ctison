@@ -23,7 +23,7 @@ import {
 import { WagmiProvider } from 'wagmi';
 
 const walletConnectProjectId =
-  process.env['NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID']!;
+  process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID;
 
 const chains: Parameters<typeof createAppKit>[0]['networks'] = [
   arbitrum,
