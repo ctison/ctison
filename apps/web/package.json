@@ -46,8 +46,8 @@
     "react-markdown": "10.0.0",
     "react-web3-icons": "1.7.0",
     "reactflow": "11.11.4",
-    "viem": "2.23.4",
-    "wagmi": "2.14.11",
+    "viem": "2.23.5",
+    "wagmi": "2.14.12",
     "zod": "3.24.2"
   },
   "devDependencies": {
