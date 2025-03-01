@@ -8,6 +8,7 @@ import {
   Group,
   AppShell as MantineAppShell,
   NavLink,
+  ScrollArea,
   Stack,
   Text,
 } from '@mantine/core';
@@ -16,6 +17,7 @@ import { spotlight } from '@mantine/spotlight';
 
 import { IconBolt, IconHome } from '@/_ui/icons';
 import { NoSsrWeb3WalletButton } from '@/_ui/Web3WalletButton';
+import { tabs } from '@/app/[[...slug]]/tabs';
 import { MuseoModerno } from 'next/font/google';
 import { usePathname } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
@@ -26,7 +28,6 @@ import {
   LuPanelLeftOpen as IconOpenLeftPanel,
 } from 'react-icons/lu';
 import { Footer } from './Footer';
-import { tabs } from '@/app/[[...slug]]/tabs';
 
 const brandFont = MuseoModerno({ subsets: ['latin'], weight: '600' });
 
@@ -114,7 +115,7 @@ export const AppShell: React.FC<Readonly<AppShellProps>> = ({ children }) => {
         {useMemo(
           () => (
             <MantineAppShell.Navbar>
-              <MantineAppShell.Section grow>
+              <MantineAppShell.Section grow component={ScrollArea}>
                 <Stack p='sm'>
                   <NoSsrWeb3WalletButton />
                   <Button
