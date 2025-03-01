@@ -3,27 +3,23 @@ import React, { useCallback } from 'react';
 import { BiWallet } from 'react-icons/bi';
 import { useAccount } from 'wagmi';
 
-export type Web3InputAddressProps<Element extends React.ElementType> =
-  PolymorphicComponentProps<Element> & {
-    setAddress: (address: string) => void;
-  };
+export type Web3InputAddressProps = React.ComponentPropsWithRef<
+  typeof TextInput
+> & {
+  setAddress: (address: string) => void;
+};
 
-export const Web3InputAddress = <
-  Element extends React.ElementType = typeof TextInput,
->({
-  as,
+export const Web3InputAddress: React.FC<Web3InputAddressProps> = ({
   setAddress,
   ...props
-}: Web3InputAddressProps<Element>) => {
+}: Web3InputAddressProps) => {
   const { address } = useAccount();
   const fillAddressFromWallet = useCallback(() => {
     setAddress(address as string);
   }, [setAddress, address]);
 
-  const Element: React.ElementType = as || TextInput;
-
   return (
-    <Element
+    <TextInput
       label='Address'
       placeholder='Type an address here.'
       rightSection={
