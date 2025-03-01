@@ -2,6 +2,7 @@ export { HiOutlineMail as IconMail } from 'react-icons/hi';
 export { LuClipboardCheck as IconClipboard } from 'react-icons/lu';
 export { VscGithub as IconGithub } from 'react-icons/vsc';
 export { DeBankMono as IconDeBank } from 'react-web3-icons';
+export { IoHome as IconHome } from 'react-icons/io5';
 
 export {
   BiLogoTypescript as IconTypescript,
@@ -23,5 +24,6 @@ export {
   SiSurrealdb as IconSurrealdb,
 } from 'react-icons/si';
 export { DiGoogleCloudPlatform as IconGcloud } from 'react-icons/di';
+export { FaBolt as IconBolt } from 'react-icons/fa6';
 
 export * from './IconTokio';

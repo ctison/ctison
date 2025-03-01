@@ -4,12 +4,13 @@ import { GnosisUi } from '../GnosisUi';
 import { SafeIcon } from '../GnosisUi/SafeInfos';
 import { SignIcon, SignUi } from '../SignUi';
 import { TradingView, TradingViewIcon } from '../TradingView';
+import type { IconType } from 'react-icons';
 
 export const tabs: {
   slug: string;
   label: string;
   children: React.FC;
-  icon?: React.ElementType;
+  icon: IconType;
 }[] = [
   {
     slug: 'convert',
