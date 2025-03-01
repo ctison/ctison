@@ -14,6 +14,7 @@ import {
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { spotlight } from '@mantine/spotlight';
 
+import { IconBolt, IconHome } from '@/_ui/icons';
 import { NoSsrWeb3WalletButton } from '@/_ui/Web3WalletButton';
 import { MuseoModerno } from 'next/font/google';
 import { usePathname } from 'next/navigation';
@@ -25,7 +26,7 @@ import {
   LuPanelLeftOpen as IconOpenLeftPanel,
 } from 'react-icons/lu';
 import { Footer } from './Footer';
-import { links } from './links';
+import { tabs } from '@/app/[[...slug]]/tabs';
 
 const brandFont = MuseoModerno({ subsets: ['latin'], weight: '600' });
 
@@ -147,22 +148,38 @@ export const AppShell: React.FC<Readonly<AppShellProps>> = ({ children }) => {
                     Search
                   </Button>
                 </Stack>
-                {links.map(({ href, label, Icon, startsWith }) => {
-                  const active = startsWith
-                    ? pathname.startsWith(href)
-                    : pathname === href;
-                  return (
-                    <Anchor component={Link} key={href} href={href}>
+                <Anchor component={Link} href='/'>
+                  <NavLink
+                    component='span'
+                    label='Home'
+                    active={pathname === '/'}
+                    leftSection={<IconHome />}
+                    className='not-data-active:!text-gray-600'
+                  />
+                </Anchor>
+                <NavLink
+                  label='Apps'
+                  leftSection={<IconBolt />}
+                  defaultOpened
+                  childrenOffset={0}
+                  classNames={{
+                    root: 'data-expanded:!border-b !border-gray-100',
+                    children: 'border-l-4 border-sky-300',
+                  }}
+                >
+                  {tabs.map(({ icon: Icon, ...tab }) => {
+                    const href = `/app/${tab.slug}`;
+                    return (
                       <NavLink
-                        component='span'
-                        label={label}
-                        active={active}
-                        leftSection={<Icon />}
-                        c={active ? undefined : 'gray.7'}
+                        key={href}
+                        href={href}
+                        active={pathname === href}
+                        leftSection={Icon && <Icon />}
+                        label={tab.label}
                       />
-                    </Anchor>
-                  );
-                })}
+                    );
+                  })}
+                </NavLink>
               </MantineAppShell.Section>
             </MantineAppShell.Navbar>
           ),
@@ -170,7 +187,10 @@ export const AppShell: React.FC<Readonly<AppShellProps>> = ({ children }) => {
         )}
 
         {/* MAIN */}
-        <MantineAppShell.Main mih={`var(--app-main-min-height)`}>
+        <MantineAppShell.Main
+          mih={`var(--app-main-min-height)`}
+          className='overflow-y-scroll'
+        >
           {children}
         </MantineAppShell.Main>
         <Footer />

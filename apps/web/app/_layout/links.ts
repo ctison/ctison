@@ -1,6 +1,6 @@
+import { tabs } from '@/app/[[...slug]]/tabs';
 import { type Route } from 'next';
 import { type IconType } from 'react-icons';
-import { HiLightningBolt } from 'react-icons/hi';
 import { IoHome } from 'react-icons/io5';
 
 export const links: {
@@ -10,10 +10,9 @@ export const links: {
   startsWith?: boolean;
 }[] = [
   { href: '/', label: 'Home', Icon: IoHome },
-  {
-    href: '/app' as Route,
-    label: 'Tools',
-    Icon: HiLightningBolt,
-    startsWith: true,
-  },
+  ...tabs.map((tab) => ({
+    href: `/app/${tab.slug}`,
+    label: tab.label,
+    Icon: tab.icon,
+  })),
 ];

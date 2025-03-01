@@ -68,14 +68,14 @@ export const Hero: React.FC<Readonly<HeroProps>> = () => {
           </TabsPanel>
         </Tabs>
       </Modal>
-      <div className='h-(--app-min-height) w-full flex items-center justify-center flex-col'>
+      <div className='flex h-(--app-min-height) w-full flex-col items-center justify-center'>
         <FramedTitle
           order={2}
           boxProps={{ w: 'fit-content', mx: 'auto', mb: 'xl' }}
         >
           Fullstack developer
         </FramedTitle>
-        <div className='flex flex-col items-center border-gray-500 rounded-md gap-1 p-1'>
+        <div className='flex flex-col items-center gap-1 rounded-md border-gray-500 p-1'>
           <div className='flex gap-1'>
             <Icon Icon={IconRust} label='Rust' color='black' />
             <Icon Icon={IconTokio} label='Tokio' color='black' />
@@ -99,7 +99,7 @@ export const Hero: React.FC<Readonly<HeroProps>> = () => {
             <Icon Icon={IconPostgresql} label='PostgreSQL' color='blue.8' />
           </div>
         </div>
-        <div className='grid grid-cols-2 gap-1 mt-5'>
+        <div className='mt-5 grid grid-cols-2 gap-1'>
           <Button
             component='a'
             href='https://github.com/ctison'
@@ -123,7 +123,7 @@ export const Hero: React.FC<Readonly<HeroProps>> = () => {
         </div>
 
         <div className='mt-6'>
-          <Tooltip label="You won't regret it">
+          <Tooltip label='Satisfaction guaranteed'>
             <Button
               onClick={openModal}
               variant='outline'

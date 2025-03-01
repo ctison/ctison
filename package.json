@@ -19,6 +19,9 @@
   },
   "prettier": {
     "jsxSingleQuote": true,
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ],
     "singleQuote": true
   },
   "devDependencies": {
@@ -26,6 +29,7 @@
     "husky": "9.1.7",
     "lint-staged": "15.4.3",
     "prettier": "3.5.2",
+    "prettier-plugin-tailwindcss": "0.6.11",
     "sort-package-json": "2.14.0",
     "turbo": "2.4.2",
     "typescript": "5.7.3"
