@@ -181,3 +181,5 @@ export const SignUi: React.FC = () => {
     </Stack>
   );
 };
+
+export default SignUi;

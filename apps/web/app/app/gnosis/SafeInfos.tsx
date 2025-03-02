@@ -14,7 +14,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useMemo } from 'react';
 import { GnosisSafe2 } from 'react-web3-icons';
 import { isAddress } from 'viem';
-import { type Tab, safeSupportedChains } from '.';
+import { type Tab, safeSupportedChains } from './page';
 import { Result } from './Result';
 import { useSafeApiKit } from './useSafeApiKit';
 

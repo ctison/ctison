@@ -231,3 +231,5 @@ export const TradingView: React.FC = () => {
     </>
   );
 };
+
+export default TradingView;

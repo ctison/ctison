@@ -17,7 +17,7 @@ import { spotlight } from '@mantine/spotlight';
 
 import { IconBolt, IconHome } from '@/_ui/icons';
 import { NoSsrWeb3WalletButton } from '@/_ui/Web3WalletButton';
-import { tabs } from '@/app/[[...slug]]/tabs';
+import { apps } from '@/app';
 import { MuseoModerno } from 'next/font/google';
 import { usePathname } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
@@ -168,7 +168,7 @@ export const AppShell: React.FC<Readonly<AppShellProps>> = ({ children }) => {
                     children: 'border-l-4 border-sky-300',
                   }}
                 >
-                  {tabs.map(({ icon: Icon, ...tab }) => {
+                  {apps.map(({ icon: Icon, ...tab }) => {
                     const href = `/app/${tab.slug}`;
                     return (
                       <NavLink

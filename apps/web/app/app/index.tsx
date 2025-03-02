@@ -1,12 +1,12 @@
-import { ContractUi, ContractUiIcon } from '../ContractUi';
-import { Calculator, CalculatorIcon } from '../Calculator';
-import { GnosisUi } from '../GnosisUi';
-import { SafeIcon } from '../GnosisUi/SafeInfos';
-import { SignIcon, SignUi } from '../SignUi';
-import { TradingView, TradingViewIcon } from '../TradingView';
+import { ContractUi, ContractUiIcon } from './contract/page';
+import { Calculator, CalculatorIcon } from './convert/page';
+import { GnosisUi } from './gnosis/page';
+import { SafeIcon } from './gnosis/SafeInfos';
+import { SignIcon, SignUi } from './sign/page';
+import { TradingView, TradingViewIcon } from './tradingview/page';
 import type { IconType } from 'react-icons';
 
-export const tabs: {
+export const apps: {
   slug: string;
   label: string;
   children: React.FC;

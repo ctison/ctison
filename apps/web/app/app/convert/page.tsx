@@ -13,3 +13,5 @@ export const Calculator: React.FC = () => {
     </SimpleGrid>
   );
 };
+
+export default Calculator;

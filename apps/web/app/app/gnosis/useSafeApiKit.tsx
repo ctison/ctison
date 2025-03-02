@@ -1,6 +1,6 @@
 import SafeApiKit from '@safe-global/api-kit';
 import { useMemo } from 'react';
-import { safeSupportedChains } from '.';
+import { safeSupportedChains } from './page';
 
 export const useSafeApiKit = (chain: keyof typeof safeSupportedChains) => {
   return useMemo(

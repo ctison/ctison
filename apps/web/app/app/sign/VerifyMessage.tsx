@@ -4,7 +4,7 @@ import { useForm } from '@mantine/form';
 import { useMutation } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { isAddress, isHex, verifyMessage } from 'viem';
-import { type History } from '.';
+import { type History } from './page';
 
 export const VerifyMessage: React.FC<{
   addHistory: (history: Omit<History, 'id' | 'date'>) => string;

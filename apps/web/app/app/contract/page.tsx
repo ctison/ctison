@@ -16,3 +16,5 @@ export const ContractUi: React.FC = () => {
     />
   );
 };
+
+export default ContractUi;

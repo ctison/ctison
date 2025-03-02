@@ -84,3 +84,5 @@ export const GnosisUi: React.FC = () => {
     </Stack>
   );
 };
+
+export default GnosisUi;
