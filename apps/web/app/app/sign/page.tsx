@@ -4,6 +4,7 @@ import {
   Alert,
   Button,
   CloseButton,
+  Container,
   Group,
   Notification,
   SimpleGrid,
@@ -90,95 +91,100 @@ export const SignUi: React.FC = () => {
   }, [historyStorage]);
 
   return (
-    <Stack>
-      <SimpleGrid cols={{ base: 1, md: 2 }}>
-        <SignMessage addHistory={addHistory} updateHistory={updateHistory} />
-        <VerifyMessage addHistory={addHistory} updateHistory={updateHistory} />
-      </SimpleGrid>
+    <Container size='xl' my='xl'>
       <Stack>
-        {history.length > 0 && (
-          <Button.Group>
-            <Button
-              color='red'
-              variant='subtle'
-              onClick={() => {
-                historyHandlers.setState([]);
-              }}
-              leftSection={<IoTrashBinOutline />}
+        <SimpleGrid cols={{ base: 1, md: 2 }}>
+          <SignMessage addHistory={addHistory} updateHistory={updateHistory} />
+          <VerifyMessage
+            addHistory={addHistory}
+            updateHistory={updateHistory}
+          />
+        </SimpleGrid>
+        <Stack>
+          {history.length > 0 && (
+            <Button.Group>
+              <Button
+                color='red'
+                variant='subtle'
+                onClick={() => {
+                  historyHandlers.setState([]);
+                }}
+                leftSection={<IoTrashBinOutline />}
+              >
+                Clear history
+              </Button>
+            </Button.Group>
+          )}
+          {history.map((item) => (
+            <Notification
+              title={
+                <Group>
+                  <Text fw={500} tt='capitalize'>
+                    {item.type}
+                  </Text>
+                  <Text c='dimmed' size='xs'>
+                    {format(item.date, 'LLLL d, yyyy HH:mm:ss')}
+                  </Text>
+                  <Tooltip label='Delete'>
+                    <CloseButton
+                      ml='auto'
+                      style={{ justifyContent: 'flex-end' }}
+                      variant='transparent'
+                      onClick={() => {
+                        const idx = history.findIndex(
+                          (_item) => item.id === _item.id,
+                        );
+                        historyHandlers.remove(idx);
+                      }}
+                    />
+                  </Tooltip>
+                </Group>
+              }
+              key={item.id}
+              color={
+                item.error || (item.type === 'verify' && item.valid === false)
+                  ? 'red'
+                  : 'green'
+              }
+              loading={
+                item.type === 'sign'
+                  ? !item.signature && !item.error
+                  : item.error === undefined
+              }
+              withBorder
+              withCloseButton={false}
             >
-              Clear history
-            </Button>
-          </Button.Group>
-        )}
-        {history.map((item) => (
-          <Notification
-            title={
-              <Group>
-                <Text fw={500} tt='capitalize'>
-                  {item.type}
-                </Text>
-                <Text c='dimmed' size='xs'>
-                  {format(item.date, 'LLLL d, yyyy HH:mm:ss')}
-                </Text>
-                <Tooltip label='Delete'>
-                  <CloseButton
-                    ml='auto'
-                    style={{ justifyContent: 'flex-end' }}
-                    variant='transparent'
-                    onClick={() => {
-                      const idx = history.findIndex(
-                        (_item) => item.id === _item.id,
-                      );
-                      historyHandlers.remove(idx);
-                    }}
-                  />
-                </Tooltip>
-              </Group>
-            }
-            key={item.id}
-            color={
-              item.error || (item.type === 'verify' && item.valid === false)
-                ? 'red'
-                : 'green'
-            }
-            loading={
-              item.type === 'sign'
-                ? !item.signature && !item.error
-                : item.error === undefined
-            }
-            withBorder
-            withCloseButton={false}
-          >
-            <Text size='sm' fw={500} c='black'>
-              Address
-            </Text>
-            <CodeHighlight language='json' code={item.address} />
-            <Text size='sm' fw={500} c='black'>
-              Message
-            </Text>
-            <CodeHighlight language='json' code={item.message} />
-            {item.signature && (
-              <>
-                <Text size='sm' fw={500} c='black'>
-                  Signature
-                </Text>
-                <CodeHighlight language='json' code={item.signature} />
-              </>
-            )}
-            {item.error && (
-              <Alert color='red' title={item.error.name} mt='sm'>
-                {item.error.message}
-              </Alert>
-            )}
-            {item.type === 'verify' && item.valid !== undefined && (
-              <Text c='black' mt='lg' size='sm'>
-                {item.valid ? '✅ Valid' : '❌ Invalid'}
+              <Text size='sm' fw={500} c='black'>
+                Address
               </Text>
-            )}
-          </Notification>
-        ))}
+              <CodeHighlight language='json' code={item.address} />
+              <Text size='sm' fw={500} c='black'>
+                Message
+              </Text>
+              <CodeHighlight language='json' code={item.message} />
+              {item.signature && (
+                <>
+                  <Text size='sm' fw={500} c='black'>
+                    Signature
+                  </Text>
+                  <CodeHighlight language='json' code={item.signature} />
+                </>
+              )}
+              {item.error && (
+                <Alert color='red' title={item.error.name} mt='sm'>
+                  {item.error.message}
+                </Alert>
+              )}
+              {item.type === 'verify' && item.valid !== undefined && (
+                <Text c='black' mt='lg' size='sm'>
+                  {item.valid ? '✅ Valid' : '❌ Invalid'}
+                </Text>
+              )}
+            </Notification>
+          ))}
+        </Stack>
       </Stack>
-    </Stack>
+    </Container>
   );
 };
 

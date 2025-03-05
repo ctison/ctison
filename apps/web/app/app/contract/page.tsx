@@ -13,6 +13,11 @@ export const ContractUi: React.FC = () => {
       TitleLeftSection={() => <ContractUiIcon />}
       Content={({ tab }) => <ContractUiApp id={tab.id} />}
       creatable
+      radius='xs'
+      classNames={{
+        root: '!mt-0.5 !mb-8',
+        list: '!px-0.5',
+      }}
     />
   );
 };

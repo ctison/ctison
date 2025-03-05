@@ -5,7 +5,7 @@
     "build": "turbo run build:",
     "build:": "NODE_ENV=production next build",
     "clean": "rm -rf -- .next/ next-env.d.ts",
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "lint": "turbo run lint:",
     "lint:": "next lint --max-warnings=0"
   },
@@ -47,6 +47,7 @@
     "react-scan": "0.2.8",
     "react-web3-icons": "1.7.0",
     "reactflow": "11.11.4",
+    "tailwind-merge": "3.0.2",
     "viem": "2.23.5",
     "wagmi": "2.14.12",
     "zod": "3.24.2"
