@@ -47,7 +47,7 @@
     "**/node_modules": true,
     "pnpm-lock.yaml": true
   },
-  "solidity.compileUsingRemoteVersion": "0.8.23",
+  "solidity.compileUsingRemoteVersion": "0.8.28",
   "solidity.formatter": "forge",
   "turbo.path": "node_modules/turbo/bin/turbo",
   "turbo.useLocalTurbo": true,

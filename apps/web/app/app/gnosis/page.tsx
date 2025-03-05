@@ -3,7 +3,7 @@
 import { type TabState } from '@/_ui/Tabs';
 import { TabsController } from '@/_ui/Tabs/Controller';
 import { Tabs } from '@/_ui/Tabs/Tabs';
-import { SimpleGrid, Stack } from '@mantine/core';
+import { Container, SimpleGrid, Stack } from '@mantine/core';
 import React, { useCallback, useMemo } from 'react';
 import { SafeIcon, SafeInfos, SafeInfosForm } from './SafeInfos';
 import { UserIcon, UserInfos, UserInfosForm } from './UserInfos';
@@ -46,41 +46,45 @@ export const GnosisUi: React.FC = () => {
   );
 
   return (
-    <Stack>
-      <SimpleGrid cols={{ base: 1, md: 2 }}>
-        <SafeInfosForm createTab={createTab} />
-        <UserInfosForm createTab={createTab} />
-      </SimpleGrid>
-      <Tabs
-        controller={tabsController}
-        localStorageKey='gnosis-ui'
-        TitleLeftSection={({ tab }) => (
-          <>
-            {tab.type === 'safe-infos' ? (
-              <SafeIcon />
-            ) : tab.type === 'user-infos' ? (
-              <UserIcon />
-            ) : null}
-          </>
-        )}
-        Content={({ tab }) => (
-          <>
-            {tab.type === 'safe-infos' ? (
-              <SafeInfos
-                id={tab.id}
-                chain={tab.chain}
-                safeAddress={tab.safeAddress}
-              />
-            ) : tab.type === 'user-infos' ? (
-              <UserInfos
-                id={tab.id}
-                chain={tab.chain}
-                userAddress={tab.userAddress}
-              />
-            ) : null}
-          </>
-        )}
-      />
-    </Stack>
+    <Container size='xl' my='xl'>
+      <Stack>
+        <SimpleGrid cols={{ base: 1, md: 2 }}>
+          <SafeInfosForm createTab={createTab} />
+          <UserInfosForm createTab={createTab} />
+        </SimpleGrid>
+        <Tabs
+          controller={tabsController}
+          localStorageKey='gnosis-ui'
+          TitleLeftSection={({ tab }) => (
+            <>
+              {tab.type === 'safe-infos' ? (
+                <SafeIcon />
+              ) : tab.type === 'user-infos' ? (
+                <UserIcon />
+              ) : null}
+            </>
+          )}
+          Content={({ tab }) => (
+            <>
+              {tab.type === 'safe-infos' ? (
+                <SafeInfos
+                  id={tab.id}
+                  chain={tab.chain}
+                  safeAddress={tab.safeAddress}
+                />
+              ) : tab.type === 'user-infos' ? (
+                <UserInfos
+                  id={tab.id}
+                  chain={tab.chain}
+                  userAddress={tab.userAddress}
+                />
+              ) : null}
+            </>
+          )}
+        />
+      </Stack>
+    </Container>
   );
 };
+
+export default GnosisUi;

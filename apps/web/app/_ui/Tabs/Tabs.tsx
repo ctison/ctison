@@ -10,13 +10,13 @@ import {
 import { SortableContext, useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import {
-  ActionIcon,
   CloseButton,
   Tabs as MantineTabs,
   type TabsProps as MantineTabsProps,
   Menu,
   type TabsTabProps,
   TextInput,
+  ThemeIcon,
   Tooltip,
 } from '@mantine/core';
 import {
@@ -33,6 +33,7 @@ import { FaPlus } from 'react-icons/fa';
 import { HiOutlineTrash } from 'react-icons/hi';
 import type { CustomProps, TabState } from '.';
 import { TabsController } from './Controller';
+import { twMerge } from 'tailwind-merge';
 
 export interface TabsProps<T extends TabState = TabState>
   extends Omit<MantineTabsProps, 'children'> {
@@ -51,6 +52,7 @@ export const Tabs = <T extends TabState>({
   creatable,
   controller,
   ref,
+  classNames,
   ...props
 }: Readonly<TabsProps<T>>) => {
   const [tabsStorage, setTabsStorage] = useLocalStorage<T[]>({
@@ -166,6 +168,16 @@ export const Tabs = <T extends TabState>({
         onChange={changeTab}
         variant='outline'
         activateTabWithKeyboard={false}
+        classNames={(theme, props, ctx) => {
+          if (typeof classNames === 'function') {
+            classNames = classNames(theme, props, ctx);
+          }
+          return {
+            ...classNames,
+            tab: twMerge('!pt-0 !pb-0 hover:!bg-gray-50', classNames?.tab),
+          };
+        }}
+        {...props}
       >
         <MantineTabs.List>
           <SortableContext items={tabs.map((_tab, idx) => idx + 1)}>
@@ -238,9 +250,9 @@ export const Tabs = <T extends TabState>({
           </SortableContext>
           {creatable && (
             <MantineTabs.Tab value='+'>
-              <ActionIcon component='div' variant='subtle' color='gray'>
+              <ThemeIcon component='div' variant='subtle' color='gray'>
                 <FaPlus />
-              </ActionIcon>
+              </ThemeIcon>
             </MantineTabs.Tab>
           )}
         </MantineTabs.List>

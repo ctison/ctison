@@ -1,6 +1,7 @@
 'use client';
 
 import { CodeHighlight } from '@mantine/code-highlight';
+import '@mantine/code-highlight/styles.css';
 import {
   ActionIcon,
   Autocomplete,
@@ -13,7 +14,6 @@ import {
   Stack,
   Tabs,
   Text,
-  ThemeIcon,
   Tooltip,
 } from '@mantine/core';
 import { DatePicker, TimeInput } from '@mantine/dates';
@@ -21,9 +21,7 @@ import '@mantine/dates/styles.css';
 import { useForm } from '@mantine/form';
 import dayjs from 'dayjs';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { FaCalendarAlt } from 'react-icons/fa';
 import { FaCircleInfo } from 'react-icons/fa6';
-import classes from './DateCalculator.module.css';
 
 export interface DateCalculatorProps {}
 
@@ -138,17 +136,7 @@ export const DateCalculator: React.FC<DateCalculatorProps> = () => {
   const [panel, setPanel] = useState('Date');
 
   return (
-    <Fieldset
-      h='100%'
-      legend={
-        <Group gap='xs'>
-          <ThemeIcon variant='subtle' color='black'>
-            <FaCalendarAlt size='50%' />
-          </ThemeIcon>
-          <Text fw='bold'>Date Calculator</Text>
-        </Group>
-      }
-    >
+    <>
       <Flex justify='stretch' align='stretch' wrap='wrap'>
         <Fieldset legend='Select date and time' pb='xs' w='100%'>
           <Stack align='center' h='100%' gap={5}>
@@ -190,7 +178,7 @@ export const DateCalculator: React.FC<DateCalculatorProps> = () => {
                           key={input}
                           allowDecimal={false}
                           label={input}
-                          className={classes['input-label']}
+                          className='capitalize'
                           {...form.getInputProps(input)}
                         />
                       )),
@@ -208,7 +196,7 @@ export const DateCalculator: React.FC<DateCalculatorProps> = () => {
                             key={input}
                             allowDecimal={false}
                             label={input}
-                            className={classes['input-label']}
+                            className='capitalize'
                             {...form.getInputProps(input)}
                           />
                         ),
@@ -246,6 +234,6 @@ export const DateCalculator: React.FC<DateCalculatorProps> = () => {
         />
         {result && <CodeHighlight code={result} language='text' mt='md' />}
       </Fieldset>
-    </Fieldset>
+    </>
   );
 };

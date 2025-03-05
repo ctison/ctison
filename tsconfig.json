@@ -44,6 +44,9 @@
     "experimentalDecorators": true,
     "target": "ESNext",
 
+    // Projects
+    "incremental": true,
+
     // Output Formatting
     "noErrorTruncation": true,
     "noEmitOnError": true,

@@ -4,6 +4,7 @@ import { type RestMarketTypes } from '@binance/connector-typescript';
 import { CodeHighlight } from '@mantine/code-highlight';
 import {
   ActionIcon,
+  Container,
   CopyButton,
   Grid,
   Group,
@@ -98,7 +99,7 @@ export const TradingView: React.FC = () => {
   }, [selectedCategories, selectedSymbols]);
 
   return (
-    <>
+    <Container size='xl' my='xl'>
       <Tabs defaultValue='binance' keepMounted={false}>
         <Tabs.List>
           <Text fw={500} size='md' span style={{ alignSelf: 'flex-end' }} p={5}>
@@ -228,6 +229,8 @@ export const TradingView: React.FC = () => {
           </Grid>
         </Tabs.Panel>
       </Tabs>
-    </>
+    </Container>
   );
 };
+
+export default TradingView;

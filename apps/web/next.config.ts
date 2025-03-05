@@ -11,4 +11,7 @@ export default {
   experimental: {
     optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
   },
+  devIndicators: {
+    position: 'bottom-right',
+  },
 } satisfies NextConfig;

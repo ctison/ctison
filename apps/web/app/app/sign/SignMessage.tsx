@@ -4,7 +4,7 @@ import { Fieldset, Textarea } from '@mantine/core';
 import { useMutation } from '@tanstack/react-query';
 import { useCallback, useState } from 'react';
 import { useWalletClient } from 'wagmi';
-import { type History } from '.';
+import { type History } from './page';
 
 export const SignMessage: React.FC<{
   addHistory: (history: Omit<History, 'id' | 'date'>) => string;

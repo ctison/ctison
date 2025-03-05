@@ -17,6 +17,7 @@ import { theme } from './theme';
 import { Spotlight } from './_layout/Spotlight';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { ReactScan } from './_layout/ReactScan';
 
 export const metadata: Metadata = {
   title: {
@@ -34,6 +35,7 @@ export default function RootLayout({
 }: Readonly<React.PropsWithChildren>) {
   return (
     <html lang='en' suppressHydrationWarning>
+      <ReactScan />
       <head>
         <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
