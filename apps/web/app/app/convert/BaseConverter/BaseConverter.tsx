@@ -62,7 +62,6 @@ export const BaseConverter: React.FC<BaseConverterProps> = () => {
         variant='separated'
         chevron={<IconChevronLeft size='3em' />}
         classNames={{ chevron: 'data-rotate:!transform-[rotate(-90deg)]' }}
-        defaultValue='info'
       >
         <AccordionItem value='info'>
           <AccordionControl icon={<IconInfo />} className='text-gray-400'>

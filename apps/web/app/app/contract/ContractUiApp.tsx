@@ -117,7 +117,6 @@ export const ContractUiApp: React.FC<Readonly<{ id: string }>> = ({ id }) => {
     <>
       <Container size='xl'>
         <Accordion
-          defaultValue='info'
           variant='separated'
           mt='xl'
           chevron={<IconChevronLeft size='3em' />}

@@ -149,15 +149,13 @@ export const AppShell: React.FC<Readonly<AppShellProps>> = ({ children }) => {
                     Search
                   </Button>
                 </Stack>
-                <Anchor component={Link} href='/'>
-                  <NavLink
-                    component='span'
-                    label='Home'
-                    active={pathname === '/'}
-                    leftSection={<IconHome />}
-                    className='not-data-active:!text-gray-600'
-                  />
-                </Anchor>
+                <NavLink
+                  component={Link}
+                  href='/'
+                  label='Home'
+                  active={pathname === '/'}
+                  leftSection={<IconHome />}
+                />
                 <NavLink
                   label='Apps'
                   leftSection={<IconBolt />}
@@ -173,6 +171,7 @@ export const AppShell: React.FC<Readonly<AppShellProps>> = ({ children }) => {
                     return (
                       <NavLink
                         key={href}
+                        component={Link}
                         href={href}
                         active={pathname === href}
                         leftSection={Icon && <Icon />}
