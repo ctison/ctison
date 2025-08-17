@@ -25,7 +25,7 @@
     "apps/web": {
       "name": "@ctison/web",
       "dependencies": {
-        "@binance/connector-typescript": "0.3.15",
+        "@binance/connector-typescript": "0.3.16",
         "@ctison/base-converter": "2.0.0",
         "@dnd-kit/core": "6.3.1",
         "@dnd-kit/modifiers": "9.0.0",
@@ -135,7 +135,7 @@
 
     "@babel/types": ["@babel/types@7.26.9", "", { "dependencies": { "@babel/helper-string-parser": "^7.25.9", "@babel/helper-validator-identifier": "^7.25.9" } }, "sha512-Y3IR1cRnOxOCDvMmNiym7XpXQ93iGDDPHx+Zj+NM+rg0fBaShfQLkg+hKPaZCEvg5N/LeCo4+Rj/i3FuJsIQaw=="],
 
-    "@binance/connector-typescript": ["@binance/connector-typescript@0.3.15", "", { "dependencies": { "axios": "^1.7.4", "ws": "^8.17.1" } }, "sha512-kxIEzLfLAH8klHPan+bTYXGHhkoB7UtBRGUqT0oVlDp6ZfF//1JPqbsPiDGR36/7e8lQ1W+3ifDr/8VbJhiB5g=="],
+    "@binance/connector-typescript": ["@binance/connector-typescript@0.3.16", "", { "dependencies": { "axios": "^1.7.4", "ws": "^8.17.1" } }, "sha512-KAVxj/BAtLNl+PwniwRBfeespB1vLyp6tfa3y1oXbtIuwNFbPSn5P1A0mu9n5523Vg3lKGk9pfIKugPG+E4eKA=="],
 
     "@clack/core": ["@clack/core@0.3.5", "", { "dependencies": { "picocolors": "^1.0.0", "sisteransi": "^1.0.5" } }, "sha512-5cfhQNH+1VQ2xLQlmzXMqUoiaH0lRBq9/CLW9lTyMbuKLC3+xEK01tHVvyut++mLOn5urSHmkm6I0Lg9MaJSTQ=="],
 
