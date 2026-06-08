@@ -1,0 +1,26 @@
+export const metadata = {
+  title: 'Designing in the open',
+  date: '2026-06-03',
+  category: 'Design',
+  description: 'Notes on a restrained, dark-first visual language for a personal site.',
+};
+
+# Designing in the open
+
+The palette here is deliberately small: a near-black background, zinc for
+structure, and almost nothing else. Constraints make decisions faster.
+
+A few rules I'm trying to keep:
+
+- One accent at a time, never two competing.
+- Type scale over color for hierarchy.
+- Motion only when it explains a change of state.
+
+Dark mode isn't an afterthought — it's the default, and the light theme is the
+variant. Everything is driven by a single class on `<html>`:
+
+```css
+@custom-variant dark (&:where(.dark, .dark *));
+```
+
+We'll see how well it holds up as the site grows.

@@ -1,0 +1,57 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Active when the sidebar is collapsed (attribute set on <html> before paint). */
+@custom-variant collapsed (&:where([data-sidebar='collapsed'], [data-sidebar='collapsed'] *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Let rehype-pretty-code's shiki theme own code-block colors instead of `prose`. */
+.prose pre {
+  background-color: #0d1117;
+  border: 1px solid var(--color-zinc-800);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+}
+
+.prose pre code {
+  display: grid;
+  background: transparent;
+  font-size: 0.875em;
+  line-height: 1.6;
+}
+
+/* rehype-pretty-code emits per-token colors via this CSS variable. */
+.prose pre code span[data-line] {
+  color: var(--shiki-dark, inherit);
+}
+
+/* Strip `prose`'s default backticks/background from inline code. */
+.prose :not(pre) > code::before,
+.prose :not(pre) > code::after {
+  content: none;
+}

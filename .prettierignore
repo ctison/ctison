@@ -1,7 +1,2 @@
-/.fttemplates/
-/apps/*/typechain-types/
-/apps/*/artifacts/
-/apps/*/cache/
-/apps/evm/lib/
-/x/
-/.venv/
+*.lock
+*-lock.*

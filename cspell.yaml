@@ -1,0 +1,11 @@
+useGitignore: true
+allowCompoundWords: true
+ignoreRegExpList:
+  - "@\\w+/\\w+\\b"
+words:
+  - ctison
+  - FOUC
+  - rehype
+  - shiki
+  - tombi
+  - unrs
