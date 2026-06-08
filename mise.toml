@@ -1,8 +1,7 @@
 [tools]
-bun = "1"
-node = "lts"
-uv = "latest"
+bun = '1'
+node = 'lts'
+nushell = 'latest'
 
-[[env]]
-_.file = ".env"
-_.python.venv = { path = ".venv" }
+[tool_alias]
+nushell = 'aqua:nushell/nushell'

@@ -2,54 +2,19 @@
   "[js][jsx][ts][tsx][vue][css][less][scss][sass][graphql][gql][md][mdx][yaml][json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[solidity]": {
-    "editor.defaultFormatter": "JuanBlanco.solidity"
+  "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "explicit",
+    "source.organizeImports": "never",
+    "source.organizeImports.biome": "explicit"
   },
-  "cSpell.ignorePaths": [
-    "package.json",
-    "package-lock.json",
-    "node_modules/",
-    ".git/objects",
-    ".vscode/settings.json",
-    "pnpm-lock.yaml"
-  ],
-  "cSpell.words": [
-    "airtable",
-    "appkit",
-    "arbitrum",
-    "clsx",
-    "devcontainer",
-    "Initializable",
-    "moralis",
-    "nprogress",
-    "reactflow",
-    "rehype",
-    "reown",
-    "splinetool",
-    "tanstack",
-    "thirdweb",
-    "tradingview",
-    "uups",
-    "venv",
-    "wagmi"
-  ],
-  "cssVariables.lookupFiles": [
-    "**/*.css",
-    "**/*.scss",
-    "**/*.sass",
-    "**/*.less",
-    "node_modules/@mantine/core/styles.css"
-  ],
+  "files.associations": {
+    "*.css": "tailwindcss",
+    "**/*.json": "jsonc",
+    "**/package.json": "json"
+  },
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "editor.tabSize": 2,
   "editor.formatOnSave": true,
-  "search.exclude": {
-    "**/*.code-search": true,
-    "**/bower_components": true,
-    "**/node_modules": true,
-    "pnpm-lock.yaml": true
-  },
-  "solidity.compileUsingRemoteVersion": "0.8.28",
-  "solidity.formatter": "forge",
-  "turbo.path": "node_modules/turbo/bin/turbo",
-  "turbo.useLocalTurbo": true,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "js/ts.tsdk.path": "node_modules/typescript/lib"
 }

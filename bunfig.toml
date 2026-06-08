@@ -2,7 +2,4 @@ env = false
 
 [install]
 exact = true
-linker = "isolated"
-
-[run]
-noOrphans = true
+linker = 'isolated'

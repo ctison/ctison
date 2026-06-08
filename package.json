@@ -3,35 +3,30 @@
   "private": true,
   "type": "module",
   "workspaces": [
-    "apps/*",
-    "libs/*"
+    "apps/*"
   ],
   "scripts": {
     "build": "turbo run build:",
-    "ci": "bun run format:check && bun run lint && bun run test",
+    "ci": "nu ./scripts/ci.nu",
     "clean": "turbo run clean",
-    "format": "prettier -w . ; sort-package-json",
-    "format:check": "prettier --check . && sort-package-json --check",
-    "lint": "turbo run lint:",
+    "fmt": "nu ./scripts/fmt.nu",
+    "lint": "nu ./scripts/lint.nu",
     "prepare": "husky",
     "test": "turbo run test",
-    "update": "bun x npm-check-updates -ui -ws --root"
-  },
-  "prettier": {
-    "jsxSingleQuote": true,
-    "plugins": [
-      "prettier-plugin-tailwindcss"
-    ],
-    "singleQuote": true
+    "update": "bun update -ri"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.4.16",
     "@types/bun": "1.2.4",
+    "@types/node": "25.9.2",
+    "cspell": "10.0.1",
     "husky": "9.1.7",
     "lint-staged": "15.4.3",
     "prettier": "3.5.3",
     "prettier-plugin-tailwindcss": "0.6.11",
     "sort-package-json": "3.0.0",
-    "turbo": "2.4.4",
+    "tombi": "1.1.2",
+    "turbo": "2.9.16",
     "typescript": "5.8.2"
   },
   "packageManager": "bun@1.0.0"

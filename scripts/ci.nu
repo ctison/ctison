@@ -1,0 +1,7 @@
+# Run the full CI pipeline: clean install, lint sweep, then tests.
+def main [] {
+  rm -rf ($env.FILE_PWD)/../node_modules
+  bun install --frozen-lockfile
+  bun run lint
+  bun run test
+}
