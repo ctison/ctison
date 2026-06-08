@@ -3,20 +3,6 @@ allowCompoundWords: true
 ignoreRegExpList:
   - '@\w+/\w+\b'
 words:
-  - appkit
-  - arbitrum
-  - clsx
   - ctison
-  - expando
-  - moralis
-  - nprogress
-  - reactflow
-  - reown
-  - splinetool
-  - tanstack
   - tombi
-  - tradingview
-  - viem
-  - wagmi
-  - surrealdb
-  - pulumi
+  - unrs

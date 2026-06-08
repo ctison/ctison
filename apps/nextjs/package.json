@@ -1,0 +1,33 @@
+{
+  "name": "@ctison/nextjs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "test": ":"
+  },
+  "dependencies": {
+    "@base-ui/react": "catalog:react",
+    "@hugeicons/core-free-icons": "catalog:react",
+    "@hugeicons/react": "catalog:react",
+    "@tanstack/react-query": "catalog:react",
+    "jotai": "catalog:react",
+    "next": "catalog:react",
+    "react": "catalog:react",
+    "react-dom": "catalog:react",
+    "react-icons": "catalog:react"
+  },
+  "devDependencies": {
+    "@base-ui/utils": "catalog:react",
+    "@tailwindcss/postcss": "catalog:css",
+    "@tanstack/react-query-devtools": "catalog:react",
+    "babel-plugin-react-compiler": "catalog:react",
+    "tailwind-merge": "catalog:css",
+    "tailwindcss": "catalog:css"
+  },
+  "ignoreScripts": [
+    "sharp",
+    "unrs-resolver"
+  ]
+}
