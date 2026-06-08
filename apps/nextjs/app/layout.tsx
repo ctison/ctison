@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { Header } from './_ui/Header';
+import { InlineScript } from './_ui/InlineScript';
+import { Sidebar } from './_ui/Sidebar';
 import './globals.css';
 
 const geistSans = Geist({
@@ -27,6 +29,14 @@ const themeScript = `(() => {
   } catch {}
 })();`;
 
+// Inline script that applies the saved sidebar state before paint to avoid a width flash.
+const sidebarScript = `(() => {
+  try {
+    const collapsed = localStorage.getItem('sidebar') === 'collapsed';
+    document.documentElement.dataset.sidebar = collapsed ? 'collapsed' : 'expanded';
+  } catch {}
+})();`;
+
 // Root layout: applies fonts, the theme bootstrap, and renders the header above every page.
 export default function RootLayout({
   children,
@@ -40,11 +50,15 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <InlineScript html={themeScript} />
+        <InlineScript html={sidebarScript} />
       </head>
       <body className='flex min-h-full flex-col font-sans'>
         <Header />
-        {children}
+        <div className='flex flex-1'>
+          <Sidebar />
+          <div className='flex flex-1 flex-col'>{children}</div>
+        </div>
       </body>
     </html>
   );

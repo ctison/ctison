@@ -23,4 +23,4 @@ Prefer Typescript over Javascript.
 # Map
 
 `scripts/` -> maintainance scripts
-`apps/nextjs` ->
+`apps/nextjs` -> main web app

@@ -2,6 +2,9 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Active when the sidebar is collapsed (attribute set on <html> before paint). */
+@custom-variant collapsed (&:where([data-sidebar='collapsed'], [data-sidebar='collapsed'] *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
