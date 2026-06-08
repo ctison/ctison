@@ -5,5 +5,7 @@ ignoreRegExpList:
 words:
   - ctison
   - FOUC
+  - rehype
+  - shiki
   - tombi
   - unrs

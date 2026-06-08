@@ -11,17 +11,25 @@
     "@base-ui/react": "catalog:react",
     "@hugeicons/core-free-icons": "catalog:react",
     "@hugeicons/react": "catalog:react",
+    "@mdx-js/loader": "catalog:mdx",
+    "@mdx-js/react": "catalog:mdx",
+    "@next/mdx": "catalog:mdx",
     "@tanstack/react-query": "catalog:react",
     "jotai": "catalog:react",
     "next": "catalog:react",
     "react": "catalog:react",
     "react-dom": "catalog:react",
-    "react-icons": "catalog:react"
+    "react-icons": "catalog:react",
+    "rehype-pretty-code": "catalog:mdx",
+    "remark-gfm": "catalog:mdx",
+    "shiki": "catalog:mdx"
   },
   "devDependencies": {
     "@base-ui/utils": "catalog:react",
     "@tailwindcss/postcss": "catalog:css",
+    "@tailwindcss/typography": "catalog:css",
     "@tanstack/react-query-devtools": "catalog:react",
+    "@types/mdx": "catalog:mdx",
     "babel-plugin-react-compiler": "catalog:react",
     "tailwind-merge": "catalog:css",
     "tailwindcss": "catalog:css"

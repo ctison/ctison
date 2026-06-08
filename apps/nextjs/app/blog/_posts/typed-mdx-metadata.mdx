@@ -1,0 +1,34 @@
+export const metadata = {
+  title: 'Type-checking MDX post metadata',
+  date: '2026-06-05',
+  category: 'Engineering',
+  description: 'A shared PostMeta type and a module augmentation keep frontmatter honest.',
+};
+
+# Type-checking MDX post metadata
+
+`@next/mdx` compiles `.mdx` as JavaScript, not TypeScript — so `satisfies` can't
+live inside the post file. Instead, a single module augmentation types the
+`metadata` export everywhere it's imported:
+
+```ts
+import type { PostMeta } from '@/blog/_lib/types';
+
+declare module '*.mdx' {
+  export const metadata: PostMeta;
+}
+```
+
+Every consumer — the index loader, the cards, `generateMetadata` — is now checked
+against the same shape.
+
+## Fields at a glance
+
+| Field         | Type     | Purpose                         |
+| ------------- | -------- | ------------------------------- |
+| `title`       | `string` | Heading + `<title>`             |
+| `date`        | `string` | ISO date, sorts newest-first    |
+| `category`    | `string` | Drives the filter chips         |
+| `description` | `string` | Card summary + meta description |
+
+Simple, but it scales.
