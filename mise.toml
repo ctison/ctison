@@ -1,0 +1,8 @@
+[tools]
+bun = "1"
+node = "lts"
+uv = "latest"
+
+[[env]]
+_.file = ".env"
+_.python.venv = { path = ".venv" }

@@ -1,9 +1,0 @@
-[tools]
-bun = '1'
-uv = 'latest'
-
-
-[[env]]
-_.file = '.env'
-_.python.venv = { path = ".venv" }
-
