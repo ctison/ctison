@@ -1,8 +1,9 @@
 useGitignore: true
 allowCompoundWords: true
 ignoreRegExpList:
-  - '@\w+/\w+\b'
+  - "@\\w+/\\w+\\b"
 words:
   - ctison
+  - FOUC
   - tombi
   - unrs
